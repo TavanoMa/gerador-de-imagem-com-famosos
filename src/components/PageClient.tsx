@@ -1,0 +1,31 @@
+"use client"
+
+import { useState } from "react"
+import Header from "@/src/components/Header"
+import GenerateImage from "@/src/components/GenerateImage"
+
+interface Props {
+  famousName: string
+  initialCredits?: number
+  isLogged: boolean
+}
+
+export default function PageClient({
+  famousName,
+  initialCredits,
+  isLogged,
+}: Props) {
+  const [credits, setCredits] = useState<number>(initialCredits ?? 0)
+
+
+  return (
+    <div className="bg-[#252525] text-gray-100">
+      <Header title={famousName} credits={credits} />
+      <GenerateImage
+        isLogged={isLogged}
+        credits={credits}
+        onCreditsUpdate={setCredits}
+      />
+    </div>
+  )
+}

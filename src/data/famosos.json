@@ -1,0 +1,618 @@
+[
+  {
+    "id": 1,
+    "name": "Pelé",
+    "slug": "pele",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 2,
+    "name": "Neymar",
+    "slug": "neymar",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 3,
+    "name": "Ronaldinho Gaúcho",
+    "slug": "ronaldinho-gaucho",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 4,
+    "name": "Ronaldo Fenômeno",
+    "slug": "ronaldo-fenomeno",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 5,
+    "name": "Kaká",
+    "slug": "kaka",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 6,
+    "name": "Romário",
+    "slug": "romario",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 7,
+    "name": "Zico",
+    "slug": "zico",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 8,
+    "name": "Cafu",
+    "slug": "cafu",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 9,
+    "name": "Roberto Carlos",
+    "slug": "roberto-carlos",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 10,
+    "name": "Rivaldo",
+    "slug": "rivaldo",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+
+  {
+    "id": 11,
+    "name": "Marta",
+    "slug": "marta",
+    "description": "Jogadora de futebol brasileira"
+  },
+  {
+    "id": 12,
+    "name": "Vinícius Júnior",
+    "slug": "vinicius-junior",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 13,
+    "name": "Rodrygo",
+    "slug": "rodrygo",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 14,
+    "name": "Endrick",
+    "slug": "endrick",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 15,
+    "name": "Richarlison",
+    "slug": "richarlison",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 16,
+    "name": "Casemiro",
+    "slug": "casemiro",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 17,
+    "name": "Alisson",
+    "slug": "alisson",
+    "description": "Goleiro de futebol brasileiro"
+  },
+  {
+    "id": 18,
+    "name": "Ederson",
+    "slug": "ederson",
+    "description": "Goleiro de futebol brasileiro"
+  },
+  {
+    "id": 19,
+    "name": "Thiago Silva",
+    "slug": "thiago-silva",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 20,
+    "name": "David Luiz",
+    "slug": "david-luiz",
+    "description": "Jogador de futebol brasileiro"
+  },
+
+  {
+    "id": 21,
+    "name": "Gabriel Jesus",
+    "slug": "gabriel-jesus",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 22,
+    "name": "Paquetá",
+    "slug": "paqueta",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 23,
+    "name": "Bruno Guimarães",
+    "slug": "bruno-guimaraes",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 24,
+    "name": "Raphinha",
+    "slug": "raphinha",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 25,
+    "name": "Hulk",
+    "slug": "hulk",
+    "description": "Jogador de futebol brasileiro"
+  },
+  {
+    "id": 26,
+    "name": "Fred",
+    "slug": "fred",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 27,
+    "name": "Dunga",
+    "slug": "dunga",
+    "description": "Ex-jogador e treinador de futebol brasileiro"
+  },
+  {
+    "id": 28,
+    "name": "Taffarel",
+    "slug": "taffarel",
+    "description": "Ex-goleiro de futebol brasileiro"
+  },
+  {
+    "id": 29,
+    "name": "Bebeto",
+    "slug": "bebeto",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+  {
+    "id": 30,
+    "name": "Jairzinho",
+    "slug": "jairzinho",
+    "description": "Ex-jogador de futebol brasileiro"
+  },
+
+  {
+    "id": 31,
+    "name": "Senna",
+    "slug": "ayrton-senna",
+    "description": "Piloto brasileiro de Fórmula 1"
+  },
+  {
+    "id": 32,
+    "name": "Piquet",
+    "slug": "nelson-piquet",
+    "description": "Ex-piloto brasileiro de Fórmula 1"
+  },
+  {
+    "id": 33,
+    "name": "Rubens Barrichello",
+    "slug": "rubens-barrichello",
+    "description": "Piloto brasileiro de automobilismo"
+  },
+  {
+    "id": 34,
+    "name": "Felipe Massa",
+    "slug": "felipe-massa",
+    "description": "Piloto brasileiro de automobilismo"
+  },
+  {
+    "id": 35,
+    "name": "Emerson Fittipaldi",
+    "slug": "emerson-fittipaldi",
+    "description": "Ex-piloto brasileiro de Fórmula 1"
+  },
+
+  {
+    "id": 36,
+    "name": "Anitta",
+    "slug": "anitta",
+    "description": "Cantora brasileira"
+  },
+  {
+    "id": 37,
+    "name": "Ivete Sangalo",
+    "slug": "ivete-sangalo",
+    "description": "Cantora brasileira"
+  },
+  {
+    "id": 38,
+    "name": "Pabllo Vittar",
+    "slug": "pabllo-vittar",
+    "description": "Cantora e drag queen brasileira"
+  },
+  {
+    "id": 39,
+    "name": "Ludmilla",
+    "slug": "ludmilla",
+    "description": "Cantora brasileira"
+  },
+  {
+    "id": 40,
+    "name": "Marília Mendonça",
+    "slug": "marilia-mendonca",
+    "description": "Cantora brasileira"
+  },
+
+  {
+    "id": 41,
+    "name": "Maiara",
+    "slug": "maiara",
+    "description": "Cantora sertaneja brasileira"
+  },
+  {
+    "id": 42,
+    "name": "Maraisa",
+    "slug": "maraisa",
+    "description": "Cantora sertaneja brasileira"
+  },
+  {
+    "id": 43,
+    "name": "Gusttavo Lima",
+    "slug": "gusttavo-lima",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 44,
+    "name": "Luan Santana",
+    "slug": "luan-santana",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 45,
+    "name": "Wesley Safadão",
+    "slug": "wesley-safadao",
+    "description": "Cantor brasileiro"
+  },
+
+  {
+    "id": 46,
+    "name": "Simone Mendes",
+    "slug": "simone-mendes",
+    "description": "Cantora sertaneja brasileira"
+  },
+  {
+    "id": 47,
+    "name": "Simaria",
+    "slug": "simaria",
+    "description": "Cantora sertaneja brasileira"
+  },
+  {
+    "id": 48,
+    "name": "Zé Neto",
+    "slug": "ze-neto",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 49,
+    "name": "Cristiano",
+    "slug": "cristiano",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 50,
+    "name": "Jorge",
+    "slug": "jorge",
+    "description": "Cantor sertanejo brasileiro"
+  },
+
+  {
+    "id": 51,
+    "name": "Mateus",
+    "slug": "mateus",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 52,
+    "name": "Henrique",
+    "slug": "henrique",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 53,
+    "name": "Juliano",
+    "slug": "juliano",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 54,
+    "name": "Leonardo",
+    "slug": "leonardo",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 55,
+    "name": "Zezé Di Camargo",
+    "slug": "zeze-di-camargo",
+    "description": "Cantor sertanejo brasileiro"
+  },
+
+  {
+    "id": 56,
+    "name": "Luciano",
+    "slug": "luciano",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 57,
+    "name": "Chitãozinho",
+    "slug": "chitaozinho",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 58,
+    "name": "Xororó",
+    "slug": "xororo",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 59,
+    "name": "Daniel",
+    "slug": "daniel",
+    "description": "Cantor sertanejo brasileiro"
+  },
+  {
+    "id": 60,
+    "name": "Sandy",
+    "slug": "sandy",
+    "description": "Cantora brasileira"
+  },
+
+  {
+    "id": 61,
+    "name": "Caetano Veloso",
+    "slug": "caetano-veloso",
+    "description": "Cantor e compositor brasileiro"
+  },
+  {
+    "id": 62,
+    "name": "Gilberto Gil",
+    "slug": "gilberto-gil",
+    "description": "Cantor e compositor brasileiro"
+  },
+  {
+    "id": 63,
+    "name": "Chico Buarque",
+    "slug": "chico-buarque",
+    "description": "Cantor e compositor brasileiro"
+  },
+  {
+    "id": 64,
+    "name": "Gal Costa",
+    "slug": "gal-costa",
+    "description": "Cantora brasileira"
+  },
+  {
+    "id": 65,
+    "name": "Maria Bethânia",
+    "slug": "maria-bethania",
+    "description": "Cantora brasileira"
+  },
+
+  {
+    "id": 66,
+    "name": "Elis Regina",
+    "slug": "elis-regina",
+    "description": "Cantora brasileira"
+  },
+  {
+    "id": 67,
+    "name": "Djavan",
+    "slug": "djavan",
+    "description": "Cantor e compositor brasileiro"
+  },
+  {
+    "id": 68,
+    "name": "Milton Nascimento",
+    "slug": "milton-nascimento",
+    "description": "Cantor e compositor brasileiro"
+  },
+  {
+    "id": 69,
+    "name": "Rita Lee",
+    "slug": "rita-lee",
+    "description": "Cantora brasileira"
+  },
+  {
+    "id": 70,
+    "name": "Raul Seixas",
+    "slug": "raul-seixas",
+    "description": "Cantor e compositor brasileiro"
+  },
+
+  {
+    "id": 71,
+    "name": "Xuxa",
+    "slug": "xuxa",
+    "description": "Apresentadora brasileira"
+  },
+  {
+    "id": 72,
+    "name": "Faustão",
+    "slug": "faustao",
+    "description": "Apresentador de televisão brasileiro"
+  },
+  {
+    "id": 73,
+    "name": "Luciano Huck",
+    "slug": "luciano-huck",
+    "description": "Apresentador de televisão brasileiro"
+  },
+  {
+    "id": 74,
+    "name": "Marcos Mion",
+    "slug": "marcos-mion",
+    "description": "Apresentador de televisão brasileiro"
+  },
+  {
+    "id": 75,
+    "name": "Ratinho",
+    "slug": "ratinho",
+    "description": "Apresentador de televisão brasileiro"
+  },
+
+  {
+    "id": 76,
+    "name": "Silvio Santos",
+    "slug": "silvio-santos",
+    "description": "Apresentador e empresário brasileiro"
+  },
+  {
+    "id": 77,
+    "name": "Celso Portiolli",
+    "slug": "celso-portiolli",
+    "description": "Apresentador de televisão brasileiro"
+  },
+  {
+    "id": 78,
+    "name": "Danilo Gentili",
+    "slug": "danilo-gentili",
+    "description": "Humorista e apresentador brasileiro"
+  },
+  {
+    "id": 79,
+    "name": "Fátima Bernardes",
+    "slug": "fatima-bernardes",
+    "description": "Jornalista e apresentadora brasileira"
+  },
+  {
+    "id": 80,
+    "name": "Ana Maria Braga",
+    "slug": "ana-maria-braga",
+    "description": "Apresentadora de televisão brasileira"
+  },
+
+  {
+    "id": 81,
+    "name": "Sabrina Sato",
+    "slug": "sabrina-sato",
+    "description": "Apresentadora brasileira"
+  },
+  {
+    "id": 82,
+    "name": "Eliana",
+    "slug": "eliana",
+    "description": "Apresentadora de televisão brasileira"
+  },
+  {
+    "id": 83,
+    "name": "Rodrigo Faro",
+    "slug": "rodrigo-faro",
+    "description": "Apresentador de televisão brasileiro"
+  },
+  {
+    "id": 84,
+    "name": "Sonia Abrão",
+    "slug": "sonia-abrao",
+    "description": "Apresentadora de televisão brasileira"
+  },
+  {
+    "id": 85,
+    "name": "Datena",
+    "slug": "datena",
+    "description": "Jornalista e apresentador brasileiro"
+  },
+
+  {
+    "id": 86,
+    "name": "William Bonner",
+    "slug": "william-bonner",
+    "description": "Jornalista brasileiro"
+  },
+  {
+    "id": 87,
+    "name": "Renata Vasconcellos",
+    "slug": "renata-vasconcellos",
+    "description": "Jornalista brasileira"
+  },
+  {
+    "id": 88,
+    "name": "Patrícia Poeta",
+    "slug": "patricia-poeta",
+    "description": "Jornalista e apresentadora brasileira"
+  },
+  {
+    "id": 89,
+    "name": "Tadeu Schmidt",
+    "slug": "tadeu-schmidt",
+    "description": "Apresentador de televisão brasileiro"
+  },
+  {
+    "id": 90,
+    "name": "Pedro Bial",
+    "slug": "pedro-bial",
+    "description": "Jornalista e apresentador brasileiro"
+  },
+
+  {
+    "id": 91,
+    "name": "Whindersson Nunes",
+    "slug": "whindersson-nunes",
+    "description": "Humorista e influenciador brasileiro"
+  },
+  {
+    "id": 92,
+    "name": "Tirullipa",
+    "slug": "tirullipa",
+    "description": "Humorista brasileiro"
+  },
+  {
+    "id": 93,
+    "name": "Carlinhos Maia",
+    "slug": "carlinhos-maia",
+    "description": "Influenciador digital brasileiro"
+  },
+  {
+    "id": 94,
+    "name": "Felipe Neto",
+    "slug": "felipe-neto",
+    "description": "Influenciador digital brasileiro"
+  },
+  {
+    "id": 95,
+    "name": "Luccas Neto",
+    "slug": "luccas-neto",
+    "description": "Influenciador digital brasileiro"
+  },
+
+  {
+    "id": 96,
+    "name": "Gkay",
+    "slug": "gkay",
+    "description": "Influenciadora digital brasileira"
+  },
+  {
+    "id": 97,
+    "name": "Juliette",
+    "slug": "juliette",
+    "description": "Cantora e influenciadora brasileira"
+  },
+  {
+    "id": 98,
+    "name": "Virgínia Fonseca",
+    "slug": "virginia-fonseca",
+    "description": "Influenciadora digital brasileira"
+  },
+  {
+    "id": 99,
+    "name": "Zé Felipe",
+    "slug": "ze-felipe",
+    "description": "Cantor brasileiro"
+  },
+  {
+    "id": 100,
+    "name": "Bianca Andrade",
+    "slug": "bianca-andrade",
+    "description": "Empresária e influenciadora brasileira"
+  }
+]
