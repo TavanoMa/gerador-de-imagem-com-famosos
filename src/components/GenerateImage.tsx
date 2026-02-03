@@ -8,43 +8,55 @@ type Props = {
   onCreditsUpdate: (credits: number) => void
 }
 
-const GenerateImage =  ({ isLogged, credits, onCreditsUpdate }: Props) => {
+const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
   const [image, setImage] = useState<string | null>(null)
   const [prompt, setPrompt] = useState("")
+  const [file1, setFile1] = useState<File | null>(null)
+const [file2, setFile2] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
 
   const generateImage = async () => {
-    setLoading(true)
+  if (!prompt || !file1 || !file2) return
 
-    const res = await fetch("/api/generate-image", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt }),
-    })
+  setLoading(true)
 
-    if (!res.ok) {
-      alert("Erro ao gerar imagem")
-      setLoading(false)
-      return
-    }
+  const formData = new FormData()
+  formData.append("prompt", prompt)
+  formData.append("image1", file1)
+  formData.append("image2", file2)
 
-    const data = await res.json()
+  const res = await fetch("/api/generate-image", {
+    method: "POST",
+    body: formData,
+  })
 
-    setImage(`data:image/png;base64,${data.image}`)
-    onCreditsUpdate(data.credits)
-    setPrompt("")
+  if (!res.ok) {
+    alert("Erro ao gerar imagem")
     setLoading(false)
+    return
   }
+
+  const data = await res.json()
+
+  setImage(`data:image/png;base64,${data.image}`)
+  onCreditsUpdate(data.credits)
+
+  setPrompt("")
+  setFile1(null)
+  setFile2(null)
+  setLoading(false)
+}
 
   return (
     <div className="mt-8 flex flex-col items-center gap-10 px-6 bg-[#252525]">
 
-      <div className={`
+      <div
+        className={`
           w-full max-w-[550px] aspect-square rounded-[14px]
           flex items-center justify-center overflow-hidden
           ${!image ? "bg-[#1f1f1f] border border-dashed border-[#333] text-[#777]" : ""}
         `}
-        >
+      >
         {!image ? (
           loading ? (
             <div className="flex flex-col items-center gap-2">
@@ -65,34 +77,50 @@ const GenerateImage =  ({ isLogged, credits, onCreditsUpdate }: Props) => {
         )}
       </div>
 
-
-
       <div className="flex w-full max-w-[600px] gap-3">
-        <input
-          type="text"
-          className="flex-1 rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-3 text-base outline-none trasition focus:border-[#7c7cff] disabled:opacity-60 disabled:cursor-not-allowed "
-          placeholder={
-            !isLogged
-              ? "Faça login para gerar imagens"
-              : credits <= 0
-              ? "Você não tem mais créditos"
-              : "Descreva a imagem que você deseja"
-          }
-          disabled={!isLogged || loading || credits <= 0}
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-        />
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => setFile1(e.target.files?.[0] || null)}
+    disabled={!isLogged || loading || credits <= 0}
+    className="text-sm text-[#aaa]"
+  />
 
-        <button
-          onClick={generateImage}
-          disabled={!isLogged || loading || credits <= 0}
-          className="rounded-lg px-7 text-base bg-gradient-to-br from-[#7c7cff] to-[#5a5aff] transitionhover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(124,124,255,0.35)] disabled:opacity-60 disabled:cursor-not-allowed"
-        >
-          {loading ? "Gerando..." : !isLogged ? "Faça Login" : credits <= 0 ? "Sem créditos" : "Enviar"}
-        </button>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => setFile2(e.target.files?.[0] || null)}
+    disabled={!isLogged || loading || credits <= 0}
+    className="text-sm text-[#aaa]"
+  />
+</div>
+
+        <div className="flex gap-3">
+          <input
+            type="text"
+            className="flex-1 rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-3 text-base outline-none focus:border-[#7c7cff] disabled:opacity-60"
+            placeholder={
+              !isLogged
+                ? "Faça login para gerar imagens"
+                : credits <= 0
+                ? "Você não tem mais créditos"
+                : "Descreva a imagem ou a edição desejada"
+            }
+            disabled={!isLogged || loading || credits <= 0}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+          />
+
+          <button
+            onClick={generateImage}
+            disabled={!isLogged || loading || credits <= 0}
+            className="rounded-lg px-7 text-base bg-gradient-to-br from-[#7c7cff] to-[#5a5aff] hover:-translate-y-0.5 transition disabled:opacity-60"
+          >
+            {loading ? "Gerando..." : "Enviar"}
+          </button>
+        </div>
       </div>
-
-    </div>
+    
   )
 }
 

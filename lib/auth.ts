@@ -20,25 +20,28 @@ export const {
 
   callbacks: {
     async signIn({ user }) {
-      console.log("SIGNIN USER:", user)
-      if (!user.id || !user.email) {
-        console.log("❌ USER INVÁLIDO")
-        return false
-      } 
+  if (!user.id || !user.email) return false
 
-      const res = await supabaseServer
-        .from("profiles")
-        .upsert({
-          id: user.id,          // 🔥 ISSO É O MAIS IMPORTANTE
-          email: user.email,
-          name: user.name,
-          credits: 5,
-        })
+  const { error } = await supabaseServer
+    .from("profiles")
+    .upsert(
+      {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        image: user.image,
+        credits: 5,
+      },
+      { onConflict: "id" }
+    )
 
-          console.log("UPSERT RESULT:", res)
+  if (error) {
+    console.error("UPSERT PROFILE ERROR:", error)
+    return false
+  }
 
-      return true
-    },
+  return true
+},
 
     async jwt({ token, user }) {
       if (user) {
