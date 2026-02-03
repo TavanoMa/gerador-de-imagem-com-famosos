@@ -8,7 +8,7 @@ type Props = {
   onCreditsUpdate: (credits: number) => void
 }
 
-const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
+const GenerateImage =  ({ isLogged, credits, onCreditsUpdate }: Props) => {
   const [image, setImage] = useState<string | null>(null)
   const [prompt, setPrompt] = useState("")
   const [loading, setLoading] = useState(false)
@@ -37,19 +37,40 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mt-8 flex flex-col items-center gap-10 px-6 bg-[#252525]">
 
-      <div className={`h-[400px] rounded-lg border border-dashed border-[#333] flex items-center justify-center`}>
+      <div className={`
+          w-full max-w-[550px] aspect-square rounded-[14px]
+          flex items-center justify-center overflow-hidden
+          ${!image ? "bg-[#1f1f1f] border border-dashed border-[#333] text-[#777]" : ""}
+        `}
+        >
         {!image ? (
-          loading ? <p>Gerando...</p> : <p>A imagem gerada aparecerá aqui</p>
+          loading ? (
+            <div className="flex flex-col items-center gap-2">
+              <div className="h-[27px] w-[27px] animate-spin rounded-full border-4 border-[#f4f4f5] border-t-[#404142]" />
+              <p className="text-sm">Gerando...</p>
+            </div>
+          ) : (
+            <p className="text-sm text-center px-4">
+              A imagem gerada aparecerá aqui
+            </p>
+          )
         ) : (
-          <img src={image} alt="Imagem gerada" className="rounded-lg" />
+          <img
+            src={image}
+            alt="Imagem gerada"
+            className="h-full w-full object-cover"
+          />
         )}
       </div>
 
-      <div className="flex gap-2">
+
+
+      <div className="flex w-full max-w-[600px] gap-3">
         <input
-          className="flex-1 rounded-md bg-[#1f1f1f] px-4 py-3"
+          type="text"
+          className="flex-1 rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-3 text-base outline-none trasition focus:border-[#7c7cff] disabled:opacity-60 disabled:cursor-not-allowed "
           placeholder={
             !isLogged
               ? "Faça login para gerar imagens"
@@ -65,9 +86,9 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
         <button
           onClick={generateImage}
           disabled={!isLogged || loading || credits <= 0}
-          className="rounded-md bg-purple-600 px-6 disabled:opacity-50"
+          className="rounded-lg px-7 text-base bg-gradient-to-br from-[#7c7cff] to-[#5a5aff] transitionhover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(124,124,255,0.35)] disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {loading ? "Gerando..." : credits <= 0 ? "Sem créditos" : "Enviar"}
+          {loading ? "Gerando..." : !isLogged ? "Faça Login" : credits <= 0 ? "Sem créditos" : "Enviar"}
         </button>
       </div>
 

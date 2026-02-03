@@ -2,14 +2,18 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import famosos from "@/src/data/famosos.json";
+import { auth } from "@/lib/auth";
 
 
 export default async function Home() {
 
+   const session = await auth();
+
+   const isLogged = !!session
 
   return (
     <div className="bg-[#252525] text-gray-100">
-      <Header title="Gerador de Imagens com Famosos" credits={undefined}/>
+      <Header title="Gerador de Imagens com Famosos" credits={undefined} isLogged={isLogged}/>
       <main className="max-w-7xl mx-auto px-4 py-8">
         <h2 className="text-3xl font-semibold mb-6 text-center">
           Selecione o famoso

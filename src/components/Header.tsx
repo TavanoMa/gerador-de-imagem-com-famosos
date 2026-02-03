@@ -1,19 +1,18 @@
 import Link from "next/link";
 import SignInButton from "../components/SignInButton";
 import SignOutButton from "../components/SignOutButton";
-import { auth } from "@/lib/auth"
+
 
 
 type HeaderProps = {
   title?: string
+  isLogged: boolean
   credits?: number
 }
 
-const Header = async ({title, credits}: HeaderProps) => {
+const Header = ({title, credits, isLogged}: HeaderProps) => {
   
-const session = await auth()
 
-  const isLogged = !!session
 
   return (
     <header className="border-b border-[#2a2a2a]">
@@ -23,10 +22,15 @@ const session = await auth()
             <Link href="/">
                 <h1 className="text-2xl font-semibold">{title}</h1>
             </Link>
+
           
           {typeof credits === "number" && (
             <span className="text-sm text-[#9a9a9a]">
-              Créditos restantes: {credits}
+              {!isLogged ? (
+                <p>Faça Login para checar seus créditos</p>
+              ) : (
+                <p>Créditos restantes: {credits}</p>
+              )}
             </span>
           )}
         </div>

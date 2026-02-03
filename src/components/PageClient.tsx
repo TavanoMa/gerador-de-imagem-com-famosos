@@ -20,7 +20,7 @@ export default function PageClient({
 
   return (
     <div className="bg-[#252525] text-gray-100">
-      <Header title={famousName} credits={credits} />
+      <Header title={famousName} credits={credits} isLogged={isLogged} />
       <GenerateImage
         isLogged={isLogged}
         credits={credits}
