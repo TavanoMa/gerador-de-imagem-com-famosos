@@ -39,11 +39,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Sem créditos" }, { status: 403 })
     }
 
-    // 🖼️ Converter imagens
     const buffer1 = Buffer.from(await img1.arrayBuffer())
     const buffer2 = Buffer.from(await img2.arrayBuffer())
 
-    // 📐 Redimensionar para mesma altura
     const height = 1024
 
     const imgA = await sharp(buffer1).resize({ height }).toBuffer()
@@ -52,7 +50,6 @@ export async function POST(req: Request) {
     const metaA = await sharp(imgA).metadata()
     const metaB = await sharp(imgB).metadata()
 
-    // 🧩 Compor lado a lado
     const composed = await sharp({
       create: {
         width: (metaA.width || 512) + (metaB.width || 512),
@@ -68,12 +65,10 @@ export async function POST(req: Request) {
       .png()
       .toBuffer()
 
-    // 🔄 Converter para File OpenAI
     const openAiImage = await toFile(composed, "combined.png", {
       type: "image/png",
     })
 
-    // 🎨 Gerar imagem final
     const result = await openai.images.edit({
       model: "gpt-image-1",
       image: openAiImage,
