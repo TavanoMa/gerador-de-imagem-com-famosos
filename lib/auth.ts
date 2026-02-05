@@ -20,23 +20,47 @@ export const {
 
   callbacks: {
     async signIn({ user }) {
-  if (!user.id || !user.email) return false
+  if (!user.email) return false
 
-  const { error } = await supabaseServer
+
+  const { data: profile } = await supabaseServer
     .from("profiles")
-    .upsert(
-      {
+    .select("id, credits")
+    .eq("email", user.email)
+    .single()
+
+
+  if (!profile) {
+    const { error } = await supabaseServer
+      .from("profiles")
+      .insert({
         id: user.id,
         email: user.email,
         name: user.name,
         image: user.image,
-        credits: 5,
-      },
-      { onConflict: "id" }
-    )
+        credits: 3,
+      })
+
+    if (error) {
+      console.error("CREATE PROFILE ERROR:", error)
+      return false
+    }
+
+    return true
+  }
+
+ 
+  const { error } = await supabaseServer
+    .from("profiles")
+    .update({
+      id: user.id,
+      name: user.name,
+      image: user.image,
+    })
+    .eq("email", user.email)
 
   if (error) {
-    console.error("UPSERT PROFILE ERROR:", error)
+    console.error("UPDATE PROFILE ERROR:", error)
     return false
   }
 
