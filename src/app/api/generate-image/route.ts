@@ -1,97 +1,177 @@
-import { NextResponse } from "next/server";
-import OpenAI, { toFile } from "openai";
-import { auth } from "@/lib/auth";
-import { supabaseServer } from "@/lib/supabase-server";
+import { NextResponse } from "next/server"
+import OpenAI, { toFile } from "openai"
+import { auth } from "@/lib/auth"
+import { supabaseServer } from "@/lib/supabase-server"
+
+export async function GET() {
+  return NextResponse.json({ ok: true })
+}
+
+
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
-});
+})
 
 export async function POST(req: Request) {
+
+  console.log("🔥 POST /api/generate-image CHAMADO")
+
   try {
-    const session = await auth();
+    const session = await auth()
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Não autenticado" }, { status: 401 });
+      return NextResponse.json({ error: "Não autenticado" }, { status: 401 })
     }
 
-    const formData = await req.formData();
+    const formData = await req.formData()
 
-    const prompt = formData.get("prompt") as string | null;
-    const images = formData.getAll("images") as File[];
+    const userPrompt = formData.get("prompt") as string | null
+    const famousSlug = formData.get("famousSlug") as string | null
+    const userImages = formData.getAll("images") as File[]
 
-    if (
-      !prompt ||
-      images.length === 0 ||
-      images.some((img) => !img || img.size === 0)
-    ) {
+    console.log("🧩 famousSlug recebido:", famousSlug)
+
+    if (!famousSlug) {
       return NextResponse.json(
-        { error: "Arquivos de imagem inválidos" },
-        { status: 400 },
-      );
+        { error: "Famoso não informado" },
+        { status: 400 }
+      )
     }
 
+    // 🔹 Créditos
     const { data: profile } = await supabaseServer
       .from("profiles")
       .select("credits")
       .eq("id", session.user.id)
-      .single();
+      .single()
 
     if (!profile || profile.credits <= 0) {
-      return NextResponse.json({ error: "Sem créditos" }, { status: 403 });
+      return NextResponse.json({ error: "Sem créditos" }, { status: 403 })
     }
 
-    const imageFiles = [];
+    // 🔹 Busca dados do famoso
+    const { data: famous } = await supabaseServer
+      .from("famous")
+      .select("name")
+      .eq("slug", famousSlug)
+      .single()
 
-    for (let i = 0; i < images.length; i++) {
-      const img = images[i];
+    console.log("🧩 famous do banco:", famous)
 
-      if (!img || img.size === 0) {
-        return NextResponse.json(
-          { error: "Imagem inválida enviada" },
-          { status: 400 },
-        );
+    if (!famous) {
+      return NextResponse.json(
+        { error: "Famoso não encontrado" },
+        { status: 404 }
+      )
+    }
+
+    // 🔹 Monta prompt final
+    const basePrompt = `
+Fotografia hiper-realista, qualidade profissional.
+
+Identidade:
+- o rosto do usuário deve ser preservado com fidelidade máxima
+- não alterar traços faciais do usuário
+- não suavizar, não reestilizar, não reimaginar o rosto do usuário
+- manter formato do rosto, nariz, olhos, boca e proporções originais
+
+O famoso: ${famous.name}
+- aparência fiel ao famoso
+- sem exageros ou caricatura
+- aparência respeitosa e realista
+
+
+
+Estilo:
+- fotografia real
+- iluminação natural
+- textura de pele realista
+- sem aparência de pintura, ilustração ou CGI
+`
+
+    const finalPrompt = userPrompt
+      ? `${basePrompt}\nPedido do usuário: ${userPrompt}`
+      : `${basePrompt}\n crie uma foto seguindo os padrões acima do ${famous.name} junto com o usuário que está na foto.`
+
+    
+    const imageFiles: any[] = []
+
+    for (let i = 1; i <= 3; i++) {
+      const path = `${famousSlug}/${i}.png`
+
+      const { data, error } = await supabaseServer
+        .storage
+        .from("famous_image")
+        .download(path)
+
+      if (error || !data) {
+        console.warn(`⚠️ Imagem não encontrada: ${path}`)
+        continue
       }
 
-      const buffer = Buffer.from(await img.arrayBuffer());
+      const buffer = Buffer.from(await data.arrayBuffer())
 
       imageFiles.push(
-        await toFile(buffer, `image-${i}.png`, {
-          type: img.type || "image/png",
-        }),
-      );
+        await toFile(buffer, `${famousSlug}-${i}.png`, {
+          type: "image/png",
+        })
+      )
     }
 
+    // 🔹 Imagens do usuário (se houver)
+    for (let i = 0; i < userImages.length; i++) {
+      const img = userImages[i]
+      if (!img || img.size === 0) continue
+
+      const buffer = Buffer.from(await img.arrayBuffer())
+
+      imageFiles.push(
+        await toFile(buffer, `user-${i}.png`, {
+          type: img.type || "image/png",
+        })
+      )
+    }
+
+    if (imageFiles.length === 0) {
+      return NextResponse.json(
+        { error: "Nenhuma imagem válida encontrada" },
+        { status: 400 }
+      )
+    }
+
+    // 🔹 Geração da imagem
     const result = await openai.images.edit({
       model: "gpt-image-1.5",
       image: imageFiles,
-      prompt,
+      prompt: finalPrompt,
       size: "auto",
-    });
+    })
 
-    const newCredits = profile.credits - 1;
-
+    // 🔹 Debita crédito
+    const newCredits = profile.credits - 1
     await supabaseServer
       .from("profiles")
       .update({ credits: newCredits })
-      .eq("id", session.user.id);
+      .eq("id", session.user.id)
 
     if (!result.data || result.data.length === 0) {
       return NextResponse.json(
         { error: "Falha ao gerar imagem" },
-        { status: 500 },
-      );
+        { status: 500 }
+      )
     }
 
     return NextResponse.json({
       image: result.data[0].b64_json,
       credits: newCredits,
-    });
+    })
+
   } catch (err: any) {
-    console.error("GENERATE IMAGE ERROR:", err?.message || err);
+    console.error("GENERATE IMAGE ERROR:", err)
     return NextResponse.json(
-      { error: err?.message || "Erro interno do servidor" },
-      { status: 500 },
-    );
+      { error: "Erro interno do servidor" },
+      { status: 500 }
+    )
   }
 }

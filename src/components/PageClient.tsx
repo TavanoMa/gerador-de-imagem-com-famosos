@@ -8,12 +8,14 @@ interface Props {
   famousName: string
   initialCredits?: number
   isLogged: boolean
+  famousSlug: string
 }
 
 export default function PageClient({
   famousName,
   initialCredits,
   isLogged,
+  famousSlug
 }: Props) {
   const [credits, setCredits] = useState<number>(initialCredits ?? 0)
 
@@ -25,6 +27,7 @@ export default function PageClient({
         isLogged={isLogged}
         credits={credits}
         onCreditsUpdate={setCredits}
+        famousSlug={famousSlug}
       />
     </div>
   )

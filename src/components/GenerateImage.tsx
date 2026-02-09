@@ -6,27 +6,35 @@ type Props = {
   isLogged: boolean
   credits: number
   onCreditsUpdate: (credits: number) => void
+  famousSlug: string
 }
 
-const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
+const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug }: Props) => {
   const [image, setImage] = useState<string | null>(null)
   const [prompt, setPrompt] = useState("")
   const [files, setFiles] = useState<File[]>([])
   const [inputKey, setInputKey] = useState(0)
   const [loading, setLoading] = useState(false)
 
-  const generateImage = async () => {
-    if (!prompt.trim() || files.length === 0 || loading) return
+const generateImage = async () => {
+  if (loading || files.length === 0) return
 
-    setImage(null)
-    setLoading(true)
+  setLoading(true)
+  setImage(null)
 
+  try {
     const formData = new FormData()
-    formData.append("prompt", prompt)
+
+    // ⚠️ prompt pode ser vazio
+    if (prompt.trim()) {
+      formData.append("prompt", prompt)
+    }
 
     files.forEach((file) => {
       formData.append("images", file)
     })
+
+    formData.append("famousSlug", famousSlug)
 
     const res = await fetch("/api/generate-image", {
       method: "POST",
@@ -34,8 +42,8 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
     })
 
     if (!res.ok) {
-      alert("Erro ao gerar imagem")
-      setLoading(false)
+      const err = await res.json()
+      alert(err.error || "Erro ao gerar imagem")
       return
     }
 
@@ -46,9 +54,11 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
 
     setPrompt("")
     setFiles([])
-    setInputKey(prev => prev + 1) 
+    setInputKey(prev => prev + 1)
+  } finally {
     setLoading(false)
   }
+}
 
   return (
     <div className="mt-8 flex flex-col items-center gap-10 px-6 bg-[#252525]">
@@ -75,7 +85,7 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate }: Props) => {
           <img
             src={image}
             alt="Imagem gerada"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         )}
       </div>

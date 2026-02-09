@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.93.3",
+    "dotenv": "^17.2.3",
     "next": "16.1.6",
     "next-auth": "^5.0.0-beta.30",
+    "node-fetch": "^3.3.2",
     "openai": "^6.17.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -19,12 +21,13 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.19.32",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

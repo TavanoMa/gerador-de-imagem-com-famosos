@@ -31,6 +31,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   return (
     <div className="min-h-screen bg-[#252525] text-gray-100">
     <PageClient
+      famousSlug={famoso.slug}
       famousName={famoso.name}
       initialCredits={credits}
       isLogged={!!session}
