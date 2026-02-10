@@ -39,7 +39,7 @@ export async function POST(req: Request) {
       )
     }
 
-    // 🔹 Créditos
+
     const { data: profile } = await supabaseServer
       .from("profiles")
       .select("credits")
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Sem créditos" }, { status: 403 })
     }
 
-    // 🔹 Busca dados do famoso
+
     const { data: famous } = await supabaseServer
       .from("famous")
       .select("name")
@@ -66,7 +66,6 @@ export async function POST(req: Request) {
       )
     }
 
-    // 🔹 Monta prompt final
     const basePrompt = `
 Fotografia hiper-realista, qualidade profissional.
 
@@ -119,7 +118,6 @@ Estilo:
       )
     }
 
-    // 🔹 Imagens do usuário (se houver)
     for (let i = 0; i < userImages.length; i++) {
       const img = userImages[i]
       if (!img || img.size === 0) continue
@@ -140,7 +138,7 @@ Estilo:
       )
     }
 
-    // 🔹 Geração da imagem
+   
     const result = await openai.images.edit({
       model: "gpt-image-1.5",
       image: imageFiles,
@@ -148,7 +146,7 @@ Estilo:
       size: "auto",
     })
 
-    // 🔹 Debita crédito
+
     const newCredits = profile.credits - 1
     await supabaseServer
       .from("profiles")

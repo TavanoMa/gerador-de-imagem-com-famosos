@@ -38,7 +38,7 @@ export const {
         email: user.email,
         name: user.name,
         image: user.image,
-        credits: 3,
+        credits: 1,
       })
 
     if (error) {
