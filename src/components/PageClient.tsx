@@ -28,6 +28,7 @@ export default function PageClient({
         credits={credits}
         onCreditsUpdate={setCredits}
         famousSlug={famousSlug}
+        famousName={famousName}
       />
     </div>
   )

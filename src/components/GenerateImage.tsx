@@ -7,9 +7,10 @@ type Props = {
   credits: number
   onCreditsUpdate: (credits: number) => void
   famousSlug: string
+  famousName: string
 }
 
-const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug }: Props) => {
+const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousName }: Props) => {
   const [image, setImage] = useState<string | null>(null)
   const [prompt, setPrompt] = useState("")
   const [files, setFiles] = useState<File[]>([])
@@ -100,7 +101,14 @@ const generateImage = async () => {
         className="text-sm text-[#aaa]"
       />
 
+      <div>
+        <p className="text-sm text-center px-4">
+          Adicione pelo menos uma imagem sua, para te colocarmos ao lado do(a) {famousName}
+        </p>
+      </div>
+
       <div className="flex gap-3 w-full max-w-[600px]">
+        
         <input
           type="text"
           className="flex-1 rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-3 text-base outline-none focus:border-[#7c7cff] disabled:opacity-60"
@@ -109,7 +117,7 @@ const generateImage = async () => {
               ? "Faça login para gerar imagens"
               : credits <= 0
               ? "Você não tem mais créditos"
-              : "Descreva a imagem desejada"
+              : "Descreva a imagem desejada (opcional)"
           }
           disabled={!isLogged || loading || credits <= 0}
           value={prompt}
