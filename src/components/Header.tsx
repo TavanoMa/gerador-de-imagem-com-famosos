@@ -15,32 +15,41 @@ const Header = ({title, credits, isLogged}: HeaderProps) => {
 
 
   return (
-    <header className="border-b border-[#2a2a2a]">
-      <div className="mx-auto flex h-[80px] max-w-[1200px] items-center justify-between px-12 text-[#dfdfdfde]">
-        
-        <div className="flex flex-col">
-            <Link href="/">
-                <h1 className="text-2xl font-semibold">{title}</h1>
-            </Link>
+    <header className="border-b border-[#2a2a2a] bg-[#252525]">
+  <div
+    className="
+      mx-auto max-w-[1200px]
+      flex flex-col items-center text-center gap-2
+      px-4 py-4
+      sm:flex-row sm:items-center sm:justify-between sm:text-left sm:px-6 sm:h-[80px]
+      text-[#dfdfdfde]
+    "
+  >
 
-          
-          {typeof credits === "number" && (
-            <span className="text-sm text-[#9a9a9a]">
-              {!isLogged ? (
-                <p>Faça Login para checar seus créditos</p>
-              ) : (
-                <p>Créditos restantes: {credits}</p>
-              )}
-            </span>
+    <div className="flex flex-col items-center sm:items-start">
+      <Link href="/">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-semibold leading-tight">
+          {title}
+        </h1>
+      </Link>
+
+      {typeof credits === "number" && (
+        <span className="text-xs sm:text-sm text-[#9a9a9a]">
+          {!isLogged ? (
+            <p>Faça login para checar seus créditos</p>
+          ) : (
+            <p>Créditos restantes: {credits}</p>
           )}
-        </div>
+        </span>
+      )}
+    </div>
 
-        <div className="flex items-center gap-2">
-          {isLogged ? <SignOutButton /> : <SignInButton />}
-        </div>
+    <div className="mt-2 sm:mt-0">
+      {isLogged ? <SignOutButton /> : <SignInButton />}
+    </div>
 
-      </div>
-    </header>
+  </div>
+</header>
   )
 }
 

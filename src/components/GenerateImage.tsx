@@ -61,79 +61,84 @@ const generateImage = async () => {
   }
 }
 
-  return (
-    <div className="mt-8 flex flex-col items-center gap-10 px-6 bg-[#252525]">
+ return (
+  <div className="mt-8 flex flex-col items-center gap-8 px-4 sm:px-6 bg-[#252525]">
 
-      <div
-        className={`
-          w-full max-w-[550px] aspect-square rounded-[14px]
-          flex items-center justify-center overflow-hidden
-          ${!image ? "bg-[#1f1f1f] border border-dashed border-[#333] text-[#777]" : ""}
-        `}
-      >
-        {!image ? (
-          loading ? (
-            <div className="flex flex-col items-center gap-2">
-              <div className="h-[27px] w-[27px] animate-spin rounded-full border-4 border-[#f4f4f5] border-t-[#404142]" />
-              <p className="text-sm">Gerando...</p>
-            </div>
-          ) : (
-            <p className="text-sm text-center px-4">
-              A imagem gerada aparecerá aqui
-            </p>
-          )
+    <div
+      className={`
+        w-full max-w-[320px] sm:max-w-[420px] md:max-w-[550px]
+        aspect-square rounded-[14px]
+        flex items-center justify-center overflow-hidden
+        ${!image ? "bg-[#1f1f1f] border border-dashed border-[#333] text-[#777]" : ""}
+      `}
+    >
+      {!image ? (
+        loading ? (
+          <div className="flex flex-col items-center gap-2">
+            <div className="h-[27px] w-[27px] animate-spin rounded-full border-4 border-[#f4f4f5] border-t-[#404142]" />
+            <p className="text-sm">Gerando...</p>
+          </div>
         ) : (
-          <img
-            src={image}
-            alt="Imagem gerada"
-            className="h-full w-full object-contain"
-          />
-        )}
-      </div>
+          <p className="text-sm text-center px-4">
+            A imagem gerada aparecerá aqui
+          </p>
+        )
+      ) : (
+        <img
+          src={image}
+          alt="Imagem gerada"
+          className="h-full w-full object-contain"
+        />
+      )}
+    </div>
 
+    <input
+      key={inputKey}
+      type="file"
+      accept="image/*"
+      multiple
+      onChange={(e) => setFiles(Array.from(e.target.files || []))}
+      disabled={!isLogged || loading || credits <= 0}
+      className="w-full max-w-[550px] text-sm text-[#aaa]"
+    />
+
+    <p className="max-w-[550px] text-sm text-center px-2">
+      Adicione pelo menos uma imagem sua, para te colocarmos ao lado do(a) {famousName}
+    </p>
+
+    <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[600px]">
+      
       <input
-        key={inputKey}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) => setFiles(Array.from(e.target.files || []))}
+        type="text"
+        className="w-full rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-3 text-base outline-none focus:border-[#7c7cff] disabled:opacity-60 "
+        placeholder={
+          !isLogged
+            ? "Faça login para gerar imagens"
+            : credits <= 0
+            ? "Você não tem mais créditos"
+            : "Descreva a imagem desejada (opcional)"
+        }
         disabled={!isLogged || loading || credits <= 0}
-        className="text-sm text-[#aaa]"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
       />
 
-      <div>
-        <p className="text-sm text-center px-4">
-          Adicione pelo menos uma imagem sua, para te colocarmos ao lado do(a) {famousName}
-        </p>
-      </div>
-
-      <div className="flex gap-3 w-full max-w-[600px]">
-        
-        <input
-          type="text"
-          className="flex-1 rounded-lg border border-[#333] bg-[#1a1a1a] px-4 py-3 text-base outline-none focus:border-[#7c7cff] disabled:opacity-60"
-          placeholder={
-            !isLogged
-              ? "Faça login para gerar imagens"
-              : credits <= 0
-              ? "Você não tem mais créditos"
-              : "Descreva a imagem desejada (opcional)"
-          }
-          disabled={!isLogged || loading || credits <= 0}
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-        />
-
-        <button
-          onClick={generateImage}
-          disabled={!isLogged || loading || credits <= 0}
-          className="rounded-lg px-7 text-base bg-gradient-to-br from-[#7c7cff] to-[#5a5aff] hover:-translate-y-0.5 transition disabled:opacity-60"
-        >
-          {loading ? "Gerando..." : "Enviar"}
-        </button>
-      </div>
+      <button
+        onClick={generateImage}
+        disabled={!isLogged || loading || credits <= 0}
+        className="
+          w-full sm:w-auto
+          rounded-lg px-6 py-3 text-base
+          bg-gradient-to-br from-[#7c7cff] to-[#5a5aff]
+          hover:-translate-y-0.5 transition
+          disabled:opacity-60
+        "
+      >
+        {loading ? "Gerando..." : "Enviar"}
+      </button>
     </div>
-  )
+  </div>
+)
 }
 
 export default GenerateImage
