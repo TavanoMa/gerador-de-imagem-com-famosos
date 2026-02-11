@@ -14,6 +14,7 @@ export default function SignOutButton() {
     px-[18px] py-[10px]
     text-[0.9rem]
     rounded-md
+    cursor-pointer
     transition-all duration-200
     hover:border-[#7c7cff]
     hover:text-[#7c7cff]

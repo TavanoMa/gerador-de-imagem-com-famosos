@@ -1,6 +1,8 @@
 import Link from "next/link";
 import SignInButton from "../components/SignInButton";
 import SignOutButton from "../components/SignOutButton";
+import { auth } from "@/lib/auth";
+
 
 
 
@@ -10,9 +12,7 @@ type HeaderProps = {
   credits?: number
 }
 
-const Header = ({title, credits, isLogged}: HeaderProps) => {
-  
-
+const Header =  ({title, credits, isLogged}: HeaderProps) => {
 
   return (
     <header className="border-b border-[#2a2a2a] bg-[#252525]">
