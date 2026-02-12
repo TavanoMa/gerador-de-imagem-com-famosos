@@ -4,7 +4,7 @@ import famosos from '@/src/data/famosos.json'
 export default function sitemap(): MetadataRoute.Sitemap {
   // Use environment variable or fallback to a placeholder
   // The placeholder will be replaced by the actual domain at runtime if needed
-  const baseUrl = 'https://www.generadordefotos.com'
+  const baseUrl = 'https://www.fotocomfamosos.com.br'
   
   const routes: MetadataRoute.Sitemap = [
     {
