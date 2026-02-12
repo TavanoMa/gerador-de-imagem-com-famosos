@@ -79,7 +79,7 @@ const Header = ({title, credits, isLogged, locale = 'pt', userEmail}: HeaderProp
             <div className="relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white font-bold flex items-center justify-center hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white font-bold flex items-center justify-center hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 cursor-pointer"
               >
                 {getInitials(userEmail)}
               </button>
@@ -117,6 +117,7 @@ const Header = ({title, credits, isLogged, locale = 'pt', userEmail}: HeaderProp
               {/* Hidden SignOutButton to trigger actual sign out */}
               <div className="hidden">
                 <SignOutButton id="signout-trigger" />
+                
               </div>
             </div>
           ) : (
