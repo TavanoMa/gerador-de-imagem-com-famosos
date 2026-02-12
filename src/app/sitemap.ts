@@ -4,9 +4,7 @@ import famosos from '@/src/data/famosos.json'
 export default function sitemap(): MetadataRoute.Sitemap {
   // Use environment variable or fallback to a placeholder
   // The placeholder will be replaced by the actual domain at runtime if needed
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : 'https://localhost:3000'
+  const baseUrl = 'https://www.generadordefotos.com'
   
   const routes: MetadataRoute.Sitemap = [
     {
