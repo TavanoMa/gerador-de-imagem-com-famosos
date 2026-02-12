@@ -49,7 +49,8 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
       selectedPhotos: "Fotos selecionadas",
       removePhoto: "Remover",
       downloadButton: "Baixar Imagem",
-      generateAnother: "Gerar Outra Imagem"
+      generateAnother: "Gerar Outra Imagem",
+      blockedBtn: "Adicione pelo menos uma imagem para conseguir gerar"
     },
     en: {
       generating: "Generating...",
@@ -63,7 +64,8 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
       selectedPhotos: "Selected photos",
       removePhoto: "Remove",
       downloadButton: "Download Image",
-      generateAnother: "Generate Another Image"
+      generateAnother: "Generate Another Image",
+      blockedBtn: "Add at least one image to generate"
     }
   };
 
@@ -264,8 +266,8 @@ const generateImage = async () => {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
         />
-
-        <button
+        <div className="group relative">
+          <button
           onClick={generateImage}
           disabled={!isLogged || loading || credits <= 0 || files.length === 0}
           className="
@@ -280,6 +282,12 @@ const generateImage = async () => {
         >
           {loading ? t.generating : t.sendButton}
         </button>
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50">
+                {t.blockedBtn}
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 -mb-1 border-4 border-transparent border-b-gray-900"></div>
+              </div>
+        </div>
+        
       </div>
     )}
 
