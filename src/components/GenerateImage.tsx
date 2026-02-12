@@ -78,7 +78,6 @@ export default function GenerateImage({
   return (
     <div className="mt-8 flex flex-col items-center gap-8 px-4 sm:px-6 bg-[#252525]">
 
-  {/* UPLOAD / PREVIEW BOX */}
   <div
   onClick={() => fileInputRef.current?.click()}
   className={`
@@ -144,7 +143,6 @@ export default function GenerateImage({
   )}
 </div>
 
-  {/* INPUT REAL */}
   <input
     ref={fileInputRef}
     key={inputKey}
@@ -161,7 +159,6 @@ export default function GenerateImage({
     {famousName}
   </p>
 
-  {/* PROMPT + BOTÃO */}
   <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[600px]">
     <input
       type="text"
