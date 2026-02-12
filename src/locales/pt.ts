@@ -34,42 +34,6 @@ export const pt = {
     signIn: "Entrar",
     signOut: "Sair"
   }
-};
+} as const;
 
-export type Translations = {
-  hero: {
-    title: string
-    subtitle: string
-    description: string
-    cta: string
-  }
-  home: {
-    title: string
-    selectFamous: string
-    description: string
-  }
-  generation: {
-    uploadTitle: string
-    generateButton: string
-    generating: string
-    selectImage: string
-    noCredits: string
-    success: string
-    error: string
-    shareTitle: string
-  }
-  share: {
-    title: string
-    whatsapp: string
-    facebook: string
-    twitter: string
-    copyLink: string
-    download: string
-    linkCopied: string
-  }
-  header: {
-    credits: string
-    signIn: string
-    signOut: string
-  }
-};
+export type Translations = typeof pt;
