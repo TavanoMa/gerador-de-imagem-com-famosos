@@ -32,6 +32,15 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
   const basePath = locale === 'en' ? '/en/image' : '/image';
   const sectionId = locale === 'en' ? 'celebrities' : 'famosos';
 
+  // Supabase Storage URL
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+
+  const getImageUrl = (slug: string) => {
+    // If image path starts with /, remove it
+    // Construct Supabase storage URL
+    return `${SUPABASE_URL}/storage/v1/object/public/famous_image/${slug}/1.png`;
+  };
+
   return (
     <section id={sectionId} className="py-16 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,38 +56,48 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
 
         {/* Grid */}
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-          {famosos.map((famoso) => (
-            <li key={famoso.id}>
-              <Link
-                href={`${basePath}/${famoso.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-200 hover:border-purple-300 hover:scale-105"
-              >
-                {/* Image Container */}
-                <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
-                  <Image
-                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(famoso.name)}&size=400&background=random&bold=true`}
-                    alt={famoso.name}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                  
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
+          {famosos.map((famoso) => {
+            const imageUrl = getImageUrl(famoso.slug);
+            
+            return (
+              <li key={famoso.id}>
+                <Link
+                  href={`${basePath}/${famoso.slug}`}
+                  className="group block bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-200 hover:border-purple-300 hover:scale-105"
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                    <Image
+                      src={imageUrl}
+                      alt={famoso.name}
+                      fill
+                      className="object-cover"
+                      loading="lazy"
+                      unoptimized
+                      onError={(e) => {
+                        // Fallback to UI Avatars if image fails to load
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(famoso.name)}&size=400&background=random&bold=true`;
+                      }}
+                    />
+                    
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
 
-                {/* Name */}
-                <div className="p-3 sm:p-4 text-center bg-white">
-                  <h3 className="font-semibold text-sm sm:text-base text-gray-900 group-hover:text-purple-600 transition-colors">
-                    {famoso.name}
-                  </h3>
-                  <p className="text-xs text-gray-500 mt-1 line-clamp-1">
-                    {famoso.description}
-                  </p>
-                </div>
-              </Link>
-            </li>
-          ))}
+                  {/* Name */}
+                  <div className="p-3 sm:p-4 text-center bg-white">
+                    <h3 className="font-semibold text-sm sm:text-base text-gray-900 group-hover:text-purple-600 transition-colors">
+                      {famoso.name}
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1 line-clamp-1">
+                      {famoso.description}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
