@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const { data: profile } = await supabaseServer
       .from("profiles")
       .select("credits")
-      .eq("id", session.user.id)
+      .eq("email", session.user.email)
       .single()
 
     if (!profile || profile.credits <= 0) {
@@ -151,7 +151,7 @@ Estilo:
     await supabaseServer
       .from("profiles")
       .update({ credits: newCredits })
-      .eq("id", session.user.id)
+      .eq("email", session.user.email)
 
     if (!result.data || result.data.length === 0) {
       return NextResponse.json(

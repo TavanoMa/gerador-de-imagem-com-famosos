@@ -3,616 +3,1700 @@
     "id": 1,
     "name": "Pelé",
     "slug": "pele",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/pele.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Pelé com IA - Sua foto com Pelé",
+        "description": "Crie sua foto ao lado do Pelé usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Pelé - Your Photo with Pelé",
+        "description": "Create your photo next to Pelé using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 2,
     "name": "Neymar",
     "slug": "neymar",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/neymar.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Neymar com IA - Sua foto com Neymar",
+        "description": "Crie sua foto ao lado do Neymar usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Neymar - Your Photo with Neymar",
+        "description": "Create your photo next to Neymar using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 3,
     "name": "Ronaldinho Gaúcho",
     "slug": "ronaldinho-gaucho",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/ronaldinho-gaucho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ronaldinho Gaúcho com IA - Sua foto com Ronaldinho Gaúcho",
+        "description": "Crie sua foto ao lado do Ronaldinho Gaúcho usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ronaldinho Gaúcho - Your Photo with Ronaldinho Gaúcho",
+        "description": "Create your photo next to Ronaldinho Gaúcho using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 4,
     "name": "Ronaldo Fenômeno",
     "slug": "ronaldo-fenomeno",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/ronaldo-fenomeno.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ronaldo Fenômeno com IA - Sua foto com Ronaldo Fenômeno",
+        "description": "Crie sua foto ao lado do Ronaldo Fenômeno usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ronaldo Fenômeno - Your Photo with Ronaldo Fenômeno",
+        "description": "Create your photo next to Ronaldo Fenômeno using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 5,
     "name": "Kaká",
     "slug": "kaka",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/kaka.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Kaká com IA - Sua foto com Kaká",
+        "description": "Crie sua foto ao lado do Kaká usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Kaká - Your Photo with Kaká",
+        "description": "Create your photo next to Kaká using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 6,
     "name": "Romário",
     "slug": "romario",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/romario.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Romário com IA - Sua foto com Romário",
+        "description": "Crie sua foto ao lado do Romário usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Romário - Your Photo with Romário",
+        "description": "Create your photo next to Romário using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 7,
     "name": "Zico",
     "slug": "zico",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/zico.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Zico com IA - Sua foto com Zico",
+        "description": "Crie sua foto ao lado do Zico usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Zico - Your Photo with Zico",
+        "description": "Create your photo next to Zico using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 8,
     "name": "Cafu",
     "slug": "cafu",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/cafu.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Cafu com IA - Sua foto com Cafu",
+        "description": "Crie sua foto ao lado do Cafu usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Cafu - Your Photo with Cafu",
+        "description": "Create your photo next to Cafu using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 9,
     "name": "Roberto Carlos",
     "slug": "roberto-carlos",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/roberto-carlos.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Roberto Carlos com IA - Sua foto com Roberto Carlos",
+        "description": "Crie sua foto ao lado do Roberto Carlos usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Roberto Carlos - Your Photo with Roberto Carlos",
+        "description": "Create your photo next to Roberto Carlos using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 10,
     "name": "Rivaldo",
     "slug": "rivaldo",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/rivaldo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Rivaldo com IA - Sua foto com Rivaldo",
+        "description": "Crie sua foto ao lado do Rivaldo usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Rivaldo - Your Photo with Rivaldo",
+        "description": "Create your photo next to Rivaldo using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
-
   {
     "id": 11,
     "name": "Marta",
     "slug": "marta",
-    "description": "Jogadora de futebol brasileira"
+    "description": "Jogadora de futebol brasileira",
+    "image": "/images/marta.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Marta com IA - Sua foto com Marta",
+        "description": "Crie sua foto ao lado do Marta usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Marta - Your Photo with Marta",
+        "description": "Create your photo next to Marta using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 12,
     "name": "Vinícius Júnior",
     "slug": "vinicius-junior",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/vinicius-junior.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Vinícius Júnior com IA - Sua foto com Vinícius Júnior",
+        "description": "Crie sua foto ao lado do Vinícius Júnior usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Vinícius Júnior - Your Photo with Vinícius Júnior",
+        "description": "Create your photo next to Vinícius Júnior using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 13,
     "name": "Rodrygo",
     "slug": "rodrygo",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/rodrygo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Rodrygo com IA - Sua foto com Rodrygo",
+        "description": "Crie sua foto ao lado do Rodrygo usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Rodrygo - Your Photo with Rodrygo",
+        "description": "Create your photo next to Rodrygo using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 14,
     "name": "Endrick",
     "slug": "endrick",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/endrick.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Endrick com IA - Sua foto com Endrick",
+        "description": "Crie sua foto ao lado do Endrick usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Endrick - Your Photo with Endrick",
+        "description": "Create your photo next to Endrick using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 15,
     "name": "Richarlison",
     "slug": "richarlison",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/richarlison.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Richarlison com IA - Sua foto com Richarlison",
+        "description": "Crie sua foto ao lado do Richarlison usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Richarlison - Your Photo with Richarlison",
+        "description": "Create your photo next to Richarlison using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 16,
     "name": "Casemiro",
     "slug": "casemiro",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/casemiro.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Casemiro com IA - Sua foto com Casemiro",
+        "description": "Crie sua foto ao lado do Casemiro usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Casemiro - Your Photo with Casemiro",
+        "description": "Create your photo next to Casemiro using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 17,
     "name": "Alisson",
     "slug": "alisson",
-    "description": "Goleiro de futebol brasileiro"
+    "description": "Goleiro de futebol brasileiro",
+    "image": "/images/alisson.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Alisson com IA - Sua foto com Alisson",
+        "description": "Crie sua foto ao lado do Alisson usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Alisson - Your Photo with Alisson",
+        "description": "Create your photo next to Alisson using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 18,
     "name": "Ederson",
     "slug": "ederson",
-    "description": "Goleiro de futebol brasileiro"
+    "description": "Goleiro de futebol brasileiro",
+    "image": "/images/ederson.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ederson com IA - Sua foto com Ederson",
+        "description": "Crie sua foto ao lado do Ederson usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ederson - Your Photo with Ederson",
+        "description": "Create your photo next to Ederson using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 19,
     "name": "Thiago Silva",
     "slug": "thiago-silva",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/thiago-silva.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Thiago Silva com IA - Sua foto com Thiago Silva",
+        "description": "Crie sua foto ao lado do Thiago Silva usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Thiago Silva - Your Photo with Thiago Silva",
+        "description": "Create your photo next to Thiago Silva using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 20,
     "name": "David Luiz",
     "slug": "david-luiz",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/david-luiz.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com David Luiz com IA - Sua foto com David Luiz",
+        "description": "Crie sua foto ao lado do David Luiz usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with David Luiz - Your Photo with David Luiz",
+        "description": "Create your photo next to David Luiz using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
-
   {
     "id": 21,
     "name": "Gabriel Jesus",
     "slug": "gabriel-jesus",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/gabriel-jesus.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Gabriel Jesus com IA - Sua foto com Gabriel Jesus",
+        "description": "Crie sua foto ao lado do Gabriel Jesus usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Gabriel Jesus - Your Photo with Gabriel Jesus",
+        "description": "Create your photo next to Gabriel Jesus using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 22,
     "name": "Paquetá",
     "slug": "paqueta",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/paqueta.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Paquetá com IA - Sua foto com Paquetá",
+        "description": "Crie sua foto ao lado do Paquetá usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Paquetá - Your Photo with Paquetá",
+        "description": "Create your photo next to Paquetá using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 23,
     "name": "Bruno Guimarães",
     "slug": "bruno-guimaraes",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/bruno-guimaraes.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Bruno Guimarães com IA - Sua foto com Bruno Guimarães",
+        "description": "Crie sua foto ao lado do Bruno Guimarães usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Bruno Guimarães - Your Photo with Bruno Guimarães",
+        "description": "Create your photo next to Bruno Guimarães using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 24,
     "name": "Raphinha",
     "slug": "raphinha",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/raphinha.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Raphinha com IA - Sua foto com Raphinha",
+        "description": "Crie sua foto ao lado do Raphinha usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Raphinha - Your Photo with Raphinha",
+        "description": "Create your photo next to Raphinha using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 25,
     "name": "Hulk",
     "slug": "hulk",
-    "description": "Jogador de futebol brasileiro"
+    "description": "Jogador de futebol brasileiro",
+    "image": "/images/hulk.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Hulk com IA - Sua foto com Hulk",
+        "description": "Crie sua foto ao lado do Hulk usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Hulk - Your Photo with Hulk",
+        "description": "Create your photo next to Hulk using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 26,
     "name": "Fred",
     "slug": "fred",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/fred.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Fred com IA - Sua foto com Fred",
+        "description": "Crie sua foto ao lado do Fred usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Fred - Your Photo with Fred",
+        "description": "Create your photo next to Fred using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 27,
     "name": "Dunga",
     "slug": "dunga",
-    "description": "Ex-jogador e treinador de futebol brasileiro"
+    "description": "Ex-jogador e treinador de futebol brasileiro",
+    "image": "/images/dunga.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Dunga com IA - Sua foto com Dunga",
+        "description": "Crie sua foto ao lado do Dunga usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Dunga - Your Photo with Dunga",
+        "description": "Create your photo next to Dunga using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 28,
     "name": "Taffarel",
     "slug": "taffarel",
-    "description": "Ex-goleiro de futebol brasileiro"
+    "description": "Ex-goleiro de futebol brasileiro",
+    "image": "/images/taffarel.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Taffarel com IA - Sua foto com Taffarel",
+        "description": "Crie sua foto ao lado do Taffarel usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Taffarel - Your Photo with Taffarel",
+        "description": "Create your photo next to Taffarel using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 29,
     "name": "Bebeto",
     "slug": "bebeto",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/bebeto.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Bebeto com IA - Sua foto com Bebeto",
+        "description": "Crie sua foto ao lado do Bebeto usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Bebeto - Your Photo with Bebeto",
+        "description": "Create your photo next to Bebeto using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
   {
     "id": 30,
     "name": "Jairzinho",
     "slug": "jairzinho",
-    "description": "Ex-jogador de futebol brasileiro"
+    "description": "Ex-jogador de futebol brasileiro",
+    "image": "/images/jairzinho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Jairzinho com IA - Sua foto com Jairzinho",
+        "description": "Crie sua foto ao lado do Jairzinho usando inteligência artificial. Tire foto com o craque e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Jairzinho - Your Photo with Jairzinho",
+        "description": "Create your photo next to Jairzinho using artificial intelligence. Take a photo with the football star and share it."
+      }
+    }
   },
-
   {
     "id": 31,
     "name": "Senna",
     "slug": "ayrton-senna",
-    "description": "Piloto brasileiro de Fórmula 1"
+    "description": "Piloto brasileiro de Fórmula 1",
+    "image": "/images/ayrton-senna.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Senna com IA - Sua foto com Senna",
+        "description": "Crie sua foto ao lado do Senna usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Senna - Your Photo with Senna",
+        "description": "Create your photo next to Senna using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 32,
     "name": "Piquet",
     "slug": "nelson-piquet",
-    "description": "Ex-piloto brasileiro de Fórmula 1"
+    "description": "Ex-piloto brasileiro de Fórmula 1",
+    "image": "/images/nelson-piquet.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Piquet com IA - Sua foto com Piquet",
+        "description": "Crie sua foto ao lado do Piquet usando inteligência artificial. Tire foto com o piloto lendário."
+      },
+      "en": {
+        "title": "Generate AI Image with Piquet - Your Photo with Piquet",
+        "description": "Create your photo next to Piquet using artificial intelligence. Take a photo with the legendary driver."
+      }
+    }
   },
   {
     "id": 33,
     "name": "Rubens Barrichello",
     "slug": "rubens-barrichello",
-    "description": "Piloto brasileiro de automobilismo"
+    "description": "Piloto brasileiro de automobilismo",
+    "image": "/images/rubens-barrichello.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Rubens Barrichello com IA - Sua foto com Rubens Barrichello",
+        "description": "Crie sua foto ao lado do Rubens Barrichello usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Rubens Barrichello - Your Photo with Rubens Barrichello",
+        "description": "Create your photo next to Rubens Barrichello using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 34,
     "name": "Felipe Massa",
     "slug": "felipe-massa",
-    "description": "Piloto brasileiro de automobilismo"
+    "description": "Piloto brasileiro de automobilismo",
+    "image": "/images/felipe-massa.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Felipe Massa com IA - Sua foto com Felipe Massa",
+        "description": "Crie sua foto ao lado do Felipe Massa usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Felipe Massa - Your Photo with Felipe Massa",
+        "description": "Create your photo next to Felipe Massa using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 35,
     "name": "Emerson Fittipaldi",
     "slug": "emerson-fittipaldi",
-    "description": "Ex-piloto brasileiro de Fórmula 1"
+    "description": "Ex-piloto brasileiro de Fórmula 1",
+    "image": "/images/emerson-fittipaldi.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Emerson Fittipaldi com IA - Sua foto com Emerson Fittipaldi",
+        "description": "Crie sua foto ao lado do Emerson Fittipaldi usando inteligência artificial. Tire foto com o piloto lendário."
+      },
+      "en": {
+        "title": "Generate AI Image with Emerson Fittipaldi - Your Photo with Emerson Fittipaldi",
+        "description": "Create your photo next to Emerson Fittipaldi using artificial intelligence. Take a photo with the legendary driver."
+      }
+    }
   },
-
   {
     "id": 36,
     "name": "Anitta",
     "slug": "anitta",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/anitta.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Anitta com IA - Sua foto com Anitta",
+        "description": "Crie sua foto ao lado do Anitta usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Anitta - Your Photo with Anitta",
+        "description": "Create your photo next to Anitta using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 37,
     "name": "Ivete Sangalo",
     "slug": "ivete-sangalo",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/ivete-sangalo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ivete Sangalo com IA - Sua foto com Ivete Sangalo",
+        "description": "Crie sua foto ao lado do Ivete Sangalo usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ivete Sangalo - Your Photo with Ivete Sangalo",
+        "description": "Create your photo next to Ivete Sangalo using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 38,
     "name": "Pabllo Vittar",
     "slug": "pabllo-vittar",
-    "description": "Cantora e drag queen brasileira"
+    "description": "Cantora e drag queen brasileira",
+    "image": "/images/pabllo-vittar.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Pabllo Vittar com IA - Sua foto com Pabllo Vittar",
+        "description": "Crie sua foto ao lado do Pabllo Vittar usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Pabllo Vittar - Your Photo with Pabllo Vittar",
+        "description": "Create your photo next to Pabllo Vittar using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 39,
     "name": "Ludmilla",
     "slug": "ludmilla",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/ludmilla.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ludmilla com IA - Sua foto com Ludmilla",
+        "description": "Crie sua foto ao lado do Ludmilla usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ludmilla - Your Photo with Ludmilla",
+        "description": "Create your photo next to Ludmilla using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 40,
     "name": "Marília Mendonça",
     "slug": "marilia-mendonca",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/marilia-mendonca.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Marília Mendonça com IA - Sua foto com Marília Mendonça",
+        "description": "Crie sua foto ao lado do Marília Mendonça usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Marília Mendonça - Your Photo with Marília Mendonça",
+        "description": "Create your photo next to Marília Mendonça using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 41,
     "name": "Brino",
     "slug": "Brino",
-    "description": "Youtuber brasileiro"
+    "description": "Youtuber brasileiro",
+    "image": "/images/brino.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Brino com IA - Sua foto com Brino",
+        "description": "Crie sua foto ao lado do Brino usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Brino - Your Photo with Brino",
+        "description": "Create your photo next to Brino using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
   },
   {
     "id": 42,
     "name": "Maraisa",
     "slug": "maraisa",
-    "description": "Cantora sertaneja brasileira"
+    "description": "Cantora sertaneja brasileira",
+    "image": "/images/maraisa.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Maraisa com IA - Sua foto com Maraisa",
+        "description": "Crie sua foto ao lado do Maraisa usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Maraisa - Your Photo with Maraisa",
+        "description": "Create your photo next to Maraisa using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 43,
     "name": "Gusttavo Lima",
     "slug": "gusttavo-lima",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/gusttavo-lima.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Gusttavo Lima com IA - Sua foto com Gusttavo Lima",
+        "description": "Crie sua foto ao lado do Gusttavo Lima usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Gusttavo Lima - Your Photo with Gusttavo Lima",
+        "description": "Create your photo next to Gusttavo Lima using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 44,
     "name": "Luan Santana",
     "slug": "luan-santana",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/luan-santana.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Luan Santana com IA - Sua foto com Luan Santana",
+        "description": "Crie sua foto ao lado do Luan Santana usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Luan Santana - Your Photo with Luan Santana",
+        "description": "Create your photo next to Luan Santana using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 45,
     "name": "Wesley Safadão",
     "slug": "wesley-safadao",
-    "description": "Cantor brasileiro"
+    "description": "Cantor brasileiro",
+    "image": "/images/wesley-safadao.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Wesley Safadão com IA - Sua foto com Wesley Safadão",
+        "description": "Crie sua foto ao lado do Wesley Safadão usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Wesley Safadão - Your Photo with Wesley Safadão",
+        "description": "Create your photo next to Wesley Safadão using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 46,
     "name": "Simone Mendes",
     "slug": "simone-mendes",
-    "description": "Cantora sertaneja brasileira"
+    "description": "Cantora sertaneja brasileira",
+    "image": "/images/simone-mendes.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Simone Mendes com IA - Sua foto com Simone Mendes",
+        "description": "Crie sua foto ao lado do Simone Mendes usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Simone Mendes - Your Photo with Simone Mendes",
+        "description": "Create your photo next to Simone Mendes using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 47,
     "name": "Simaria",
     "slug": "simaria",
-    "description": "Cantora sertaneja brasileira"
+    "description": "Cantora sertaneja brasileira",
+    "image": "/images/simaria.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Simaria com IA - Sua foto com Simaria",
+        "description": "Crie sua foto ao lado do Simaria usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Simaria - Your Photo with Simaria",
+        "description": "Create your photo next to Simaria using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 48,
     "name": "Zé Neto",
     "slug": "ze-neto",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/ze-neto.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Zé Neto com IA - Sua foto com Zé Neto",
+        "description": "Crie sua foto ao lado do Zé Neto usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Zé Neto - Your Photo with Zé Neto",
+        "description": "Create your photo next to Zé Neto using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 49,
     "name": "Cristiano",
     "slug": "cristiano",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/cristiano.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Cristiano com IA - Sua foto com Cristiano",
+        "description": "Crie sua foto ao lado do Cristiano usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Cristiano - Your Photo with Cristiano",
+        "description": "Create your photo next to Cristiano using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 50,
     "name": "Jorge",
     "slug": "jorge",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/jorge.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Jorge com IA - Sua foto com Jorge",
+        "description": "Crie sua foto ao lado do Jorge usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Jorge - Your Photo with Jorge",
+        "description": "Create your photo next to Jorge using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 51,
     "name": "Mateus",
     "slug": "mateus",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/mateus.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Mateus com IA - Sua foto com Mateus",
+        "description": "Crie sua foto ao lado do Mateus usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Mateus - Your Photo with Mateus",
+        "description": "Create your photo next to Mateus using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 52,
     "name": "Henrique",
     "slug": "henrique",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/henrique.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Henrique com IA - Sua foto com Henrique",
+        "description": "Crie sua foto ao lado do Henrique usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Henrique - Your Photo with Henrique",
+        "description": "Create your photo next to Henrique using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 53,
     "name": "Juliano",
     "slug": "juliano",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/juliano.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Juliano com IA - Sua foto com Juliano",
+        "description": "Crie sua foto ao lado do Juliano usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Juliano - Your Photo with Juliano",
+        "description": "Create your photo next to Juliano using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 54,
     "name": "Leonardo",
     "slug": "leonardo",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/leonardo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Leonardo com IA - Sua foto com Leonardo",
+        "description": "Crie sua foto ao lado do Leonardo usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Leonardo - Your Photo with Leonardo",
+        "description": "Create your photo next to Leonardo using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 55,
     "name": "Zezé Di Camargo",
     "slug": "zeze-di-camargo",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/zeze-di-camargo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Zezé Di Camargo com IA - Sua foto com Zezé Di Camargo",
+        "description": "Crie sua foto ao lado do Zezé Di Camargo usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Zezé Di Camargo - Your Photo with Zezé Di Camargo",
+        "description": "Create your photo next to Zezé Di Camargo using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 56,
     "name": "felca",
     "slug": "felca",
-    "description": "Youtuber brasileiro"
+    "description": "Youtuber brasileiro",
+    "image": "/images/felca.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com felca com IA - Sua foto com felca",
+        "description": "Crie sua foto ao lado do felca usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with felca - Your Photo with felca",
+        "description": "Create your photo next to felca using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
   },
   {
     "id": 57,
     "name": "Chitãozinho",
     "slug": "chitaozinho",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/chitaozinho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Chitãozinho com IA - Sua foto com Chitãozinho",
+        "description": "Crie sua foto ao lado do Chitãozinho usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Chitãozinho - Your Photo with Chitãozinho",
+        "description": "Create your photo next to Chitãozinho using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 58,
     "name": "Xororó",
     "slug": "xororo",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/xororo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Xororó com IA - Sua foto com Xororó",
+        "description": "Crie sua foto ao lado do Xororó usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Xororó - Your Photo with Xororó",
+        "description": "Create your photo next to Xororó using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 59,
     "name": "Daniel",
     "slug": "daniel",
-    "description": "Cantor sertanejo brasileiro"
+    "description": "Cantor sertanejo brasileiro",
+    "image": "/images/daniel.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Daniel com IA - Sua foto com Daniel",
+        "description": "Crie sua foto ao lado do Daniel usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Daniel - Your Photo with Daniel",
+        "description": "Create your photo next to Daniel using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 60,
     "name": "Sandy",
     "slug": "sandy",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/sandy.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Sandy com IA - Sua foto com Sandy",
+        "description": "Crie sua foto ao lado do Sandy usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Sandy - Your Photo with Sandy",
+        "description": "Create your photo next to Sandy using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 61,
     "name": "Caetano Veloso",
     "slug": "caetano-veloso",
-    "description": "Cantor e compositor brasileiro"
+    "description": "Cantor e compositor brasileiro",
+    "image": "/images/caetano-veloso.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Caetano Veloso com IA - Sua foto com Caetano Veloso",
+        "description": "Crie sua foto ao lado do Caetano Veloso usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Caetano Veloso - Your Photo with Caetano Veloso",
+        "description": "Create your photo next to Caetano Veloso using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 62,
     "name": "Gilberto Gil",
     "slug": "gilberto-gil",
-    "description": "Cantor e compositor brasileiro"
+    "description": "Cantor e compositor brasileiro",
+    "image": "/images/gilberto-gil.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Gilberto Gil com IA - Sua foto com Gilberto Gil",
+        "description": "Crie sua foto ao lado do Gilberto Gil usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Gilberto Gil - Your Photo with Gilberto Gil",
+        "description": "Create your photo next to Gilberto Gil using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 63,
     "name": "Chico Buarque",
     "slug": "chico-buarque",
-    "description": "Cantor e compositor brasileiro"
+    "description": "Cantor e compositor brasileiro",
+    "image": "/images/chico-buarque.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Chico Buarque com IA - Sua foto com Chico Buarque",
+        "description": "Crie sua foto ao lado do Chico Buarque usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Chico Buarque - Your Photo with Chico Buarque",
+        "description": "Create your photo next to Chico Buarque using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 64,
     "name": "Gal Costa",
     "slug": "gal-costa",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/gal-costa.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Gal Costa com IA - Sua foto com Gal Costa",
+        "description": "Crie sua foto ao lado do Gal Costa usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Gal Costa - Your Photo with Gal Costa",
+        "description": "Create your photo next to Gal Costa using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 65,
     "name": "Maria Bethânia",
     "slug": "maria-bethania",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/maria-bethania.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Maria Bethânia com IA - Sua foto com Maria Bethânia",
+        "description": "Crie sua foto ao lado do Maria Bethânia usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Maria Bethânia - Your Photo with Maria Bethânia",
+        "description": "Create your photo next to Maria Bethânia using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 66,
     "name": "Elis Regina",
     "slug": "elis-regina",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/elis-regina.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Elis Regina com IA - Sua foto com Elis Regina",
+        "description": "Crie sua foto ao lado do Elis Regina usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Elis Regina - Your Photo with Elis Regina",
+        "description": "Create your photo next to Elis Regina using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 67,
     "name": "Djavan",
     "slug": "djavan",
-    "description": "Cantor e compositor brasileiro"
+    "description": "Cantor e compositor brasileiro",
+    "image": "/images/djavan.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Djavan com IA - Sua foto com Djavan",
+        "description": "Crie sua foto ao lado do Djavan usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Djavan - Your Photo with Djavan",
+        "description": "Create your photo next to Djavan using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 68,
     "name": "Milton Nascimento",
     "slug": "milton-nascimento",
-    "description": "Cantor e compositor brasileiro"
+    "description": "Cantor e compositor brasileiro",
+    "image": "/images/milton-nascimento.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Milton Nascimento com IA - Sua foto com Milton Nascimento",
+        "description": "Crie sua foto ao lado do Milton Nascimento usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Milton Nascimento - Your Photo with Milton Nascimento",
+        "description": "Create your photo next to Milton Nascimento using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 69,
     "name": "Rita Lee",
     "slug": "rita-lee",
-    "description": "Cantora brasileira"
+    "description": "Cantora brasileira",
+    "image": "/images/rita-lee.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Rita Lee com IA - Sua foto com Rita Lee",
+        "description": "Crie sua foto ao lado do Rita Lee usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Rita Lee - Your Photo with Rita Lee",
+        "description": "Create your photo next to Rita Lee using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 70,
     "name": "Raul Seixas",
     "slug": "raul-seixas",
-    "description": "Cantor e compositor brasileiro"
+    "description": "Cantor e compositor brasileiro",
+    "image": "/images/raul-seixas.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Raul Seixas com IA - Sua foto com Raul Seixas",
+        "description": "Crie sua foto ao lado do Raul Seixas usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Raul Seixas - Your Photo with Raul Seixas",
+        "description": "Create your photo next to Raul Seixas using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 71,
     "name": "Xuxa",
     "slug": "xuxa",
-    "description": "Apresentadora brasileira"
+    "description": "Apresentadora brasileira",
+    "image": "/images/xuxa.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Xuxa com IA - Sua foto com Xuxa",
+        "description": "Crie sua foto ao lado do Xuxa usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Xuxa - Your Photo with Xuxa",
+        "description": "Create your photo next to Xuxa using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 72,
     "name": "Faustão",
     "slug": "faustao",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/faustao.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Faustão com IA - Sua foto com Faustão",
+        "description": "Crie sua foto ao lado do Faustão usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Faustão - Your Photo with Faustão",
+        "description": "Create your photo next to Faustão using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 73,
     "name": "Luciano Huck",
     "slug": "luciano-huck",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/luciano-huck.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Luciano Huck com IA - Sua foto com Luciano Huck",
+        "description": "Crie sua foto ao lado do Luciano Huck usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Luciano Huck - Your Photo with Luciano Huck",
+        "description": "Create your photo next to Luciano Huck using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 74,
     "name": "Marcos Mion",
     "slug": "marcos-mion",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/marcos-mion.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Marcos Mion com IA - Sua foto com Marcos Mion",
+        "description": "Crie sua foto ao lado do Marcos Mion usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Marcos Mion - Your Photo with Marcos Mion",
+        "description": "Create your photo next to Marcos Mion using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 75,
     "name": "Ratinho",
     "slug": "ratinho",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/ratinho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ratinho com IA - Sua foto com Ratinho",
+        "description": "Crie sua foto ao lado do Ratinho usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ratinho - Your Photo with Ratinho",
+        "description": "Create your photo next to Ratinho using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 76,
     "name": "Silvio Santos",
     "slug": "silvio-santos",
-    "description": "Apresentador e empresário brasileiro"
+    "description": "Apresentador e empresário brasileiro",
+    "image": "/images/silvio-santos.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Silvio Santos com IA - Sua foto com Silvio Santos",
+        "description": "Crie sua foto ao lado do Silvio Santos usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Silvio Santos - Your Photo with Silvio Santos",
+        "description": "Create your photo next to Silvio Santos using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 77,
     "name": "Celso Portiolli",
     "slug": "celso-portiolli",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/celso-portiolli.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Celso Portiolli com IA - Sua foto com Celso Portiolli",
+        "description": "Crie sua foto ao lado do Celso Portiolli usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Celso Portiolli - Your Photo with Celso Portiolli",
+        "description": "Create your photo next to Celso Portiolli using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 78,
     "name": "Danilo Gentili",
     "slug": "danilo-gentili",
-    "description": "Humorista e apresentador brasileiro"
+    "description": "Humorista e apresentador brasileiro",
+    "image": "/images/danilo-gentili.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Danilo Gentili com IA - Sua foto com Danilo Gentili",
+        "description": "Crie sua foto ao lado do Danilo Gentili usando inteligência artificial. Tire foto com o apresentador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Danilo Gentili - Your Photo with Danilo Gentili",
+        "description": "Create your photo next to Danilo Gentili using artificial intelligence. Take a photo with the famous TV host."
+      }
+    }
   },
   {
     "id": 79,
     "name": "Fátima Bernardes",
     "slug": "fatima-bernardes",
-    "description": "Jornalista e apresentadora brasileira"
+    "description": "Jornalista e apresentadora brasileira",
+    "image": "/images/fatima-bernardes.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Fátima Bernardes com IA - Sua foto com Fátima Bernardes",
+        "description": "Crie sua foto ao lado do Fátima Bernardes usando inteligência artificial. Tire foto com o apresentador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Fátima Bernardes - Your Photo with Fátima Bernardes",
+        "description": "Create your photo next to Fátima Bernardes using artificial intelligence. Take a photo with the famous TV host."
+      }
+    }
   },
   {
     "id": 80,
     "name": "Ana Maria Braga",
     "slug": "ana-maria-braga",
-    "description": "Apresentadora de televisão brasileira"
+    "description": "Apresentadora de televisão brasileira",
+    "image": "/images/ana-maria-braga.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ana Maria Braga com IA - Sua foto com Ana Maria Braga",
+        "description": "Crie sua foto ao lado do Ana Maria Braga usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Ana Maria Braga - Your Photo with Ana Maria Braga",
+        "description": "Create your photo next to Ana Maria Braga using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 81,
     "name": "Sabrina Sato",
     "slug": "sabrina-sato",
-    "description": "Apresentadora brasileira"
+    "description": "Apresentadora brasileira",
+    "image": "/images/sabrina-sato.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Sabrina Sato com IA - Sua foto com Sabrina Sato",
+        "description": "Crie sua foto ao lado do Sabrina Sato usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Sabrina Sato - Your Photo with Sabrina Sato",
+        "description": "Create your photo next to Sabrina Sato using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 82,
     "name": "Eliana",
     "slug": "eliana",
-    "description": "Apresentadora de televisão brasileira"
+    "description": "Apresentadora de televisão brasileira",
+    "image": "/images/eliana.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Eliana com IA - Sua foto com Eliana",
+        "description": "Crie sua foto ao lado do Eliana usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Eliana - Your Photo with Eliana",
+        "description": "Create your photo next to Eliana using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 83,
     "name": "Rodrigo Faro",
     "slug": "rodrigo-faro",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/rodrigo-faro.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Rodrigo Faro com IA - Sua foto com Rodrigo Faro",
+        "description": "Crie sua foto ao lado do Rodrigo Faro usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Rodrigo Faro - Your Photo with Rodrigo Faro",
+        "description": "Create your photo next to Rodrigo Faro using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 84,
     "name": "Enaldinho",
     "slug": "enaldinho",
-    "description": "Youtuber brasileiro"
+    "description": "Youtuber brasileiro",
+    "image": "/images/enaldinho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Enaldinho com IA - Sua foto com Enaldinho",
+        "description": "Crie sua foto ao lado do Enaldinho usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Enaldinho - Your Photo with Enaldinho",
+        "description": "Create your photo next to Enaldinho using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
   },
   {
     "id": 85,
     "name": "Datena",
     "slug": "datena",
-    "description": "Jornalista e apresentador brasileiro"
+    "description": "Jornalista e apresentador brasileiro",
+    "image": "/images/datena.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Datena com IA - Sua foto com Datena",
+        "description": "Crie sua foto ao lado do Datena usando inteligência artificial. Tire foto com o apresentador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Datena - Your Photo with Datena",
+        "description": "Create your photo next to Datena using artificial intelligence. Take a photo with the famous TV host."
+      }
+    }
   },
-
   {
     "id": 86,
     "name": "William Bonner",
     "slug": "william-bonner",
-    "description": "Jornalista brasileiro"
+    "description": "Jornalista brasileiro",
+    "image": "/images/william-bonner.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com William Bonner com IA - Sua foto com William Bonner",
+        "description": "Crie sua foto ao lado do William Bonner usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with William Bonner - Your Photo with William Bonner",
+        "description": "Create your photo next to William Bonner using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 87,
     "name": "Renata Vasconcellos",
     "slug": "renata-vasconcellos",
-    "description": "Jornalista brasileira"
+    "description": "Jornalista brasileira",
+    "image": "/images/renata-vasconcellos.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Renata Vasconcellos com IA - Sua foto com Renata Vasconcellos",
+        "description": "Crie sua foto ao lado do Renata Vasconcellos usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Renata Vasconcellos - Your Photo with Renata Vasconcellos",
+        "description": "Create your photo next to Renata Vasconcellos using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 88,
     "name": "Patrícia Poeta",
     "slug": "patricia-poeta",
-    "description": "Jornalista e apresentadora brasileira"
+    "description": "Jornalista e apresentadora brasileira",
+    "image": "/images/patricia-poeta.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Patrícia Poeta com IA - Sua foto com Patrícia Poeta",
+        "description": "Crie sua foto ao lado do Patrícia Poeta usando inteligência artificial. Tire foto com o apresentador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Patrícia Poeta - Your Photo with Patrícia Poeta",
+        "description": "Create your photo next to Patrícia Poeta using artificial intelligence. Take a photo with the famous TV host."
+      }
+    }
   },
   {
     "id": 89,
     "name": "Tadeu Schmidt",
     "slug": "tadeu-schmidt",
-    "description": "Apresentador de televisão brasileiro"
+    "description": "Apresentador de televisão brasileiro",
+    "image": "/images/tadeu-schmidt.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Tadeu Schmidt com IA - Sua foto com Tadeu Schmidt",
+        "description": "Crie sua foto ao lado do Tadeu Schmidt usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Tadeu Schmidt - Your Photo with Tadeu Schmidt",
+        "description": "Create your photo next to Tadeu Schmidt using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 90,
     "name": "Pedro Bial",
     "slug": "pedro-bial",
-    "description": "Jornalista e apresentador brasileiro"
+    "description": "Jornalista e apresentador brasileiro",
+    "image": "/images/pedro-bial.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Pedro Bial com IA - Sua foto com Pedro Bial",
+        "description": "Crie sua foto ao lado do Pedro Bial usando inteligência artificial. Tire foto com o apresentador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Pedro Bial - Your Photo with Pedro Bial",
+        "description": "Create your photo next to Pedro Bial using artificial intelligence. Take a photo with the famous TV host."
+      }
+    }
   },
-
   {
     "id": 91,
     "name": "Whindersson Nunes",
     "slug": "whindersson-nunes",
-    "description": "Humorista e influenciador brasileiro"
+    "description": "Humorista e influenciador brasileiro",
+    "image": "/images/whindersson-nunes.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Whindersson Nunes com IA - Sua foto com Whindersson Nunes",
+        "description": "Crie sua foto ao lado do Whindersson Nunes usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Whindersson Nunes - Your Photo with Whindersson Nunes",
+        "description": "Create your photo next to Whindersson Nunes using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
   },
   {
     "id": 92,
     "name": "Tirullipa",
     "slug": "tirullipa",
-    "description": "Humorista brasileiro"
+    "description": "Humorista brasileiro",
+    "image": "/images/tirullipa.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Tirullipa com IA - Sua foto com Tirullipa",
+        "description": "Crie sua foto ao lado do Tirullipa usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Tirullipa - Your Photo with Tirullipa",
+        "description": "Create your photo next to Tirullipa using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 93,
     "name": "Carlinhos Maia",
     "slug": "carlinhos-maia",
-    "description": "Influenciador digital brasileiro"
+    "description": "Influenciador digital brasileiro",
+    "image": "/images/carlinhos-maia.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Carlinhos Maia com IA - Sua foto com Carlinhos Maia",
+        "description": "Crie sua foto ao lado do Carlinhos Maia usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Carlinhos Maia - Your Photo with Carlinhos Maia",
+        "description": "Create your photo next to Carlinhos Maia using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 94,
     "name": "Felipe Neto",
     "slug": "felipe-neto",
-    "description": "Influenciador digital brasileiro"
+    "description": "Influenciador digital brasileiro",
+    "image": "/images/felipe-neto.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Felipe Neto com IA - Sua foto com Felipe Neto",
+        "description": "Crie sua foto ao lado do Felipe Neto usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Felipe Neto - Your Photo with Felipe Neto",
+        "description": "Create your photo next to Felipe Neto using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 95,
     "name": "Luccas Neto",
     "slug": "luccas-neto",
-    "description": "Influenciador digital brasileiro"
+    "description": "Influenciador digital brasileiro",
+    "image": "/images/luccas-neto.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Luccas Neto com IA - Sua foto com Luccas Neto",
+        "description": "Crie sua foto ao lado do Luccas Neto usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Luccas Neto - Your Photo with Luccas Neto",
+        "description": "Create your photo next to Luccas Neto using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
-
   {
     "id": 96,
     "name": "Gkay",
     "slug": "gkay",
-    "description": "Influenciadora digital brasileira"
+    "description": "Influenciadora digital brasileira",
+    "image": "/images/gkay.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Gkay com IA - Sua foto com Gkay",
+        "description": "Crie sua foto ao lado do Gkay usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Gkay - Your Photo with Gkay",
+        "description": "Create your photo next to Gkay using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 97,
     "name": "Juliette",
     "slug": "juliette",
-    "description": "Cantora e influenciadora brasileira"
+    "description": "Cantora e influenciadora brasileira",
+    "image": "/images/juliette.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Juliette com IA - Sua foto com Juliette",
+        "description": "Crie sua foto ao lado do Juliette usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Juliette - Your Photo with Juliette",
+        "description": "Create your photo next to Juliette using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
   },
   {
     "id": 98,
     "name": "Virgínia Fonseca",
     "slug": "virginia-fonseca",
-    "description": "Influenciadora digital brasileira"
+    "description": "Influenciadora digital brasileira",
+    "image": "/images/virginia-fonseca.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Virgínia Fonseca com IA - Sua foto com Virgínia Fonseca",
+        "description": "Crie sua foto ao lado do Virgínia Fonseca usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Virgínia Fonseca - Your Photo with Virgínia Fonseca",
+        "description": "Create your photo next to Virgínia Fonseca using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 99,
     "name": "Zé Felipe",
     "slug": "ze-felipe",
-    "description": "Cantor brasileiro"
+    "description": "Cantor brasileiro",
+    "image": "/images/ze-felipe.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Zé Felipe com IA - Sua foto com Zé Felipe",
+        "description": "Crie sua foto ao lado do Zé Felipe usando inteligência artificial. Gere imagens realistas e compartilhe nas redes sociais."
+      },
+      "en": {
+        "title": "Generate AI Image with Zé Felipe - Your Photo with Zé Felipe",
+        "description": "Create your photo next to Zé Felipe using artificial intelligence. Generate realistic images and share on social media."
+      }
+    }
   },
   {
     "id": 100,
     "name": "Bianca Andrade",
     "slug": "bianca-andrade",
-    "description": "Empresária e influenciadora brasileira"
+    "description": "Empresária e influenciadora brasileira",
+    "image": "/images/bianca-andrade.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Bianca Andrade com IA - Sua foto com Bianca Andrade",
+        "description": "Crie sua foto ao lado do Bianca Andrade usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Bianca Andrade - Your Photo with Bianca Andrade",
+        "description": "Create your photo next to Bianca Andrade using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
   }
 ]

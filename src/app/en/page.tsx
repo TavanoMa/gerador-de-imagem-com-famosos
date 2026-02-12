@@ -1,33 +1,29 @@
-
 import Link from "next/link";
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-import FamousGrid from "../components/FamousGrid";
+import Header from "@/src/components/Header";
+import Hero from "@/src/components/Hero";
+import FamousGrid from "@/src/components/FamousGrid";
 import famosos from "@/src/data/famosos.json";
 import { auth } from "@/lib/auth";
 
-
-export default async function Home() {
-
-   const session = await auth();
-
-   const isLogged = !!session
+export default async function EnHome() {
+  const session = await auth();
+  const isLogged = !!session;
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
       <Header 
-        title="Gerador de Imagens com Famosos" 
+        title="AI Celebrity Photo Generator" 
         credits={undefined} 
         isLogged={isLogged} 
-        locale="pt"
+        locale="en"
         userEmail={session?.user?.email || undefined}
       />
       
       {/* Hero Section */}
-      <Hero locale="pt" />
+      <Hero locale="en" />
       
       {/* Famous Grid Section */}
-      <FamousGrid famosos={famosos} locale="pt" />
+      <FamousGrid famosos={famosos} locale="en" />
     </div>
   );
 }
