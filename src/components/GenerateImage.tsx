@@ -145,6 +145,16 @@ const generateImage = async () => {
   }
 }
 
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+
+const getImageUrl = (slug: string) => {
+    // If image path starts with /, remove it
+    // Construct Supabase storage URL
+    return `${SUPABASE_URL}/storage/v1/object/public/famous_image/${slug}/1.png`;
+  };
+
+  const imageUrl = getImageUrl(famousSlug)
+
  return (
   <div className="mt-8 flex flex-col items-center gap-8 px-4 sm:px-6 bg-white pb-16">
 
@@ -154,9 +164,22 @@ const generateImage = async () => {
         w-full max-w-[320px] sm:max-w-[420px] md:max-w-[550px]
         aspect-square rounded-[14px]
         flex items-center justify-center overflow-hidden
-        ${!image ? "bg-gray-50 border border-dashed border-gray-300 text-gray-500" : ""}
+        ${!image ? "bg-gray-50 border border-dashed border-gray-500 text-gray-500" : ""}
       `}
     >
+
+        {!image && previewUrls.length === 0 && (
+    <>
+      <div
+        className="absolute inset-0 scale-105 bg-center bg-cover opacity-90 object-cover"
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+        }}
+      />
+      <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]" />
+    </>
+  )}
+      
       {!image ? (
         loading ? (
           <div className="flex flex-col items-center gap-2 z-10">
