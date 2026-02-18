@@ -171,12 +171,12 @@ const getImageUrl = (slug: string) => {
         {!image && previewUrls.length === 0 && (
     <>
       <div
-        className="absolute inset-0 scale-105 bg-center bg-cover opacity-90 object-cover"
+        className="absolute inset-0 scale-105 bg-center bg-cover opacity-70 object-cover"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 " />
     </>
   )}
       
