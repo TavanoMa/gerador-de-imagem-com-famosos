@@ -36,7 +36,7 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
   const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 
 const getImageUrls = (slug: string) => {
-  const version = "v3"; // altere quando trocar imagem
+  const version = "v4"; // altere quando trocar imagem
 
   const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${slug}/1`;
 
