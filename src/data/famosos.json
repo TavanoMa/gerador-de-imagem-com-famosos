@@ -1698,5 +1698,1372 @@
         "description": "Create your photo next to Bianca Andrade using artificial intelligence. Take a photo with the famous influencer."
       }
     }
+  },
+  {
+    "id": 101,
+    "name": "Sergio Ramos",
+    "slug": "sergio-ramos",
+    "description": "Jogador de futebol espanhol",
+    "image": "/images/sergio-ramos.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Sergio Ramos com IA - Sua foto com Sergio Ramos",
+        "description": "Crie sua foto ao lado do Sergio Ramos usando inteligência artificial. Tire foto com o influencer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Sergio Ramos - Your Photo with Sergio Ramos",
+        "description": "Create your photo next to Sergio Ramos using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
+  },
+  {
+  "id": 102,
+  "name": "Taylor Swift",
+  "slug": "taylor-swift",
+  "description": "Cantora e compositora americana",
+  "image": "/images/taylor-swift.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Taylor Swift com IA - Sua foto com Taylor Swift",
+      "description": "Crie sua foto ao lado de Taylor Swift usando inteligência artificial. Tire foto com a cantora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Taylor Swift - Your Photo with Taylor Swift",
+      "description": "Create your photo next to Taylor Swift using artificial intelligence. Take a photo with the famous singer."
+    }
   }
+},
+{
+  "id": 103,
+  "name": "MrBeast",
+  "slug": "mrbeast",
+  "description": "YouTuber americano",
+  "image": "/images/mrbeast.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com MrBeast com IA - Sua foto com MrBeast",
+      "description": "Crie sua foto ao lado de MrBeast usando inteligência artificial. Tire foto com o youtuber famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with MrBeast - Your Photo with MrBeast",
+      "description": "Create your photo next to MrBeast using artificial intelligence. Take a photo with the famous YouTuber."
+    }
+  }
+},
+{
+  "id": 104,
+  "name": "Olivia Rodrigo",
+  "slug": "olivia-rodrigo",
+  "description": "Cantora e atriz americana",
+  "image": "/images/olivia-rodrigo.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Olivia Rodrigo com IA - Sua foto com Olivia Rodrigo",
+      "description": "Crie sua foto ao lado de Olivia Rodrigo usando inteligência artificial. Tire foto com a cantora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Olivia Rodrigo - Your Photo with Olivia Rodrigo",
+      "description": "Create your photo next to Olivia Rodrigo using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 105,
+  "name": "Alanzoka",
+  "slug": "alanzoka",
+  "description": "Streamer brasileiro",
+  "image": "/images/alanzoka.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Alanzoka com IA - Sua foto com Alanzoka",
+      "description": "Crie sua foto ao lado de Alanzoka usando inteligência artificial. Tire foto com o streamer famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Alanzoka - Your Photo with Alanzoka",
+      "description": "Create your photo next to Alanzoka using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 106,
+  "name": "Harry Styles",
+  "slug": "harry-styles",
+  "description": "Cantora americana",
+  "image": "/images/harry-styles.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Harry Styles com IA - Sua foto com Harry Styles",
+      "description": "Crie sua foto ao lado de Harry Styles usando inteligência artificial. Tire foto com a cantora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Harry Styles - Your Photo with Harry Styles",
+      "description": "Create your photo next to Harry Styles using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 107,
+  "name": "Kai Cenat",
+  "slug": "kai-cenat",
+  "description": "Streamer americano",
+  "image": "/images/kai-cenat.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Kai Cenat com IA - Sua foto com Kai Cenat",
+      "description": "Crie sua foto ao lado de Kai Cenat usando inteligência artificial. Tire foto com o streamer famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Kai Cenat - Your Photo with Kai Cenat",
+      "description": "Create your photo next to Kai Cenat using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 108,
+  "name": "Charli D'Amelio",
+  "slug": "charli-damelio",
+  "description": "Influenciadora americana",
+  "image": "/images/charli-damelio.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Charli D'Amelio com IA - Sua foto com Charli D'Amelio",
+      "description": "Crie sua foto ao lado de Charli D'Amelio usando inteligência artificial. Tire foto com a influenciadora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Charli D'Amelio - Your Photo with Charli D'Amelio",
+      "description": "Create your photo next to Charli D'Amelio using artificial intelligence. Take a photo with the famous influencer."
+    }
+  }
+},
+{
+  "id": 109,
+  "name": "Matuê",
+  "slug": "matue",
+  "description": "Rapper brasileiro",
+  "image": "/images/matue.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Matuê com IA - Sua foto com Matuê",
+      "description": "Crie sua foto ao lado de Matuê usando inteligência artificial. Tire foto com o rapper famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Matuê - Your Photo with Matuê",
+      "description": "Create your photo next to Matuê using artificial intelligence. Take a photo with the famous rapper."
+    }
+  }
+},
+{
+  "id": 110,
+  "name": "Logan Paul",
+  "slug": "logan-paul",
+  "description": "Streamer americano",
+  "image": "/images/logan-paul.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Logan Paul com IA - Sua foto com Logan Paul",
+      "description": "Crie sua foto ao lado de Logan Paul usando inteligência artificial. Tire foto com o streamer famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Logan Paul - Your Photo with Logan Paul",
+      "description": "Create your photo next to Logan Paul using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 111,
+  "name": "Ariana Grande",
+  "slug": "ariana-grande",
+  "description": "Cantora e atriz americana",
+  "image": "/images/ariana-grande.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Ariana Grande com IA - Sua foto com Ariana Grande",
+      "description": "Crie sua foto ao lado de Ariana Grande usando inteligência artificial. Tire foto com a cantora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Ariana Grande - Your Photo with Ariana Grande",
+      "description": "Create your photo next to Ariana Grande using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 112,
+  "name": "Ninja",
+  "slug": "ninja",
+  "description": "Streamer americano",
+  "image": "/images/ninja.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Ninja com IA - Sua foto com Ninja",
+      "description": "Crie sua foto ao lado de Ninja usando inteligência artificial. Tire foto com o streamer famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Ninja - Your Photo with Ninja",
+      "description": "Create your photo next to Ninja using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 113,
+  "name": "Selena Gomez",
+  "slug": "selena-gomez",
+  "description": "Cantora e atriz americana",
+  "image": "/images/selena-gomez.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Selena Gomez com IA - Sua foto com Selena Gomez",
+      "description": "Crie sua foto ao lado de Selena Gomez usando inteligência artificial. Tire foto com a cantora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Selena Gomez - Your Photo with Selena Gomez",
+      "description": "Create your photo next to Selena Gomez using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 114,
+  "name": "Alok",
+  "slug": "alok",
+  "description": "DJ e produtor musical brasileiro",
+  "image": "/images/alok.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Alok com IA - Sua foto com Alok",
+      "description": "Crie sua foto ao lado de Alok usando inteligência artificial. Tire foto com o DJ famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Alok - Your Photo with Alok",
+      "description": "Create your photo next to Alok using artificial intelligence. Take a photo with the famous DJ."
+    }
+  }
+},
+{
+  "id": 115,
+  "name": "Pokimane",
+  "slug": "pokimane",
+  "description": "Streamer e criadora de conteúdo",
+  "image": "/images/pokimane.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Pokimane com IA - Sua foto com Pokimane",
+      "description": "Crie sua foto ao lado de Pokimane usando inteligência artificial. Tire foto com a streamer famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Pokimane - Your Photo with Pokimane",
+      "description": "Create your photo next to Pokimane using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 117,
+  "name": "Veigh",
+  "slug": "veigh",
+  "description": "Rapper brasileiro",
+  "image": "/images/veigh.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Veigh com IA - Sua foto com Veigh",
+      "description": "Crie sua foto ao lado de Veigh usando inteligência artificial. Tire foto com o rapper famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Veigh - Your Photo with Veigh",
+      "description": "Create your photo next to Veigh using artificial intelligence. Take a photo with the famous rapper."
+    }
+  }
+},
+{
+  "id": 120,
+  "name": "Bruno Mars",
+  "slug": "bruno-mars",
+  "description": "Cantor e compositor americano",
+  "image": "/images/bruno-mars.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Bruno Mars com IA - Sua foto com Bruno Mars",
+      "description": "Crie sua foto ao lado de Bruno Mars usando inteligência artificial. Tire foto com o cantor famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Bruno Mars - Your Photo with Bruno Mars",
+      "description": "Create your photo next to Bruno Mars using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+    "id": 121,
+    "name": "Shawn Mendes",
+    "slug": "shawn-mendes",
+    "description": "Cantor canadense",
+    "image": "/images/shawn-mendes.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Shawn Mendes com IA - Sua foto com Shawn Mendes",
+        "description": "Crie sua foto ao lado de Shawn Mendes usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Shawn Mendes - Your Photo with Shawn Mendes",
+        "description": "Create your photo next to Shawn Mendes using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 122,
+    "name": "Doja Cat",
+    "slug": "doja-cat",
+    "description": "Cantora e rapper americana",
+    "image": "/images/doja-cat.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Doja Cat com IA - Sua foto com Doja Cat",
+        "description": "Crie sua foto ao lado de Doja Cat usando inteligência artificial. Tire foto com a cantora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Doja Cat - Your Photo with Doja Cat",
+        "description": "Create your photo next to Doja Cat using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 123,
+    "name": "Addison Rae",
+    "slug": "addison-rae",
+    "description": "Influenciadora americana",
+    "image": "/images/addison-rae.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Addison Rae com IA - Sua foto com Addison Rae",
+        "description": "Crie sua foto ao lado de Addison Rae usando inteligência artificial. Tire foto com a influenciadora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Addison Rae - Your Photo with Addison Rae",
+        "description": "Create your photo next to Addison Rae using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
+  },
+  {
+    "id": 124,
+    "name": "Zach King",
+    "slug": "zach-king",
+    "description": "Criador de conteúdo americano",
+    "image": "/images/zach-king.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Zach King com IA - Sua foto com Zach King",
+        "description": "Crie sua foto ao lado de Zach King usando inteligência artificial. Tire foto com o criador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Zach King - Your Photo with Zach King",
+        "description": "Create your photo next to Zach King using artificial intelligence. Take a photo with the famous creator."
+      }
+    }
+  },
+  {
+    "id": 125,
+    "name": "Post Malone",
+    "slug": "post-malone",
+    "description": "Cantor e rapper americano",
+    "image": "/images/post-malone.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Post Malone com IA - Sua foto com Post Malone",
+        "description": "Crie sua foto ao lado de Post Malone usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Post Malone - Your Photo with Post Malone",
+        "description": "Create your photo next to Post Malone using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 126,
+    "name": "Ice Spice",
+    "slug": "ice-spice",
+    "description": "Rapper americana",
+    "image": "/images/ice-spice.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ice Spice com IA - Sua foto com Ice Spice",
+        "description": "Crie sua foto ao lado de Ice Spice usando inteligência artificial. Tire foto com a rapper famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Ice Spice - Your Photo with Ice Spice",
+        "description": "Create your photo next to Ice Spice using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 127,
+    "name": "Travis Scott",
+    "slug": "travis-scott",
+    "description": "Rapper americano",
+    "image": "/images/travis-scott.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Travis Scott com IA - Sua foto com Travis Scott",
+        "description": "Crie sua foto ao lado de Travis Scott usando inteligência artificial. Tire foto com o rapper famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Travis Scott - Your Photo with Travis Scott",
+        "description": "Create your photo next to Travis Scott using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 128,
+    "name": "The Weeknd",
+    "slug": "the-weeknd",
+    "description": "Cantor canadense",
+    "image": "/images/the-weeknd.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com The Weeknd com IA - Sua foto com The Weeknd",
+        "description": "Crie sua foto ao lado de The Weeknd usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with The Weeknd - Your Photo with The Weeknd",
+        "description": "Create your photo next to The Weeknd using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 129,
+    "name": "Emma Chamberlain",
+    "slug": "emma-chamberlain",
+    "description": "YouTuber americana",
+    "image": "/images/emma-chamberlain.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Emma Chamberlain com IA - Sua foto com Emma Chamberlain",
+        "description": "Crie sua foto ao lado de Emma Chamberlain usando inteligência artificial. Tire foto com a youtuber famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Emma Chamberlain - Your Photo with Emma Chamberlain",
+        "description": "Create your photo next to Emma Chamberlain using artificial intelligence. Take a photo with the famous YouTuber."
+      }
+    }
+  },
+  {
+    "id": 131,
+    "name": "Valkyrae",
+    "slug": "valkyrae",
+    "description": "Streamer americana",
+    "image": "/images/valkyrae.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Valkyrae com IA - Sua foto com Valkyrae",
+        "description": "Crie sua foto ao lado de Valkyrae usando inteligência artificial. Tire foto com a streamer famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Valkyrae - Your Photo with Valkyrae",
+        "description": "Create your photo next to Valkyrae using artificial intelligence. Take a photo with the famous streamer."
+      }
+    }
+  },
+  {
+    "id": 132,
+    "name": "DanTDM",
+    "slug": "dantdm",
+    "description": "YouTuber britânico",
+    "image": "/images/dantdm.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com DanTDM com IA - Sua foto com DanTDM",
+        "description": "Crie sua foto ao lado de DanTDM usando inteligência artificial. Tire foto com o youtuber famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with DanTDM - Your Photo with DanTDM",
+        "description": "Create your photo next to DanTDM using artificial intelligence. Take a photo with the famous YouTuber."
+      }
+    }
+  },
+  {
+    "id": 133,
+    "name": "Khaby Lame",
+    "slug": "khaby-lame",
+    "description": "Criador de conteúdo",
+    "image": "/images/khaby-lame.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Khaby Lame com IA - Sua foto com Khaby Lame",
+        "description": "Crie sua foto ao lado de Khaby Lame usando inteligência artificial. Tire foto com o criador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Khaby Lame - Your Photo with Khaby Lame",
+        "description": "Create your photo next to Khaby Lame using artificial intelligence. Take a photo with the famous creator."
+      }
+    }
+  },
+  {
+    "id": 134,
+    "name": "Nicki Minaj",
+    "slug": "nicki-minaj",
+    "description": "Rapper e cantora",
+    "image": "/images/nicki-minaj.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Nicki Minaj com IA - Sua foto com Nicki Minaj",
+        "description": "Crie sua foto ao lado de Nicki Minaj usando inteligência artificial. Tire foto com a rapper famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Nicki Minaj - Your Photo with Nicki Minaj",
+        "description": "Create your photo next to Nicki Minaj using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+ 
+  {
+    "id": 136,
+    "name": "Katy Perry",
+    "slug": "katy-perry",
+    "description": "Cantora americana",
+    "image": "/images/katy-perry.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Katy Perry com IA - Sua foto com Katy Perry",
+        "description": "Crie sua foto ao lado de Katy Perry usando inteligência artificial. Tire foto com a cantora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Katy Perry - Your Photo with Katy Perry",
+        "description": "Create your photo next to Katy Perry using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 137,
+    "name": "Lana Del Rey",
+    "slug": "lana-del-rey",
+    "description": "Cantora americana",
+    "image": "/images/lana-del-rey.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Lana Del Rey com IA - Sua foto com Lana Del Rey",
+        "description": "Crie sua foto ao lado de Lana Del Rey usando inteligência artificial. Tire foto com a cantora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Lana Del Rey - Your Photo with Lana Del Rey",
+        "description": "Create your photo next to Lana Del Rey using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 138,
+    "name": "Brent Rivera",
+    "slug": "brent-rivera",
+    "description": "YouTuber americano",
+    "image": "/images/brent-rivera.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Brent Rivera com IA - Sua foto com Brent Rivera",
+        "description": "Crie sua foto ao lado de Brent Rivera usando inteligência artificial. Tire foto com o youtuber famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Brent Rivera - Your Photo with Brent Rivera",
+        "description": "Create your photo next to Brent Rivera using artificial intelligence. Take a photo with the famous YouTuber."
+      }
+    }
+  },
+  {
+    "id": 139,
+    "name": "Noah Beck",
+    "slug": "noah-beck",
+    "description": "Influenciador americano",
+    "image": "/images/noah-beck.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Noah Beck com IA - Sua foto com Noah Beck",
+        "description": "Crie sua foto ao lado de Noah Beck usando inteligência artificial. Tire foto com o influenciador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Noah Beck - Your Photo with Noah Beck",
+        "description": "Create your photo next to Noah Beck using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
+  },
+  {
+    "id": 140,
+    "name": "Dixie D'Amelio",
+    "slug": "dixie-damelio",
+    "description": "Cantora e influenciadora americana",
+    "image": "/images/dixie-damelio.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Dixie D'Amelio com IA - Sua foto com Dixie D'Amelio",
+        "description": "Crie sua foto ao lado de Dixie D'Amelio usando inteligência artificial. Tire foto com a cantora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Dixie D'Amelio - Your Photo with Dixie D'Amelio",
+        "description": "Create your photo next to Dixie D'Amelio using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 141,
+    "name": "Luísa Sonza",
+    "slug": "luisa-sonza",
+    "description": "Cantora brasileira",
+    "image": "/images/luisa-sonza.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Luísa Sonza com IA - Sua foto com Luísa Sonza",
+        "description": "Crie sua foto ao lado de Luísa Sonza usando inteligência artificial. Tire foto com a cantora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Luísa Sonza - Your Photo with Luísa Sonza",
+        "description": "Create your photo next to Luísa Sonza using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 142,
+    "name": "MC Cabelinho",
+    "slug": "mc-cabelinho",
+    "description": "Rapper brasileiro",
+    "image": "/images/mc-cabelinho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com MC Cabelinho com IA - Sua foto com MC Cabelinho",
+        "description": "Crie sua foto ao lado de MC Cabelinho usando inteligência artificial. Tire foto com o rapper famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with MC Cabelinho - Your Photo with MC Cabelinho",
+        "description": "Create your photo next to MC Cabelinho using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 143,
+    "name": "Pedro Sampaio",
+    "slug": "pedro-sampaio",
+    "description": "DJ e cantor brasileiro",
+    "image": "/images/pedro-sampaio.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Pedro Sampaio com IA - Sua foto com Pedro Sampaio",
+        "description": "Crie sua foto ao lado de Pedro Sampaio usando inteligência artificial. Tire foto com o DJ famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Pedro Sampaio - Your Photo with Pedro Sampaio",
+        "description": "Create your photo next to Pedro Sampaio using artificial intelligence. Take a photo with the famous DJ."
+      }
+    }
+  },
+  {
+    "id": 144,
+    "name": "Jão",
+    "slug": "jao",
+    "description": "Cantor brasileiro",
+    "image": "/images/jao.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Jão com IA - Sua foto com Jão",
+        "description": "Crie sua foto ao lado de Jão usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Jão - Your Photo with Jão",
+        "description": "Create your photo next to Jão using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 145,
+    "name": "Teto",
+    "slug": "teto",
+    "description": "Rapper brasileiro",
+    "image": "/images/teto.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Teto com IA - Sua foto com Teto",
+        "description": "Crie sua foto ao lado de Teto usando inteligência artificial. Tire foto com o rapper famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Teto - Your Photo with Teto",
+        "description": "Create your photo next to Teto using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 147,
+    "name": "TazerCraft",
+    "slug": "tazercraft",
+    "description": "Streamer brasileiro",
+    "image": "/images/tazercraft.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com TazerCraft com IA - Sua foto com TazerCraft",
+        "description": "Crie sua foto ao lado de TazerCraft usando inteligência artificial. Tire foto com o streamer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with TazerCraft - Your Photo with TazerCraft",
+        "description": "Create your photo next to TazerCraft using artificial intelligence. Take a photo with the famous streamer."
+      }
+    }
+  },
+  {
+    "id": 148,
+    "name": "Cellbit",
+    "slug": "cellbit",
+    "description": "Streamer brasileiro",
+    "image": "/images/cellbit.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Cellbit com IA - Sua foto com Cellbit",
+        "description": "Crie sua foto ao lado de Cellbit usando inteligência artificial. Tire foto com o streamer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Cellbit - Your Photo with Cellbit",
+        "description": "Create your photo next to Cellbit using artificial intelligence. Take a photo with the famous streamer."
+      }
+    }
+  },
+  {
+    "id": 149,
+    "name": "Nobru",
+    "slug": "nobru",
+    "description": "Jogador profissional de eSports brasileiro",
+    "image": "/images/nobru.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Nobru com IA - Sua foto com Nobru",
+        "description": "Crie sua foto ao lado de Nobru usando inteligência artificial. Tire foto com o jogador famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Nobru - Your Photo with Nobru",
+        "description": "Create your photo next to Nobru using artificial intelligence. Take a photo with the famous player."
+      }
+    }
+  },
+  {
+    "id": 150,
+    "name": "Gaules",
+    "slug": "gaules",
+    "description": "Streamer brasileiro",
+    "image": "/images/gaules.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Gaules com IA - Sua foto com Gaules",
+        "description": "Crie sua foto ao lado de Gaules usando inteligência artificial. Tire foto com o streamer famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Gaules - Your Photo with Gaules",
+        "description": "Create your photo next to Gaules using artificial intelligence. Take a photo with the famous streamer."
+      }
+    }
+  },
+  {
+    "id": 151,
+    "name": "Camila Loures",
+    "slug": "camila-loures",
+    "description": "Influenciadora e YouTuber brasileira",
+    "image": "/images/camila-loures.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Camila Loures com IA - Sua foto com Camila Loures",
+        "description": "Crie sua foto ao lado de Camila Loures usando inteligência artificial. Tire foto com a influenciadora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Camila Loures - Your Photo with Camila Loures",
+        "description": "Create your photo next to Camila Loures using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
+  },
+  {
+    "id": 152,
+    "name": "Viih Tube",
+    "slug": "viih-tube",
+    "description": "Influenciadora brasileira",
+    "image": "/images/viih-tube.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Viih Tube com IA - Sua foto com Viih Tube",
+        "description": "Crie sua foto ao lado de Viih Tube usando inteligência artificial. Tire foto com a influenciadora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Viih Tube - Your Photo with Viih Tube",
+        "description": "Create your photo next to Viih Tube using artificial intelligence. Take a photo with the famous influencer."
+      }
+    }
+  },
+  {
+    "id": 154,
+    "name": "Larissa Manoela",
+    "slug": "larissa-manoela",
+    "description": "Atriz e cantora brasileira",
+    "image": "/images/larissa-manoela.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Larissa Manoela com IA - Sua foto com Larissa Manoela",
+        "description": "Crie sua foto ao lado de Larissa Manoela usando inteligência artificial. Tire foto com a atriz famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with Larissa Manoela - Your Photo with Larissa Manoela",
+        "description": "Create your photo next to Larissa Manoela using artificial intelligence. Take a photo with the famous actress."
+      }
+    }
+  },
+  {
+    "id": 155,
+    "name": "Felipe Castanhari",
+    "slug": "felipe-castanhari",
+    "description": "YouTuber brasileiro",
+    "image": "/images/felipe-castanhari.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Felipe Castanhari com IA - Sua foto com Felipe Castanhari",
+        "description": "Crie sua foto ao lado de Felipe Castanhari usando inteligência artificial. Tire foto com o youtuber famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Felipe Castanhari - Your Photo with Felipe Castanhari",
+        "description": "Create your photo next to Felipe Castanhari using artificial intelligence. Take a photo with the famous YouTuber."
+      }
+    }
+  },
+
+  {
+    "id": 157,
+    "name": "KondZilla",
+    "slug": "kondzilla",
+    "description": "Produtor musical brasileiro",
+    "image": "/images/kondzilla.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com KondZilla com IA - Sua foto com KondZilla",
+        "description": "Crie sua foto ao lado de KondZilla usando inteligência artificial. Tire foto com o produtor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with KondZilla - Your Photo with KondZilla",
+        "description": "Create your photo next to KondZilla using artificial intelligence. Take a photo with the famous producer."
+      }
+    }
+  },
+  {
+    "id": 158,
+    "name": "Djonga",
+    "slug": "djonga",
+    "description": "Rapper brasileiro",
+    "image": "/images/djonga.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Djonga com IA - Sua foto com Djonga",
+        "description": "Crie sua foto ao lado de Djonga usando inteligência artificial. Tire foto com o rapper famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Djonga - Your Photo with Djonga",
+        "description": "Create your photo next to Djonga using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 160,
+    "name": "MC Daniel",
+    "slug": "mc-daniel",
+    "description": "Cantor de funk brasileiro",
+    "image": "/images/mc-daniel.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com MC Daniel com IA - Sua foto com MC Daniel",
+        "description": "Crie sua foto ao lado de MC Daniel usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with MC Daniel - Your Photo with MC Daniel",
+        "description": "Create your photo next to MC Daniel using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  
+  {
+    "id": 161,
+    "name": "Dua Lipa",
+    "slug": "dua-lipa",
+    "description": "Cantora pop britânica",
+    "image": "/images/dua-lipa.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Dua Lipa com IA - Sua foto com Dua Lipa",
+        "description": "Crie sua foto ao lado de Dua Lipa usando inteligência artificial. Tire foto com a famosa cantora."
+      },
+      "en": {
+        "title": "Generate AI Image with Dua Lipa - Your Photo with Dua Lipa",
+        "description": "Create your photo next to Dua Lipa using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+
+  {
+    "id": 163,
+    "name": "Justin Bieber",
+    "slug": "olivia-rodrigo",
+    "description": "Cantora e atriz norte-americana",
+    "image": "/images/olivia-rodrigo.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Justin Bieber com IA - Sua foto com Justin Bieber",
+        "description": "Crie sua foto ao lado de Justin Bieber usando inteligência artificial. Tire foto com a famosa cantora."
+      },
+      "en": {
+        "title": "Generate AI Image with Justin Bieber - Your Photo with Justin Bieber",
+        "description": "Create your photo next to Justin Bieber using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 164,
+    "name": "Jenna Ortega",
+    "slug": "jenna-ortega",
+    "description": "Atriz norte-americana",
+    "image": "/images/jenna-ortega.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Jenna Ortega com IA - Sua foto com Jenna Ortega",
+        "description": "Crie sua foto ao lado de Jenna Ortega usando inteligência artificial. Tire foto com a famosa atriz."
+      },
+      "en": {
+        "title": "Generate AI Image with Jenna Ortega - Your Photo with Jenna Ortega",
+        "description": "Create your photo next to Jenna Ortega using artificial intelligence. Take a photo with the famous actress."
+      }
+    }
+  },
+  {
+    "id": 165,
+    "name": "Tom Holland",
+    "slug": "tom-holland",
+    "description": "Ator britânico",
+    "image": "/images/tom-holland.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Tom Holland com IA - Sua foto com Tom Holland",
+        "description": "Crie sua foto ao lado de Tom Holland usando inteligência artificial. Tire foto com o famoso ator."
+      },
+      "en": {
+        "title": "Generate AI Image with Tom Holland - Your Photo with Tom Holland",
+        "description": "Create your photo next to Tom Holland using artificial intelligence. Take a photo with the famous actor."
+      }
+    }
+  },
+
+  {
+    "id": 167,
+    "name": "Sabrina Carpenter",
+    "slug": "sabrina-carpenter",
+    "description": "YouTuber norte-americano",
+    "image": "/images/sabrina-carpenter.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Sabrina Carpenter com IA - Sua foto com Sabrina Carpenter",
+        "description": "Crie sua foto ao lado de Sabrina Carpenter usando inteligência artificial. Tire foto com o famoso youtuber."
+      },
+      "en": {
+        "title": "Generate AI Image with Sabrina Carpenter - Your Photo with Sabrina Carpenter",
+        "description": "Create your photo next to Sabrina Carpenter using artificial intelligence. Take a photo with the famous YouTuber."
+      }
+    }
+  },
+  {
+    "id": 168,
+    "name": "IShowSpeed",
+    "slug": "ishowspeed",
+    "description": "Streamer norte-americano",
+    "image": "/images/ishowspeed.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com IShowSpeed com IA - Sua foto com IShowSpeed",
+        "description": "Crie sua foto ao lado de IShowSpeed usando inteligência artificial. Tire foto com o famoso streamer."
+      },
+      "en": {
+        "title": "Generate AI Image with IShowSpeed - Your Photo with IShowSpeed",
+        "description": "Create your photo next to IShowSpeed using artificial intelligence. Take a photo with the famous streamer."
+      }
+    }
+  },
+  {
+    "id": 171,
+    "name": "Millie Bobby Brown",
+    "slug": "millie-bobby-brown",
+    "description": "Atriz britânica",
+    "image": "/images/millie-bobby-brown.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Millie Bobby Brown com IA - Sua foto com Millie Bobby Brown",
+        "description": "Crie sua foto ao lado de Millie Bobby Brown usando inteligência artificial. Tire foto com a famosa atriz."
+      },
+      "en": {
+        "title": "Generate AI Image with Millie Bobby Brown - Your Photo with Millie Bobby Brown",
+        "description": "Create your photo next to Millie Bobby Brown using artificial intelligence. Take a photo with the famous actress."
+      }
+    }
+  },
+  {
+    "id": 172,
+    "name": "Timothée Chalamet",
+    "slug": "timothee-chalamet",
+    "description": "Ator norte-americano",
+    "image": "/images/timothee-chalamet.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Timothée Chalamet com IA - Sua foto com Timothée Chalamet",
+        "description": "Crie sua foto ao lado de Timothée Chalamet usando inteligência artificial. Tire foto com o famoso ator."
+      },
+      "en": {
+        "title": "Generate AI Image with Timothée Chalamet - Your Photo with Timothée Chalamet",
+        "description": "Create your photo next to Timothée Chalamet using artificial intelligence. Take a photo with the famous actor."
+      }
+    }
+  },
+  {
+    "id": 173,
+    "name": "Miley Cyrus",
+    "slug": "miley-cyrus",
+    "description": "Cantora e atriz norte-americana",
+    "image": "/images/miley-cyrus.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Miley Cyrus com IA - Sua foto com Miley Cyrus",
+        "description": "Crie sua foto ao lado de Miley Cyrus usando inteligência artificial. Tire foto com a famosa cantora."
+      },
+      "en": {
+        "title": "Generate AI Image with Miley Cyrus - Your Photo with Miley Cyrus",
+        "description": "Create your photo next to Miley Cyrus using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 175,
+    "name": "Central Cee",
+    "slug": "central-cee",
+    "description": "Rapper britânico",
+    "image": "/images/central-cee.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Central Cee com IA - Sua foto com Central Cee",
+        "description": "Crie sua foto ao lado de Central Cee usando inteligência artificial. Tire foto com o rapper famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Central Cee - Your Photo with Central Cee",
+        "description": "Create your photo next to Central Cee using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 176,
+    "name": "Peso Pluma",
+    "slug": "peso-pluma",
+    "description": "Cantor mexicano",
+    "image": "/images/peso-pluma.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Peso Pluma com IA - Sua foto com Peso Pluma",
+        "description": "Crie sua foto ao lado de Peso Pluma usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Peso Pluma - Your Photo with Peso Pluma",
+        "description": "Create your photo next to Peso Pluma using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 177,
+    "name": "Bad Bunny",
+    "slug": "bad-bunny",
+    "description": "Cantor porto-riquenho",
+    "image": "/images/bad-bunny.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Bad Bunny com IA - Sua foto com Bad Bunny",
+        "description": "Crie sua foto ao lado de Bad Bunny usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Bad Bunny - Your Photo with Bad Bunny",
+        "description": "Create your photo next to Bad Bunny using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 178,
+    "name": "Tyler, The Creator",
+    "slug": "tyler-the-creator",
+    "description": "Rapper e produtor americano",
+    "image": "/images/tyler-the-creator.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Tyler, The Creator com IA - Sua foto com Tyler, The Creator",
+        "description": "Crie sua foto ao lado de Tyler, The Creator usando inteligência artificial. Tire foto com o rapper famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Tyler, The Creator - Your Photo with Tyler, The Creator",
+        "description": "Create your photo next to Tyler, The Creator using artificial intelligence. Take a photo with the famous rapper."
+      }
+    }
+  },
+  {
+    "id": 179,
+    "name": "SZA",
+    "slug": "sza",
+    "description": "Cantora americana",
+    "image": "/images/sza.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com SZA com IA - Sua foto com SZA",
+        "description": "Crie sua foto ao lado de SZA usando inteligência artificial. Tire foto com a cantora famosa."
+      },
+      "en": {
+        "title": "Generate AI Image with SZA - Your Photo with SZA",
+        "description": "Create your photo next to SZA using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 182,
+    "name": "Jungkook",
+    "slug": "jungkook",
+    "description": "Cantor sul-coreano",
+    "image": "/images/jungkook.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Jungkook com IA - Sua foto com Jungkook",
+        "description": "Crie sua foto ao lado de Jungkook usando inteligência artificial. Tire foto com o cantor famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Jungkook - Your Photo with Jungkook",
+        "description": "Create your photo next to Jungkook using artificial intelligence. Take a photo with the famous singer."
+      }
+    }
+  },
+  {
+    "id": 185,
+    "name": "Timothée Chalamet",
+    "slug": "timothee-chalamet",
+    "description": "Ator americano",
+    "image": "/images/timothee-chalamet.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Timothée Chalamet com IA - Sua foto com Timothée Chalamet",
+        "description": "Crie sua foto ao lado de Timothée Chalamet usando inteligência artificial. Tire foto com o ator famoso."
+      },
+      "en": {
+        "title": "Generate AI Image with Timothée Chalamet - Your Photo with Timothée Chalamet",
+        "description": "Create your photo next to Timothée Chalamet using artificial intelligence. Take a photo with the famous actor."
+      }
+    }
+  },
+
+{
+  "id": 190,
+  "name": "Loud Babi",
+  "slug": "loud-babi",
+  "description": "Streamer brasileira",
+  "image": "/images/loud-babi.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Loud Babi com IA - Sua foto com Loud Babi",
+      "description": "Crie sua foto ao lado de Loud Babi usando inteligência artificial. Tire foto com a streamer famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Loud Babi - Your Photo with Loud Babi",
+      "description": "Create your photo next to Loud Babi using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 191,
+  "name": "Cerol",
+  "slug": "cerol",
+  "description": "Streamer brasileiro e criador de conteúdo gamer",
+  "image": "/images/cerol.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Cerol com IA - Sua foto com Cerol",
+      "description": "Crie sua foto ao lado de Cerol usando inteligência artificial. Tire foto com o streamer famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Cerol - Your Photo with Cerol",
+      "description": "Create your photo next to Cerol using artificial intelligence. Take a photo with the famous streamer."
+    }
+  }
+},
+{
+  "id": 193,
+  "name": "Gabi Martins",
+  "slug": "gabi-martins",
+  "description": "Cantora e influenciadora brasileira",
+  "image": "/images/gabi-martins.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Gabi Martins com IA - Sua foto com Gabi Martins",
+      "description": "Crie sua foto ao lado de Gabi Martins usando inteligência artificial. Tire foto com a cantora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Gabi Martins - Your Photo with Gabi Martins",
+      "description": "Create your photo next to Gabi Martins using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 194,
+  "name": "MC Ryan SP",
+  "slug": "mc-ryan-sp",
+  "description": "Cantor brasileiro de funk",
+  "image": "/images/mc-ryan-sp.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com MC Ryan SP com IA - Sua foto com MC Ryan SP",
+      "description": "Crie sua foto ao lado de MC Ryan SP usando inteligência artificial. Tire foto com o cantor famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with MC Ryan SP - Your Photo with MC Ryan SP",
+      "description": "Create your photo next to MC Ryan SP using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 195,
+  "name": "MC Paiva",
+  "slug": "mc-paiva",
+  "description": "Cantor brasileiro de funk",
+  "image": "/images/mc-paiva.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com MC Paiva com IA - Sua foto com MC Paiva",
+      "description": "Crie sua foto ao lado de MC Paiva usando inteligência artificial. Tire foto com o cantor famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with MC Paiva - Your Photo with MC Paiva",
+      "description": "Create your photo next to MC Paiva using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 198,
+  "name": "MC Hariel",
+  "slug": "mc-hariel",
+  "description": "Cantor brasileiro de funk",
+  "image": "/images/mc-hariel.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com MC Hariel com IA - Sua foto com MC Hariel",
+      "description": "Crie sua foto ao lado de MC Hariel usando inteligência artificial. Tire foto com o cantor famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with MC Hariel - Your Photo with MC Hariel",
+      "description": "Create your photo next to MC Hariel using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 199,
+  "name": "MC Kevinho",
+  "slug": "mc-kevinho",
+  "description": "Cantor brasileiro de funk",
+  "image": "/images/mc-kevinho.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com MC Kevinho com IA - Sua foto com MC Kevinho",
+      "description": "Crie sua foto ao lado de MC Kevinho usando inteligência artificial. Tire foto com o cantor famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with MC Kevinho - Your Photo with MC Kevinho",
+      "description": "Create your photo next to MC Kevinho using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+{
+  "id": 200,
+  "name": "MC Livinho",
+  "slug": "mc-livinho",
+  "description": "Cantor brasileiro de funk",
+  "image": "/images/mc-livinho.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com MC Livinho com IA - Sua foto com MC Livinho",
+      "description": "Crie sua foto ao lado de MC Livinho usando inteligência artificial. Tire foto com o cantor famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with MC Livinho - Your Photo with MC Livinho",
+      "description": "Create your photo next to MC Livinho using artificial intelligence. Take a photo with the famous singer."
+    }
+  }
+},
+
+{
+  "id": 202,
+  "name": "Jean Luca",
+  "slug": "jean-luca",
+  "description": "Influenciador brasileiro",
+  "image": "/images/jean-luca.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Jean Luca com IA - Sua foto com Jean Luca",
+      "description": "Crie sua foto ao lado de Jean Luca usando inteligência artificial. Tire foto com o influenciador famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Jean Luca - Your Photo with Jean Luca",
+      "description": "Create your photo next to Jean Luca using artificial intelligence. Take a photo with the famous influencer."
+    }
+  }
+},
+{
+  "id": 205,
+  "name": "Jon Vlogs",
+  "slug": "jon-vlogs",
+  "description": "YouTuber brasileiro",
+  "image": "/images/jon-vlogs.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Jon Vlogs com IA - Sua foto com Jon Vlogs",
+      "description": "Crie sua foto ao lado de Jon Vlogs usando inteligência artificial. Tire foto com o criador de conteúdo famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Jon Vlogs - Your Photo with Jon Vlogs",
+      "description": "Create your photo next to Jon Vlogs using artificial intelligence. Take a photo with the famous content creator."
+    }
+  }
+},
+{
+  "id": 206,
+  "name": "Mano Brown",
+  "slug": "mano-brown",
+  "description": "Rapper brasileiro",
+  "image": "/images/mano-brown.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Mano Brown com IA - Sua foto com Mano Brown",
+      "description": "Crie sua foto ao lado de Mano Brown usando inteligência artificial. Tire foto com o rapper famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Mano Brown - Your Photo with Mano Brown",
+      "description": "Create your photo next to Mano Brown using artificial intelligence. Take a photo with the famous rapper."
+    }
+  }
+},
+{
+  "id": 207,
+  "name": "Tainá Costa",
+  "slug": "taina-costa",
+  "description": "Influenciadora brasileira",
+  "image": "/images/taina-costa.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Tainá Costa com IA - Sua foto com Tainá Costa",
+      "description": "Crie sua foto ao lado de Tainá Costa usando inteligência artificial. Tire foto com a influenciadora famosa."
+    },
+    "en": {
+      "title": "Generate AI Image with Tainá Costa - Your Photo with Tainá Costa",
+      "description": "Create your photo next to Tainá Costa using artificial intelligence. Take a photo with the famous influencer."
+    }
+  }
+},
+{
+  "id": 208,
+  "name": "Bryce Hall",
+  "slug": "bryce-hall",
+  "description": "Influenciador e criador de conteúdo americano",
+  "image": "/images/bryce-hall.jpg",
+  "seo": {
+    "pt": {
+      "title": "Gerar imagem com Bryce Hall com IA - Sua foto com Bryce Hall",
+      "description": "Crie sua foto ao lado de Bryce Hall usando inteligência artificial. Tire foto com o influenciador famoso."
+    },
+    "en": {
+      "title": "Generate AI Image with Bryce Hall - Your Photo with Bryce Hall",
+      "description": "Create your photo next to Bryce Hall using artificial intelligence. Take a photo with the famous influencer."
+    }
+  }
+}
 ]

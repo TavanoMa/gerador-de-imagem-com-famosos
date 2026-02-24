@@ -97,26 +97,45 @@ Estilo:
     const imageFiles: any[] = []
 
     for (let i = 1; i <= 3; i++) {
-      const path = `${famousSlug}/${i}.png`
+  let data = null
+  let error = null
+  let extension = "png"
 
-      const { data, error } = await supabaseServer
-        .storage
-        .from("famous_image")
-        .download(path)
+  // tenta PNG primeiro
+  let path = `${famousSlug}/${i}.png`
+  let response = await supabaseServer.storage
+    .from("famous_image")
+    .download(path)
 
-      if (error || !data) {
-        console.warn(`⚠️ Imagem não encontrada: ${path}`)
-        continue
-      }
+  if (!response.error && response.data) {
+    data = response.data
+    extension = "png"
+  } else {
+    // tenta JPG
+    path = `${famousSlug}/${i}.jpg`
+    response = await supabaseServer.storage
+      .from("famous_image")
+      .download(path)
 
-      const buffer = Buffer.from(await data.arrayBuffer())
-
-      imageFiles.push(
-        await toFile(buffer, `${famousSlug}-${i}.png`, {
-          type: "image/png",
-        })
-      )
+    if (!response.error && response.data) {
+      data = response.data
+      extension = "jpg"
     }
+  }
+
+  if (!data) {
+    console.warn(`⚠️ Imagem não encontrada: ${famousSlug}/${i}.png ou .jpg`)
+    continue
+  }
+
+  const buffer = Buffer.from(await data.arrayBuffer())
+
+  imageFiles.push(
+    await toFile(buffer, `${famousSlug}-${i}.${extension}`, {
+      type: extension === "jpg" ? "image/jpeg" : "image/png",
+    })
+  )
+}
 
     for (let i = 0; i < userImages.length; i++) {
       const img = userImages[i]

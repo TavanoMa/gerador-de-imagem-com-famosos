@@ -35,11 +35,16 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
   // Supabase Storage URL
   const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 
-  const getImageUrl = (slug: string) => {
-    // If image path starts with /, remove it
-    // Construct Supabase storage URL
-    return `${SUPABASE_URL}/storage/v1/object/public/famous_image/${slug}/1.png`;
+const getImageUrls = (slug: string) => {
+  const version = "v3"; // altere quando trocar imagem
+
+  const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${slug}/1`;
+
+  return {
+    jpg: `${base}.jpg?${version}`,
+    png: `${base}.png?${version}`,
   };
+};
 
   return (
     <section id={sectionId} className="py-16 sm:py-24 bg-white">
@@ -57,7 +62,7 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
         {/* Grid */}
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
           {famosos.map((famoso) => {
-            const imageUrl = getImageUrl(famoso.slug);
+            const imageUrls = getImageUrls(famoso.slug);
             
             return (
               <li key={famoso.id}>
@@ -68,18 +73,27 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
                   {/* Image Container */}
                   <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
                     <Image
-                      src={imageUrl}
-                      alt={famoso.name}
-                      fill
-                      className="object-cover"
-                      loading="lazy"
-                      unoptimized
-                      onError={(e) => {
-                        // Fallback to UI Avatars if image fails to load
-                        const target = e.target as HTMLImageElement;
-                        target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(famoso.name)}&size=400&background=random&bold=true`;
-                      }}
-                    />
+  src={imageUrls.jpg}
+  alt={`Foto de ${famoso.name}`}
+  fill
+  className="object-cover"
+  loading="lazy"
+  unoptimized
+  onError={(e) => {
+    const target = e.currentTarget as HTMLImageElement;
+
+    // Se falhou JPG, tenta PNG
+    if (target.src.includes(".jpg")) {
+      target.src = imageUrls.png;
+      return;
+    }
+
+    // Se falhou PNG também, fallback avatar
+    target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+      famoso.name
+    )}&size=400&background=random&bold=true`;
+  }}
+/>
                     
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
