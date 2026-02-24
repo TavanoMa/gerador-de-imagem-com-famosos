@@ -13,7 +13,9 @@ export default async function Home() {
 
    const isLogged = !!session
 
-   console.log(famosos.length)
+ 
+
+
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">

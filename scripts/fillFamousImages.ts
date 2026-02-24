@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import fs from "fs"
 import path from "path"
 
+
 dotenv.config({ path: ".env.local" })
 
 const supabase = createClient(
@@ -13,9 +14,11 @@ const supabase = createClient(
 const famososPath = path.join(process.cwd(), "src/data/famosos.json")
 const famosos = JSON.parse(fs.readFileSync(famososPath, "utf-8"))
 
+
+
 async function fillImages() {
   for (const famoso of famosos) {
-    const { name, slug } = famoso
+    const { name, slug, description } = famoso
 
     console.log(`\n🔍 Processando: ${name}`)
 
@@ -33,7 +36,7 @@ async function fillImages() {
     // 2️⃣ Buscar imagens no Bing via SerpAPI
     const serpResponse = await fetch(
       `https://serpapi.com/search.json?engine=bing_images&q=${encodeURIComponent(
-        `${name} portrait`
+        `${name} ${description} portrait`
       )}&api_key=${process.env.SERP_API_KEY}`
     )
 
