@@ -1,17 +1,92 @@
 import { NextResponse } from "next/server"
-import OpenAI, { toFile } from "openai"
+import { toFile } from "openai"
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
+
+const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 export async function GET() {
   return NextResponse.json({ ok: true })
 }
 
+// --- OpenRouter / Nanobanana (image gen via OpenRouter) ---
 
+interface OpenRouterImageUrl {
+  url: string
+}
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-})
+interface OpenRouterRequestContent {
+  type: string
+  text?: string
+  image_url?: OpenRouterImageUrl
+}
+
+interface OpenRouterRequestBody {
+  model: string
+  messages: { role: string; content: OpenRouterRequestContent[] }[]
+  modalities: string[]
+  image_config?: { aspect_ratio: string }
+}
+
+interface OpenRouterResponse {
+  choices: {
+    message: { images?: { image_url?: { url: string } }[] }
+    native_finish_reason?: string
+  }[]
+}
+
+async function fileToDataUri(file: File): Promise<string> {
+  const buffer = Buffer.from(await file.arrayBuffer())
+  const base64 = buffer.toString("base64")
+  const mime = file.type || "image/png"
+  return `data:${mime};base64,${base64}`
+}
+
+async function generateImageOpenRouter(
+  prompt: string,
+  imageDataUris: string[],
+  apiKey: string
+): Promise<{ imageDataUri: string } | { error: string }> {
+  const content: OpenRouterRequestContent[] = [{ type: "text", text: prompt }]
+  for (const url of imageDataUris) {
+    content.push({ type: "image_url", image_url: { url } })
+  }
+
+  const body: OpenRouterRequestBody = {
+    model: "google/gemini-3-pro-image-preview",
+    messages: [{ role: "user", content }],
+    modalities: ["image", "text"],
+  }
+
+  const res = await fetch(`${OPENROUTER_BASE_URL}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const errText = await res.text()
+    console.error("OpenRouter error:", res.status, errText)
+    return { error: errText || res.statusText }
+  }
+
+  const data = (await res.json()) as OpenRouterResponse
+  const imageDataUri = data.choices?.[0]?.message?.images?.[0]?.image_url?.url
+
+  if (!imageDataUri) {
+    return { error: "No image in response" }
+  }
+
+  return { imageDataUri }
+}
+
+function dataUriToBase64(dataUri: string): string {
+  const match = dataUri.match(/^data:[^;]+;base64,(.+)$/)
+  return match ? match[1] : dataUri
+}
 
 export async function POST(req: Request) {
 
@@ -42,7 +117,7 @@ export async function POST(req: Request) {
 
     const { data: profile } = await supabaseServer
       .from("profiles")
-      .select("credits")
+      .select("id, credits")
       .eq("email", session.user.email)
       .single()
 
@@ -157,14 +232,24 @@ Estilo:
       )
     }
 
-   
-    const result = await openai.images.edit({
-      model: "gpt-image-1.5",
-      image: imageFiles,
-      prompt: finalPrompt,
-      size: "auto",
-    })
+    const apiKey = process.env.NANOBANANA_API_KEY || process.env.OPENROUTER_API_KEY
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "NANOBANANA_API_KEY ou OPENROUTER_API_KEY não configurada" },
+        { status: 500 }
+      )
+    }
 
+    const imageDataUris = await Promise.all(imageFiles.map(fileToDataUri))
+    const result = await generateImageOpenRouter(finalPrompt, imageDataUris, apiKey)
+
+    if ("error" in result) {
+      console.error("OpenRouter image gen error:", result.error)
+      return NextResponse.json(
+        { error: "Falha ao gerar imagem" },
+        { status: 500 }
+      )
+    }
 
     const newCredits = profile.credits - 1
     await supabaseServer
@@ -172,15 +257,16 @@ Estilo:
       .update({ credits: newCredits })
       .eq("email", session.user.email)
 
-    if (!result.data || result.data.length === 0) {
-      return NextResponse.json(
-        { error: "Falha ao gerar imagem" },
-        { status: 500 }
-      )
-    }
+    const base64Image = dataUriToBase64(result.imageDataUri)
+
+    await supabaseServer.from("generations").insert({
+      profile_id: profile.id,
+      famous_slug: famousSlug,
+      prompt: userPrompt?.trim() || null,
+    })
 
     return NextResponse.json({
-      image: result.data[0].b64_json,
+      image: base64Image,
       credits: newCredits,
     })
 

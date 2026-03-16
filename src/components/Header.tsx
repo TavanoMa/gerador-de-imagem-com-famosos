@@ -12,19 +12,20 @@ type HeaderProps = {
   credits?: number
   locale?: 'pt' | 'en'
   userEmail?: string
+  onCreditsClick?: () => void
 }
 
-const Header = ({title, credits, isLogged, locale = 'pt', userEmail}: HeaderProps) => {
+const Header = ({title, credits, isLogged, locale = 'pt', userEmail, onCreditsClick}: HeaderProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const translations = {
     pt: {
-      creditsTooltip: "Cada geração custa 1 crédito",
+      creditsTooltip: "Clique para comprar mais créditos",
       signOut: "Sair da conta",
       signIn: "Entrar"
     },
     en: {
-      creditsTooltip: "Each generation costs 1 credit",
+      creditsTooltip: "Click to buy more credits",
       signOut: "Sign Out",
       signIn: "Sign In"
     }
@@ -62,10 +63,13 @@ const Header = ({title, credits, isLogged, locale = 'pt', userEmail}: HeaderProp
           {/* Credits Display - Only when logged in and credits are defined */}
           {isLogged && typeof credits === "number" && (
             <div className="group relative">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200 rounded-lg text-purple-700 font-semibold">
+              <button
+                onClick={onCreditsClick}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 border border-purple-200 rounded-lg text-purple-700 font-semibold hover:bg-purple-100 hover:border-purple-400 transition cursor-pointer"
+              >
                 <span className="text-lg">💵</span>
                 <span className="text-sm">{credits}</span>
-              </div>
+              </button>
               {/* Tooltip */}
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none z-50">
                 {t.creditsTooltip}
@@ -79,7 +83,7 @@ const Header = ({title, credits, isLogged, locale = 'pt', userEmail}: HeaderProp
             <div className="relative">
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white font-bold flex items-center justify-center hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 cursor-pointer"
+                className="w-10 h-10 rounded-full bg-linear-to-br from-purple-500 to-pink-500 text-white font-bold flex items-center justify-center hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 cursor-pointer"
               >
                 {getInitials(userEmail)}
               </button>
@@ -121,7 +125,7 @@ const Header = ({title, credits, isLogged, locale = 'pt', userEmail}: HeaderProp
               </div>
             </div>
           ) : (
-            <SignInButton />
+            <SignInButton locale={locale} />
           )}
         </div>
       </div>

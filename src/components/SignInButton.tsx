@@ -2,25 +2,33 @@
 
 import { signIn } from "next-auth/react";
 
-export default function SignInButton() {
+type Props = {
+  locale?: "pt" | "en";
+};
+
+export default function SignInButton({ locale = "pt" }: Props) {
+  const label = locale === "en" ? "Sign In" : "Entrar";
+
   return (
     <button
       onClick={() => signIn("google")}
       className="
-    w-42
-    border border-[#3a3a3a]
-    bg-transparent
+    w-22
+    h-10
+    flex items-center justify-center
+    bg-[#1a1a1a]
+    text-white
     px-[18px] py-[10px]
     text-[0.9rem]
-    rounded-md
+    rounded-xl
     cursor-pointer
     transition-all duration-200
-    hover:border-[#7c7cff]
-    hover:text-[#7c7cff]
+    hover:bg-[#2e2e2e]
     font-bold
+    border border-transparent
     "
     >
-      Entrar com Google
+      {label}
     </button>
   );
 }
