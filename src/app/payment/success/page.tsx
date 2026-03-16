@@ -95,7 +95,7 @@ export default async function PaymentSuccessPage({ searchParams }: Props) {
                 ? "/payment/success?package=" + packageId + (returnTo ? "&returnTo=" + encodeURIComponent(returnTo) : "")
                 : "/payment/success?package=" + packageId + "&locale=en" + (returnTo ? "&returnTo=" + encodeURIComponent(returnTo) : "")
             }
-            className="text-sm text-gray-500 hover:text-gray-700"
+            className="text-sm text-gray-500 hover:text-gray-700 "
           >
             {locale === "en" ? "Português" : text.en}
           </Link>
