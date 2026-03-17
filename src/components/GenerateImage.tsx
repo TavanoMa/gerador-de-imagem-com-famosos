@@ -194,7 +194,7 @@ const generateImage = async () => {
         {!image && previewUrls.length === 0 && (
     <>
       <div
-        className="absolute inset-0 scale-105 bg-center bg-cover opacity-75 object-cover"
+        className="absolute inset-0 scale-105 bg-center bg-cover  object-cover"
         style={{
   backgroundImage: `url(${imageUrls.jpg}), url(${imageUrls.png})`,
 }}
