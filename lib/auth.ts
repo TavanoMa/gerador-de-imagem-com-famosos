@@ -20,52 +20,63 @@ export const {
 
   callbacks: {
     async signIn({ user }) {
-  if (!user.email) return false
+      try {
+        if (!user.email) {
+          console.error("NO EMAIL FROM GOOGLE")
+          return false
+        }
 
+        // 🔍 busca usuário
+        const { data: profile, error: fetchError } = await supabaseServer
+          .from("profiles")
+          .select("id, credits")
+          .eq("email", user.email)
+          .maybeSingle()
 
-  const { data: profile } = await supabaseServer
-    .from("profiles")
-    .select("id, credits")
-    .eq("email", user.email)
-    .single()
+        if (fetchError) {
+          console.error("PROFILE FETCH ERROR:", fetchError)
+          return false
+        }
 
+        // 🆕 usuário novo
+        if (!profile) {
+          const { error: insertError } = await supabaseServer
+            .from("profiles")
+            .insert({
+              email: user.email,
+              name: user.name,
+              image: user.image,
+              credits: 2,
+            })
 
-  if (!profile) {
-    const { error } = await supabaseServer
-      .from("profiles")
-      .insert({
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        image: user.image,
-        credits: 2,
-      })
+          if (insertError) {
+            console.error("CREATE PROFILE ERROR:", insertError)
+            return false
+          }
 
-    if (error) {
-      console.error("CREATE PROFILE ERROR:", error)
-      return false
-    }
+          return true
+        }
 
-    return true
-  }
+        // 🔄 usuário existente → atualiza dados básicos
+        const { error: updateError } = await supabaseServer
+          .from("profiles")
+          .update({
+            name: user.name,
+            image: user.image,
+          })
+          .eq("email", user.email)
 
- 
-  const { error } = await supabaseServer
-    .from("profiles")
-    .update({
-      id: user.id,
-      name: user.name,
-      image: user.image,
-    })
-    .eq("email", user.email)
+        if (updateError) {
+          console.error("UPDATE PROFILE ERROR:", updateError)
+          return false
+        }
 
-  if (error) {
-    console.error("UPDATE PROFILE ERROR:", error)
-    return false
-  }
-
-  return true
-},
+        return true
+      } catch (err) {
+        console.error("SIGNIN FATAL ERROR:", err)
+        return false
+      }
+    },
 
     async jwt({ token, user }) {
       if (user) {
