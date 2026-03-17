@@ -66,13 +66,19 @@ export async function POST(req: Request) {
       if (getData?.data) billing = getData.data
     }
 
+    // Prefer our custom metadata; fallback to customer email and product externalId (e.g. AbacatePay may not return metadata in webhook/GET)
     const userEmail =
       (billing?.metadata?.userEmail as string | undefined) ??
+      (billing?.customer?.metadata?.email as string | undefined) ??
       (billing?.customer?.email as string | undefined)
-    const packageId = billing?.metadata?.packageId as string | undefined
+    const packageId =
+      (billing?.metadata?.packageId as string | undefined) ??
+      (Array.isArray(billing?.products) && billing.products[0]?.externalId
+        ? String(billing.products[0].externalId)
+        : undefined)
 
     if (!userEmail || !packageId) {
-      console.error("[Webhook] Missing metadata after fetch. billing.metadata:", billing?.metadata)
+      console.error("[Webhook] Missing userEmail or packageId. billing.metadata:", billing?.metadata, "customer:", billing?.customer?.metadata ?? billing?.customer, "products:", billing?.products)
       return NextResponse.json({ error: "Metadata inválido" }, { status: 400 })
     }
 
