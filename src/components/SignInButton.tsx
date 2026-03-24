@@ -11,7 +11,7 @@ export default function SignInButton({ locale = "pt" }: Props) {
 
   return (
     <button
-      onClick={() => signIn("google")}
+      onClick={() => signIn("google", { callbackUrl: window.location.href })}
       className="
     w-22
     h-10
