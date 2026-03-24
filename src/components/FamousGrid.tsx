@@ -28,6 +28,24 @@ export default function FamousGrid({ famosos, locale = 'pt' }: FamousGridProps) 
     }
   };
 
+  
+  
+const contagem: Record<string, number> = {};
+
+famosos.forEach((item) => {
+  const nome = item.name?.trim();
+  if (nome) {
+    contagem[nome] = (contagem[nome] || 0) + 1;
+  }
+});
+
+const repetidos = Object.entries(contagem)
+  .filter(([nome, qtd]) => qtd > 1)
+  .map(([nome, qtd]) => ({ nome, qtd }));
+
+console.log(repetidos);
+
+
   const t = content[locale];
   const basePath = locale === 'en' ? '/en/image' : '/image';
   const sectionId = locale === 'en' ? 'celebrities' : 'famosos';

@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/data/remover-duplicados.js"  ],
   "exclude": ["node_modules"]
 }
