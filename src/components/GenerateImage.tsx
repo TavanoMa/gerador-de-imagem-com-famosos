@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { signIn } from "next-auth/react"
-import ShareButtons from "./ShareButtons"
+
 
 type Props = {
   isLogged: boolean
@@ -401,12 +401,7 @@ const generateImage = async () => {
           {t.downloadButton}
         </button>
 
-        {/* Share Buttons */}
-        <ShareButtons 
-          imageUrl={image} 
-          famousName={famousName}
-          locale={locale}
-        />
+        
 
         {/* Generate Another Image Button */}
         <button
