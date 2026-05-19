@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { signIn } from "next-auth/react"
 
 type Props = {
@@ -23,9 +23,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
   const [loadingSeconds, setLoadingSeconds] = useState(0)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
-
-  // Criando a referência para o input de arquivo
-  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Fake timer while generating (up to 45s)
   useEffect(() => {
@@ -107,8 +104,14 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
 
   const t = translations[locale]
 
+  // FIX: Conversão ultra segura de arquivos para navegadores mobile legados
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = Array.from(e.target.files || [])
+    if (!e.target.files) return
+    const selectedFiles: File[] = []
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files.item(i)
+      if (file) selectedFiles.push(file)
+    }
     setFiles(selectedFiles)
   }
 
@@ -294,12 +297,10 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
                       </span>
                     </button>
                   ) : (
-                    /* MODIFICADO: De label para button + trigger manual via onClick */
-                    <button
-                      type="button"
-                      onClick={() => !loading && fileInputRef.current?.click()}
+                    /* SOLUÇÃO DE SUPORTE TOTAL: O container agora encapsula o input nativo invisível por cima */
+                    <div
                       className={`
-                        relative z-20
+                        relative z-20 overflow-hidden
                         flex items-center justify-center gap-2 px-6 py-4
                         border-2 rounded-xl font-medium transition-all
                         ${loading
@@ -309,16 +310,27 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
                         ${previewUrls.length > 0 ? 'shadow-lg' : ''}
                       `}
                     >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {/* O input fica esticado ocupando 100% do botão, 100% transparente. Toque direto 100% nativo. */}
+                      <input
+                        key={inputKey}
+                        type="file"
+                        accept="image/jpeg, image/png, image/webp"
+                        multiple
+                        onChange={handleFileChange}
+                        disabled={!isLogged || loading || credits <= 0}
+                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-30 disabled:cursor-not-allowed"
+                      />
+
+                      <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      <span>
+                      <span className="relative z-10">
                         {files.length > 0
                           ? `${files.length} ${files.length === 1 ? (locale === 'pt' ? 'foto' : 'photo') : (locale === 'pt' ? 'fotos' : 'photos')}`
                           : locale === 'pt' ? 'Clique para selecionar suas fotos' : 'Click to select your photos'
                         }
                       </span>
-                    </button>
+                    </div>
                   )}
                 </>
               )}
@@ -332,19 +344,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
           />
         )}
       </div>
-
-      {/* MODIFICADO: Adicionada a ref e trocado 'hidden' por 'sr-only' */}
-      <input
-        id="file-upload"
-        ref={fileInputRef}
-        key={inputKey}
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={handleFileChange}
-        disabled={!isLogged || loading || credits <= 0}
-        className="sr-only"
-      />
 
       {!image && (
         <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[600px]">
