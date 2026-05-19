@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "fill-images": "ts-node scripts/fillFamousImages.ts"
+    "fill-images": "ts-node scripts/fillFamousImages.ts",
+    "fill-table": "ts-node scripts/fillFamousTable.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.93.3",
