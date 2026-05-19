@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { signIn } from "next-auth/react"
 
 type Props = {
@@ -22,8 +22,10 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
   const [loading, setLoading] = useState(false)
   const [loadingSeconds, setLoadingSeconds] = useState(0)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
-  // Controls tooltip visibility for touch devices
   const [showTooltip, setShowTooltip] = useState(false)
+
+  // Criando a referência para o input de arquivo
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Fake timer while generating (up to 45s)
   useEffect(() => {
@@ -51,8 +53,7 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
     }
   }, [files])
 
-  // FIX 1: Resolve background image with JPG/PNG fallback via JS instead of
-  // stacking two background-image URLs (unreliable on Safari).
+  // FIX 1: Resolve background image with JPG/PNG fallback via JS
   useEffect(() => {
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
     const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${famousSlug}/1`
@@ -60,7 +61,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
     const img = new Image()
     img.onload = () => setBgImageUrl(img.src)
     img.onerror = () => {
-      // fallback to PNG if JPG fails
       const fallback = new Image()
       fallback.onload = () => setBgImageUrl(fallback.src)
       fallback.src = `${base}.png`
@@ -117,8 +117,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
     setFiles(newFiles)
   }
 
-  // FIX 2: Safari does NOT support downloading data: URIs via <a download>.
-  // Convert to Blob URL first, which works on all browsers including Safari/iOS.
   const handleDownload = async () => {
     if (!image) return
     try {
@@ -133,10 +131,8 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
       link.click()
       document.body.removeChild(link)
 
-      // Small delay before revoking so the browser has time to start the download
       setTimeout(() => URL.revokeObjectURL(blobUrl), 1000)
     } catch {
-      // Ultimate fallback: open in new tab (user can long-press save on iOS)
       window.open(image, '_blank')
     }
   }
@@ -192,8 +188,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
     }
   }
 
-  // FIX 3: Tooltip works on both hover (desktop) and touch (mobile/Android).
-  // Uses a state toggle instead of relying solely on CSS group-hover.
   const handleGenerateButtonInteraction = () => {
     if (files.length === 0 && isLogged && credits > 0) {
       setShowTooltip(true)
@@ -215,7 +209,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
           ${!image ? "bg-gray-50 border border-gray-500 text-gray-500" : ""}
         `}
       >
-        {/* FIX 1 continued: single resolved URL via state, no double background-image */}
         {!image && previewUrls.length === 0 && bgImageUrl && (
           <>
             <div
@@ -301,8 +294,10 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
                       </span>
                     </button>
                   ) : (
-                    <label
-                      htmlFor="file-upload"
+                    /* MODIFICADO: De label para button + trigger manual via onClick */
+                    <button
+                      type="button"
+                      onClick={() => !loading && fileInputRef.current?.click()}
                       className={`
                         relative z-20
                         flex items-center justify-center gap-2 px-6 py-4
@@ -323,7 +318,7 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
                           : locale === 'pt' ? 'Clique para selecionar suas fotos' : 'Click to select your photos'
                         }
                       </span>
-                    </label>
+                    </button>
                   )}
                 </>
               )}
@@ -338,15 +333,17 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
         )}
       </div>
 
+      {/* MODIFICADO: Adicionada a ref e trocado 'hidden' por 'sr-only' */}
       <input
         id="file-upload"
+        ref={fileInputRef}
         key={inputKey}
         type="file"
         accept="image/*"
         multiple
         onChange={handleFileChange}
         disabled={!isLogged || loading || credits <= 0}
-        className="hidden"
+        className="sr-only"
       />
 
       {!image && (
@@ -378,7 +375,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
                 onChange={(e) => setPrompt(e.target.value)}
               />
 
-              {/* FIX 3: Tooltip controlled via state, works on touch/mobile too */}
               <div className="relative">
                 <button
                   onClick={handleGenerateButtonInteraction}
@@ -396,7 +392,6 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
                   {loading ? t.generating : t.sendButton}
                 </button>
 
-                {/* Tooltip — visible on hover (desktop) OR when showTooltip=true (touch) */}
                 {(showTooltip || files.length === 0) && (
                   <div
                     className={`
