@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { signIn } from "next-auth/react"
 
 type Props = {
@@ -9,152 +9,219 @@ type Props = {
   onCreditsUpdate: (credits: number) => void
   famousSlug: string
   famousName: string
-  locale?: 'pt' | 'en'
+  locale?: "pt" | "en"
   onBuyCredits?: () => void
 }
 
-const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousName, locale = 'pt', onBuyCredits }: Props) => {
+const GenerateImage = ({
+  isLogged,
+  credits,
+  onCreditsUpdate,
+  famousSlug,
+  famousName,
+  locale = "pt",
+  onBuyCredits,
+}: Props) => {
   const [image, setImage] = useState<string | null>(null)
   const [prompt, setPrompt] = useState("")
   const [files, setFiles] = useState<File[]>([])
   const [previewUrls, setPreviewUrls] = useState<string[]>([])
-  const [inputKey, setInputKey] = useState(0)
   const [loading, setLoading] = useState(false)
   const [loadingSeconds, setLoadingSeconds] = useState(0)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
 
-  // Fake timer while generating (up to 45s)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const isMobile =
+    typeof window !== "undefined" &&
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+  // TIMER
   useEffect(() => {
     if (!loading) {
       setLoadingSeconds(0)
       return
     }
-    setLoadingSeconds(0)
+
     const interval = setInterval(() => {
       setLoadingSeconds((s) => Math.min(s + 1, 45))
     }, 1000)
+
     return () => clearInterval(interval)
   }, [loading])
 
-  // Generate preview URLs when files change
+  // PREVIEW COMPATÍVEL COM MOBILE
   useEffect(() => {
     if (files.length === 0) {
       setPreviewUrls([])
       return
     }
-    const urls = files.map(file => URL.createObjectURL(file))
-    setPreviewUrls(urls)
-    return () => {
-      urls.forEach(url => URL.revokeObjectURL(url))
+
+    const loadImages = async () => {
+      try {
+        const promises = files.map((file) => {
+          return new Promise<string>((resolve, reject) => {
+            const reader = new FileReader()
+
+            reader.onload = (e) => {
+              resolve(e.target?.result as string)
+            }
+
+            reader.onerror = reject
+
+            reader.readAsDataURL(file)
+          })
+        })
+
+        const results = await Promise.all(promises)
+        setPreviewUrls(results)
+      } catch (err) {
+        console.error("Erro ao gerar previews", err)
+      }
     }
+
+    loadImages()
   }, [files])
 
-  // FIX 1: Resolve background image with JPG/PNG fallback via JS
+  // BACKGROUND IMAGE FALLBACK
   useEffect(() => {
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+
+    if (!SUPABASE_URL) return
+
     const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${famousSlug}/1`
 
     const img = new Image()
-    img.onload = () => setBgImageUrl(img.src)
+
+    img.onload = () => {
+      setBgImageUrl(img.src)
+    }
+
     img.onerror = () => {
       const fallback = new Image()
-      fallback.onload = () => setBgImageUrl(fallback.src)
+
+      fallback.onload = () => {
+        setBgImageUrl(fallback.src)
+      }
+
       fallback.src = `${base}.png`
     }
+
     img.src = `${base}.jpg`
   }, [famousSlug])
 
   const translations = {
     pt: {
       generating: "Criando...",
-      placeholderImage: "A imagem gerada aparecerá aqui",
-      uploadInstruction: `Adicione pelo menos uma imagem sua, para te colocarmos ao lado do(a) ${famousName}`,
       loginToGenerate: "Faça login para gerar imagens",
-      noCredits: "Você não tem mais créditos",
       buyCredits: "Comprar créditos",
       buyCreditsSubtitle: "Seus créditos acabaram",
       promptPlaceholder: "Descreva a imagem desejada (opcional)",
       sendButton: "Criar",
       generatedAlt: "Imagem gerada",
-      selectedPhotos: "Fotos selecionadas",
-      removePhoto: "Remover",
       downloadButton: "Baixar Imagem",
       generateAnother: "Gerar Outra Imagem",
-      blockedBtn: "Adicione pelo menos uma imagem para conseguir gerar"
+      blockedBtn: "Adicione pelo menos uma imagem",
+      selectPhotos: "Clique para selecionar suas fotos",
+      photo: "foto",
+      photos: "fotos",
     },
+
     en: {
       generating: "Generating...",
-      placeholderImage: "Generated image will appear here",
-      uploadInstruction: `Add at least one image of yourself to place you next to ${famousName}`,
       loginToGenerate: "Log in to generate images",
-      noCredits: "You have no credits left",
       buyCredits: "Buy credits",
       buyCreditsSubtitle: "You've run out of credits",
       promptPlaceholder: "Describe the desired image (optional)",
       sendButton: "Create",
       generatedAlt: "Generated image",
-      selectedPhotos: "Selected photos",
-      removePhoto: "Remove",
       downloadButton: "Download Image",
       generateAnother: "Generate Another Image",
-      blockedBtn: "Add at least one image to generate"
-    }
+      blockedBtn: "Add at least one image",
+      selectPhotos: "Click to select your photos",
+      photo: "photo",
+      photos: "photos",
+    },
   }
 
   const t = translations[locale]
 
-  // FIX: Conversão ultra segura de arquivos para navegadores mobile legados
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return
-    const selectedFiles: File[] = []
-    for (let i = 0; i < e.target.files.length; i++) {
-      const file = e.target.files.item(i)
-      if (file) selectedFiles.push(file)
-    }
+  // FILE CHANGE
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const fileList = e.target.files
+
+    if (!fileList || fileList.length === 0) return
+
+    const selectedFiles = Array.from(fileList)
+
     setFiles(selectedFiles)
   }
 
+  // REMOVE FILE
   const removeFile = (index: number) => {
-    const newFiles = files.filter((_, i) => i !== index)
-    setFiles(newFiles)
+    const updated = files.filter((_, i) => i !== index)
+
+    setFiles(updated)
+
+    // importante para Android
+    if (updated.length === 0 && inputRef.current) {
+      inputRef.current.value = ""
+    }
   }
 
+  // DOWNLOAD
   const handleDownload = async () => {
     if (!image) return
+
     try {
       const res = await fetch(image)
       const blob = await res.blob()
+
       const blobUrl = URL.createObjectURL(blob)
 
-      const link = document.createElement('a')
+      const link = document.createElement("a")
+
       link.href = blobUrl
-      link.download = `photo-with-${famousName.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}.png`
+      link.download = `photo-with-${famousName
+        .toLowerCase()
+        .replace(/\s+/g, "-")}-${Date.now()}.png`
+
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
 
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000)
+      setTimeout(() => {
+        URL.revokeObjectURL(blobUrl)
+      }, 1000)
     } catch {
-      window.open(image, '_blank')
+      window.open(image, "_blank")
     }
   }
 
+  // RESET
   const handleGenerateAnother = () => {
     setImage(null)
     setFiles([])
     setPreviewUrls([])
     setPrompt("")
-    setInputKey(prev => prev + 1)
+
+    // ESSENCIAL MOBILE
+    if (inputRef.current) {
+      inputRef.current.value = ""
+    }
   }
 
+  // GENERATE
   const generateImage = async () => {
     if (loading || files.length === 0) return
 
-    setLoading(true)
-    setImage(null)
-
     try {
+      setLoading(true)
+      setImage(null)
+
       const formData = new FormData()
 
       if (prompt.trim()) {
@@ -172,265 +239,259 @@ const GenerateImage = ({ isLogged, credits, onCreditsUpdate, famousSlug, famousN
         body: formData,
       })
 
+      const data = await res.json()
+
       if (!res.ok) {
-        const err = await res.json()
-        alert(err.error || "Erro ao gerar imagem")
+        alert(data.error || "Erro ao gerar imagem")
         return
       }
 
-      const data = await res.json()
-
       setImage(`data:image/png;base64,${data.image}`)
+
       onCreditsUpdate(data.credits)
 
       setPrompt("")
       setFiles([])
-      setInputKey(prev => prev + 1)
+
+      // RESET INPUT
+      if (inputRef.current) {
+        inputRef.current.value = ""
+      }
+    } catch (err) {
+      console.error(err)
+      alert("Erro ao gerar imagem")
     } finally {
       setLoading(false)
     }
   }
 
   const handleGenerateButtonInteraction = () => {
-    if (files.length === 0 && isLogged && credits > 0) {
+    if (files.length === 0) {
       setShowTooltip(true)
-      setTimeout(() => setShowTooltip(false), 2500)
-    } else {
-      generateImage()
+
+      setTimeout(() => {
+        setShowTooltip(false)
+      }, 2500)
+
+      return
     }
+
+    generateImage()
   }
 
   return (
     <div className="mt-8 flex flex-col items-center gap-8 px-4 sm:px-6 bg-white pb-16">
 
+      {/* IMAGE AREA */}
       <div
         className={`
           relative
-          w-full max-w-auto sm:max-w-[420px] md:max-w-[550px]
-          aspect-square rounded-[14px]
-          flex items-center justify-center overflow-hidden
-          ${!image ? "bg-gray-50 border border-gray-500 text-gray-500" : ""}
+          w-full max-w-[550px]
+          aspect-square
+          rounded-[14px]
+          overflow-hidden
+          flex items-center justify-center
+          ${!image ? "bg-gray-50 border border-gray-300" : ""}
         `}
       >
         {!image && previewUrls.length === 0 && bgImageUrl && (
-          <>
-            <div
-              className="absolute inset-0 scale-105 bg-center bg-cover"
-              style={{ backgroundImage: `url(${bgImageUrl})` }}
-            />
-            <div className="absolute inset-0" />
-          </>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${bgImageUrl})`,
+            }}
+          />
         )}
 
-        {!image ? (
-          loading ? (
-            <div className="flex flex-col items-center gap-2 z-10">
-              <div className="h-[27px] w-[27px] animate-spin rounded-full border-4 border-gray-300 border-t-purple-600" />
-              <p className="text-sm text-gray-600">{t.generating}</p>
-              <p className="text-xs text-gray-500 tabular-nums">
-                {String(Math.floor(loadingSeconds / 60)).padStart(1, "0")}:
-                {String(loadingSeconds % 60).padStart(2, "0")} / 0:45
-              </p>
-            </div>
-          ) : (
-            <>
-              {previewUrls.length > 0 && (
-                <div className="absolute inset-0 gap-2 p-4">
-                  {previewUrls.slice(0, 4).map((url, index) => (
-                    <div key={index} className="relative group">
-                      <img
-                        src={url}
-                        alt={`Preview ${index + 1}`}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                      <button
-                        onClick={() => removeFile(index)}
-                        className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 shadow-lg z-10"
-                        type="button"
-                        disabled={loading}
-                      >
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                  ))}
-                  {previewUrls.length > 4 && (
-                    <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-full">
-                      +{previewUrls.length - 4} {locale === 'pt' ? 'fotos' : 'photos'}
-                    </div>
-                  )}
-                </div>
-              )}
+        {/* LOADING */}
+        {!image && loading && (
+          <div className="z-20 flex flex-col items-center gap-2">
+            <div className="h-7 w-7 animate-spin rounded-full border-4 border-gray-300 border-t-purple-600" />
 
-              {!isLogged ? (
-                <div className="relative z-20 flex flex-col items-center gap-3 px-6 py-4 border-2 border-gray-200 bg-gray-50 rounded-xl">
-                  <span className="text-gray-400 font-medium text-sm">{t.loginToGenerate}</span>
-                  <button
-                    type="button"
-                    onClick={() => signIn("google", { callbackUrl: window.location.href })}
-                    className="flex items-center justify-center gap-3 px-5 py-2.5 bg-white border border-gray-300 rounded-xl font-medium text-gray-700 hover:bg-gray-50 transition-all cursor-pointer shadow-sm text-sm"
-                  >
-                    <svg className="w-5 h-5" viewBox="0 0 24 24">
-                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                    </svg>
-                    {locale === 'en' ? 'Continue with Google' : 'Continuar com o Google'}
-                  </button>
-                </div>
-              ) : (
-                <>
-                  {credits <= 0 ? (
-                    <button
-                      type="button"
-                      onClick={onBuyCredits}
-                      className="relative z-20 flex flex-col items-center gap-1.5 px-6 py-4 border-2 border-purple-400 bg-purple-50 rounded-xl font-medium transition-all hover:bg-purple-100 hover:border-purple-500 cursor-pointer shadow"
-                    >
-                      <span className="text-purple-700 font-semibold text-sm">{t.buyCreditsSubtitle}</span>
-                      <span className="flex items-center gap-1.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold px-4 py-1.5 rounded-lg">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                        </svg>
-                        {t.buyCredits}
-                      </span>
-                    </button>
-                  ) : (
-                    /* SOLUÇÃO DE SUPORTE TOTAL: O container agora encapsula o input nativo invisível por cima */
-                    <div
-                      className={`
-                        relative z-20 overflow-hidden
-                        flex items-center justify-center gap-2 px-6 py-4
-                        border-2 rounded-xl font-medium transition-all
-                        ${loading
-                          ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed'
-                          : 'border-purple-300 bg-purple-50 text-purple-700 hover:bg-purple-100 hover:border-purple-400 cursor-pointer'
-                        }
-                        ${previewUrls.length > 0 ? 'shadow-lg' : ''}
-                      `}
-                    >
-                      {/* O input fica esticado ocupando 100% do botão, 100% transparente. Toque direto 100% nativo. */}
-                      <input
-                        key={inputKey}
-                        type="file"
-                        accept="image/jpeg, image/png, image/webp"
-                        multiple
-                        onChange={handleFileChange}
-                        disabled={!isLogged || loading || credits <= 0}
-                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-30 disabled:cursor-not-allowed"
-                      />
+            <p className="text-sm text-gray-600">
+              {t.generating}
+            </p>
 
-                      <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="relative z-10">
-                        {files.length > 0
-                          ? `${files.length} ${files.length === 1 ? (locale === 'pt' ? 'foto' : 'photo') : (locale === 'pt' ? 'fotos' : 'photos')}`
-                          : locale === 'pt' ? 'Clique para selecionar suas fotos' : 'Click to select your photos'
-                        }
-                      </span>
-                    </div>
-                  )}
-                </>
-              )}
-            </>
-          )
-        ) : (
+            <p className="text-xs text-gray-500">
+              0:
+              {String(loadingSeconds).padStart(2, "0")} / 0:45
+            </p>
+          </div>
+        )}
+
+        {/* GENERATED IMAGE */}
+        {image && (
           <img
             src={image}
             alt={t.generatedAlt}
-            className="h-full w-full object-contain"
+            className="w-full h-full object-contain"
           />
+        )}
+
+        {/* PREVIEWS */}
+        {!image && !loading && previewUrls.length > 0 && (
+          <div className="absolute inset-0 grid grid-cols-2 gap-2 p-4">
+            {previewUrls.slice(0, 4).map((url, index) => (
+              <div
+                key={index}
+                className="relative"
+              >
+                <img
+                  src={url}
+                  alt={`Preview ${index + 1}`}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => removeFile(index)}
+                  className="absolute top-2 right-2 z-20 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center"
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* LOGIN */}
+        {!isLogged && !image && !loading && (
+          <div className="z-20 flex flex-col items-center gap-3 bg-white/95 p-6 rounded-xl border">
+            <span className="text-sm text-gray-600">
+              {t.loginToGenerate}
+            </span>
+
+            <button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: window.location.href,
+                })
+              }
+              className="px-5 py-3 rounded-xl border bg-white shadow-sm"
+            >
+              Google
+            </button>
+          </div>
         )}
       </div>
 
-      {!image && (
-        <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[600px]">
+      {/* CONTROLS */}
+      {!image && isLogged && (
+        <div className="w-full max-w-[600px] flex flex-col gap-4">
 
-          {credits <= 0 && isLogged ? (
+          {/* SELECT */}
+          {credits > 0 && (
+            <>
+              <input
+                ref={inputRef}
+                id="upload-photo"
+                type="file"
+                accept="image/*"
+                multiple={!isMobile}
+                onChange={handleFileChange}
+                disabled={loading}
+                className="hidden"
+              />
+
+              <label
+                htmlFor="upload-photo"
+                className={`
+                  flex items-center justify-center gap-2
+                  px-6 py-4 rounded-xl border-2
+                  transition-all font-medium
+                  ${loading
+                    ? "opacity-50 cursor-not-allowed"
+                    : "cursor-pointer border-purple-300 bg-purple-50 hover:bg-purple-100"
+                  }
+                `}
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16"
+                  />
+                </svg>
+
+                <span>
+                  {files.length > 0
+                    ? `${files.length} ${
+                        files.length === 1
+                          ? t.photo
+                          : t.photos
+                      }`
+                    : t.selectPhotos}
+                </span>
+              </label>
+            </>
+          )}
+
+          {/* NO CREDITS */}
+          {credits <= 0 && (
             <button
               type="button"
               onClick={onBuyCredits}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-base bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
               {t.buyCredits}
             </button>
-          ) : (
+          )}
+
+          {/* PROMPT */}
+          {credits > 0 && (
             <>
               <input
                 type="text"
-                className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 disabled:opacity-60 text-gray-900 placeholder:text-gray-400"
-                placeholder={
-                  !isLogged
-                    ? t.loginToGenerate
-                    : t.promptPlaceholder
-                }
-                disabled={!isLogged || loading}
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
+                placeholder={t.promptPlaceholder}
+                disabled={loading}
+                className="w-full rounded-xl border px-4 py-3 outline-none focus:ring-2 focus:ring-purple-300"
               />
 
               <div className="relative">
                 <button
                   onClick={handleGenerateButtonInteraction}
-                  disabled={!isLogged || loading || credits <= 0}
-                  className="
-                    w-full sm:w-auto
-                    cursor-pointer
-                    rounded-lg px-6 py-3 text-base font-semibold
-                    bg-gradient-to-br from-purple-600 to-pink-600
-                    text-white
-                    hover:-translate-y-0.5 hover:shadow-lg transition
-                    disabled:opacity-60 disabled:cursor-not-allowed
-                  "
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold"
                 >
-                  {loading ? t.generating : t.sendButton}
+                  {loading
+                    ? t.generating
+                    : t.sendButton}
                 </button>
 
-                {(showTooltip || files.length === 0) && (
-                  <div
-                    className={`
-                      absolute top-full left-1/2 -translate-x-1/2 mt-2
-                      px-3 py-2 bg-gray-900 text-white text-xs rounded-lg
-                      whitespace-nowrap pointer-events-none z-50
-                      transition-all duration-200
-                      ${showTooltip ? 'opacity-100 visible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'}
-                    `}
-                  >
+                {showTooltip && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-2 bg-black text-white text-xs rounded-lg whitespace-nowrap">
                     {t.blockedBtn}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 -mb-1 border-4 border-transparent border-b-gray-900" />
                   </div>
                 )}
               </div>
             </>
           )}
-
         </div>
       )}
 
+      {/* ACTIONS */}
       {image && (
         <div className="w-full max-w-[600px] flex flex-col gap-4">
+
           <button
             onClick={handleDownload}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-200 hover:scale-105 shadow-lg"
+            className="w-full py-4 rounded-xl bg-green-600 text-white font-semibold"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
             {t.downloadButton}
           </button>
 
           <button
             onClick={handleGenerateAnother}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200 hover:scale-105 shadow-lg"
+            className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
             {t.generateAnother}
           </button>
         </div>
