@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { signIn } from "next-auth/react"
+import ShareButtons from "./ShareButtons"
 
 type Props = {
   isLogged: boolean
@@ -487,6 +488,12 @@ const GenerateImage = ({
           >
             {t.downloadButton}
           </button>
+
+          <ShareButtons 
+          imageUrl={image} 
+          famousName={famousName}
+          locale={locale}
+        />
 
           <button
             onClick={handleGenerateAnother}
