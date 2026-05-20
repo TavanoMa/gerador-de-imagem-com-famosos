@@ -482,12 +482,6 @@ const GenerateImage = ({
       {image && (
         <div className="w-full max-w-[600px] flex flex-col gap-4">
 
-          <button
-            onClick={handleDownload}
-            className="w-full py-4 rounded-xl bg-green-600 text-white font-semibold"
-          >
-            {t.downloadButton}
-          </button>
 
           <ShareButtons 
           imageUrl={image} 
