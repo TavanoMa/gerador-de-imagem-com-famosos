@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,13 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Gerador de Imagens com Famosos - Crie sua Foto com IA",
-  description: "Crie fotos realistas ao lado das suas celebridades favoritas usando inteligência artificial. Compartilhe nas redes sociais e impressione seus amigos!",
-  keywords: ["gerador de imagens", "IA", "famosos", "celebridades", "fotos com famosos", "inteligência artificial"],
-  openGraph: {
-    title: "Gerador de Imagens com Famosos - Crie sua Foto com IA",
-    description: "Crie fotos realistas ao lado das suas celebridades favoritas usando inteligência artificial.",
-    type: "website",
-  },
+  description:
+    "Crie fotos realistas ao lado das suas celebridades favoritas usando inteligência artificial. Compartilhe nas redes sociais e impressione seus amigos!",
 };
 
 export default function RootLayout({
@@ -32,8 +26,28 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        <meta name="google-site-verification" content="JfszQ1HknJKAl_ANtr6zZLngdqYYieLvAt0vb2f09I4" />
+        <meta
+          name="google-site-verification"
+          content="JfszQ1HknJKAl_ANtr6zZLngdqYYieLvAt0vb2f09I4"
+        />
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-2HX7L6NHCH"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-2HX7L6NHCH');
+          `}
+        </Script>
       </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -47,6 +61,7 @@ export default function RootLayout({
             a.appendChild(r);
           })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
         `}</Script>
+
         {children}
       </body>
     </html>
