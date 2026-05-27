@@ -86,31 +86,35 @@ const GenerateImage = ({
   }, [files])
 
   // BACKGROUND IMAGE FALLBACK
-  useEffect(() => {
-    const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+  // BACKGROUND IMAGE FALLBACK
+useEffect(() => {
+  // 1. CONDICIONAL MAIS SEGURA PARA O DONALD TRUMP
+  if (famousSlug?.toLowerCase().trim() === "donald-trump") {
+    const timestamp = new Date().getTime()
+    setBgImageUrl(`/trump.png?t=${timestamp}`)
+    return 
+  }
 
-    if (!SUPABASE_URL) return
+  // 2. LÓGICA PADRÃO PARA OS OUTROS FAMOSOS (SUPABASE)
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+  if (!SUPABASE_URL) return
 
-    const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${famousSlug}/1`
+  const timestamp = new Date().getTime()
+  const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${famousSlug}/1`
 
-    const img = new Image()
-
-    img.onload = () => {
-      setBgImageUrl(img.src)
+  const img = new Image()
+  img.onload = () => {
+    setBgImageUrl(img.src)
+  }
+  img.onerror = () => {
+    const fallback = new Image()
+    fallback.onload = () => {
+      setBgImageUrl(fallback.src)
     }
-
-    img.onerror = () => {
-      const fallback = new Image()
-
-      fallback.onload = () => {
-        setBgImageUrl(fallback.src)
-      }
-
-      fallback.src = `${base}.png`
-    }
-
-    img.src = `${base}.jpg`
-  }, [famousSlug])
+    fallback.src = `${base}.png?t=${timestamp}`
+  }
+  img.src = `${base}.jpg?t=${timestamp}`
+}, [famousSlug])
 
   const translations = {
     pt: {
