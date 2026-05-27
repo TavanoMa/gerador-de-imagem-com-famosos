@@ -31,6 +31,7 @@ const GenerateImage = ({
   const [loadingSeconds, setLoadingSeconds] = useState(0)
   const [bgImageUrl, setBgImageUrl] = useState<string | null>(null)
   const [showTooltip, setShowTooltip] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -217,6 +218,7 @@ useEffect(() => {
     if (inputRef.current) {
       inputRef.current.value = ""
     }
+    setIsModalOpen(false)
   }
 
   // GENERATE
@@ -325,13 +327,14 @@ useEffect(() => {
         )}
 
         {/* GENERATED IMAGE */}
-        {image && (
-          <img
-            src={image}
-            alt={t.generatedAlt}
-            className="w-full h-full object-contain"
-          />
-        )}
+{image && (
+  <img
+    src={image}
+    alt={t.generatedAlt}
+    onClick={() => setIsModalOpen(true)}
+    className="w-full h-full object-contain cursor-zoom-in"
+  />
+)}
 
         {/* PREVIEWS */}
         {!image && !loading && previewUrls.length > 0 && (
@@ -501,6 +504,19 @@ useEffect(() => {
           </button>
         </div>
       )}
+      {isModalOpen && image && (
+  <div 
+    onClick={() => setIsModalOpen(false)}
+    className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm cursor-zoom-out"
+  >
+    <img 
+      src={image} 
+      alt={t.generatedAlt} 
+      onClick={(e) => e.stopPropagation()} 
+      className="max-w-[95vw] max-h-[85vh] md:max-h-[90vh] object-contain rounded-xl shadow-2xl cursor-default"
+    />
+  </div>
+)}
     </div>
   )
 }
