@@ -287,7 +287,7 @@ useEffect(() => {
   }
 
   return (
-    <div className="mt-8 flex flex-col items-center gap-8 px-4 sm:px-6 bg-white pb-16">
+    <div className="mt-8 flex flex-col items-center gap-8 px-4 sm:px-6 bg-white pb-16 overflow-x-hidden w-full">
 
       {/* IMAGE AREA */}
       <div

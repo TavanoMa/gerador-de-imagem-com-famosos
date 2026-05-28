@@ -165,13 +165,13 @@ export default function BuyCredits({ isLogged, locale = "pt", returnTo }: Props)
   }
 
   return (
-    <section className="w-full max-w-2xl mx-auto px-4 py-8">
+    <section className="w-full max-w-2xl mx-auto px-3 py-6 overflow-x-hidden">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-gray-900">{t.title}</h2>
         <p className="text-gray-500 mt-1 text-sm">{t.subtitle}</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
         {packages.map((pkg, index) => {
           const isBest = index === 1
           const isLoading = loadingId === pkg.id
@@ -180,17 +180,21 @@ export default function BuyCredits({ isLogged, locale = "pt", returnTo }: Props)
             <div
               key={pkg.id}
               className={`
-                relative flex flex-col items-center gap-3 rounded-2xl border p-5 transition-all
+                flex flex-col items-center gap-3 rounded-2xl border p-5 transition-all
                 ${isBest
-                  ? "border-purple-500 bg-purple-50 shadow-lg scale-[1.02]"
+                  ? "border-purple-500 bg-purple-50 shadow-lg"
                   : "border-gray-200 bg-white hover:border-purple-300 hover:shadow"
                 }
               `}
             >
-              {isBest && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+              {/* Badge no fluxo normal, sem absolute */}
+              {isBest ? (
+                <span className="bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                   {t.best}
                 </span>
+              ) : (
+                // Espaço reservado para manter alinhamento vertical nos outros cards
+                <span className="invisible text-xs px-3 py-1">_</span>
               )}
 
               <div className="text-center">
@@ -213,7 +217,7 @@ export default function BuyCredits({ isLogged, locale = "pt", returnTo }: Props)
                 className={`
                   w-full rounded-xl px-4 py-2.5 text-sm font-semibold transition-all
                   ${isBest
-                    ? "bg-linear-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow"
+                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow"
                     : "bg-gray-900 text-white hover:bg-gray-700"
                   }
                   disabled:opacity-60 disabled:cursor-not-allowed
@@ -233,7 +237,7 @@ export default function BuyCredits({ isLogged, locale = "pt", returnTo }: Props)
             className="fixed inset-0 z-50 bg-black/50"
             onClick={() => setFormOpen(false)}
           />
-          <div className="fixed left-1/2 top-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-xl">
+          <div className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-xl">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t.formTitle}</h3>
             <p className="text-sm text-gray-500 mb-4">
               {selectedPkg.name} — {formatPrice(selectedPkg.price)}
@@ -274,7 +278,7 @@ export default function BuyCredits({ isLogged, locale = "pt", returnTo }: Props)
                 <button
                   type="submit"
                   disabled={loadingId === selectedPkg.id}
-                  className="flex-1 rounded-lg bg-linear-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-semibold text-white hover:from-purple-700 hover:to-pink-700 disabled:opacity-60"
+                  className="flex-1 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-semibold text-white hover:from-purple-700 hover:to-pink-700 disabled:opacity-60"
                 >
                   {loadingId === selectedPkg.id ? t.loading : t.formContinue}
                 </button>

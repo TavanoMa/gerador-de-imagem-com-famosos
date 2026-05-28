@@ -113,7 +113,7 @@ const page = async ({ params }: Props) => {
   console.log('📊 Final credits value:', credits)
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
       <PageClient
         famousSlug={famoso.slug}
         famousName={famoso.name}

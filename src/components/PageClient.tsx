@@ -26,7 +26,7 @@ export default function PageClient({
   const [buyModalOpen, setBuyModalOpen] = useState(false)
 
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-white text-gray-900 overflow-x-hidden">
       <Header 
         title={famousName} 
         credits={credits} 

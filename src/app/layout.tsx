@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="overflow-x-hidden">
       <head>
         <meta
           name="google-site-verification"
@@ -50,7 +50,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <Script id="hotjar" strategy="afterInteractive">{`
           (function(h,o,t,j,a,r){
