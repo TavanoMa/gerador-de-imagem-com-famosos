@@ -91,27 +91,22 @@ async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
   const metadata = await sharp(imageBuffer).metadata()
   const w = metadata.width || 1024
   const h = metadata.height || 1024
+  const fontSize = Math.max(Math.floor(w * 0.04), 22)
+  const spacingX = Math.floor(w * 0.42)
+  const spacingY = Math.floor(h * 0.16)
 
-  const fontSize = Math.max(Math.floor(w * 0.05), 24)
-  const patternW = Math.floor(w * 0.45)
-  const patternH = Math.floor(h * 0.18)
+  const texts: string[] = []
+  for (let y = -h * 0.3; y < h * 1.3; y += spacingY) {
+    for (let x = -w * 0.3; x < w * 1.3; x += spacingX) {
+      texts.push(
+        `<text x="${x}" y="${y}" font-size="${fontSize}" font-family="sans-serif" font-weight="bold" fill="white" fill-opacity="0.5" stroke="black" stroke-opacity="0.15" stroke-width="0.6" transform="rotate(-30, ${x}, ${y})">fotocomfamosos.com.br</text>`
+      )
+    }
+  }
 
-  const svgOverlay = Buffer.from(`
-    <svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="wm" width="${patternW}" height="${patternH}"
-                 patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
-          <text x="10" y="${fontSize + 10}"
-                font-size="${fontSize}" font-family="Arial,sans-serif" font-weight="bold"
-                fill="rgba(255,255,255,0.5)"
-                stroke="rgba(0,0,0,0.15)" stroke-width="0.6">
-            fotocomfamosos.com.br
-          </text>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#wm)" />
-    </svg>
-  `)
+  const svgOverlay = Buffer.from(
+    `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">${texts.join("")}</svg>`
+  )
 
   return sharp(imageBuffer)
     .composite([{ input: svgOverlay, top: 0, left: 0 }])
