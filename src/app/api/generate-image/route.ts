@@ -93,11 +93,16 @@ async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
   const h = metadata.height || 1024
   const fontSize = Math.max(Math.floor(w * 0.04), 22)
 
+  const fontfile = process.platform === "win32"
+    ? "C:/Windows/Fonts/arialbd.ttf"
+    : undefined
+
   const stamp = await sharp({
     text: {
-      text: `<span font_desc="Sans Bold ${fontSize}" foreground="#ffffff">fotocomfamosos.com.br</span>`,
+      text: `<span size="${fontSize * 1024}" foreground="#ffffff"><b>fotocomfamosos.com.br</b></span>`,
       rgba: true,
       dpi: 72,
+      ...(fontfile && { fontfile }),
     },
   }).png().toBuffer()
 
