@@ -4,7 +4,6 @@ import famosos from "@/src/data/famosos.json"
 import PageClient from "@/src/components/PageClient"
 import { Metadata } from "next"
 
-// Force dynamic rendering - no caching
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
@@ -25,9 +24,7 @@ function getBaseUrl() {
 export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
-
   const { slug } = await params
-
   const famoso = famosos.find(f => f.slug === slug)
 
   if (!famoso) {
@@ -74,64 +71,39 @@ export async function generateMetadata(
 
 const page = async ({ params }: Props) => {
   const { slug } = await params
-
   const session = await auth()
-
   const famoso = famosos.find((f) => f.slug === slug)
 
   if (!famoso) {
     return <div>Famoso não encontrado</div>
   }
 
-  let credits = 0
+  let hasSavedPaymentInfo = false
 
   if (session?.user?.email) {
-    console.log('🔍 Session user:', { 
-      id: session.user.id, 
-      email: session.user.email 
-    })
-    
-    // Try by email first (more reliable)
-    const { data: profileByEmail, error: emailError } = await supabaseServer
+    const { data: profile } = await supabaseServer
       .from("profiles")
-      .select("credits, id")
+      .select("tax_id, cellphone")
       .eq("email", session.user.email)
       .single()
 
-    if (emailError) {
-      console.error('❌ Error fetching by email:', emailError)
-    } else if (profileByEmail) {
-      console.log('✅ Profile found by email:', profileByEmail)
-      credits = profileByEmail.credits ?? 0
-    } else {
-      console.log('⚠️ No profile found for email:', session.user.email)
+    if (profile?.tax_id && profile?.cellphone) {
+      hasSavedPaymentInfo = true
     }
-  } else {
-    console.log('⚠️ No session or user email')
   }
-
-  console.log('📊 Final credits value:', credits)
 
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
       <PageClient
         famousSlug={famoso.slug}
         famousName={famoso.name}
-        initialCredits={credits}
         isLogged={!!session}
         locale="pt"
         userEmail={session?.user?.email || undefined}
+        hasSavedPaymentInfo={hasSavedPaymentInfo}
       />
     </div>
   )
 }
 
-// Remove static generation since we need dynamic data
-// export async function generateStaticParams() {
-//   return famosos.map((famoso) => ({
-//     slug: famoso.slug,
-//   }))
-// }
-
 export default page
-

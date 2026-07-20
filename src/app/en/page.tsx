@@ -11,10 +11,9 @@ export default async function EnHome() {
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
-      <Header 
-        title="AI Celebrity Photo Generator" 
-        credits={undefined} 
-        isLogged={isLogged} 
+      <Header
+        title="AI Celebrity Photo Generator"
+        isLogged={isLogged}
         locale="en"
         userEmail={session?.user?.email || undefined}
       />

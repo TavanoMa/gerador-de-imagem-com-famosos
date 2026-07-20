@@ -19,10 +19,9 @@ export default async function Home() {
 
   return (
     <div className="bg-white text-gray-900 min-h-screen overflow-x-hidden">
-      <Header 
-        title="Gerador de Imagens com Famosos" 
-        credits={undefined} 
-        isLogged={isLogged} 
+      <Header
+        title="Gerador de Imagens com Famosos"
+        isLogged={isLogged}
         locale="pt"
         userEmail={session?.user?.email || undefined}
       />

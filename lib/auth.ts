@@ -47,7 +47,6 @@ export const {
               email: user.email,
               name: user.name,
               image: user.image,
-              credits: 2,
             })
 
           if (insertError) {

@@ -1,39 +1,21 @@
 import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
+import { supabaseServer } from "@/lib/supabase-server"
 
 const ABACATEPAY_API_URL = "https://api.abacatepay.com"
 
-export interface CreditPackage {
-  id: string
-  name: string
-  credits: number
-  price: number // in cents
-  description: string
+function formatCpf(raw: string) {
+  const digits = raw.replace(/\D/g, "").slice(0, 11)
+  if (digits.length !== 11) return raw
+  return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`
 }
 
-export const CREDIT_PACKAGES: CreditPackage[] = [
-  {
-    id: "credits-5",
-    name: "5 Créditos",
-    credits: 5,
-    price: 990,
-    description: "Pacote básico — 5 gerações de imagem",
-  },
-  {
-    id: "credits-15",
-    name: "15 Créditos",
-    credits: 15,
-    price: 2490,
-    description: "Pacote intermediário — 15 gerações de imagem",
-  },
-  {
-    id: "credits-30",
-    name: "30 Créditos",
-    credits: 30,
-    price: 3990,
-    description: "Pacote premium — 30 gerações de imagem",
-  },
-]
+function formatPhone(raw: string) {
+  const digits = raw.replace(/\D/g, "")
+  if (digits.length === 11) return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+  if (digits.length === 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
+  return raw
+}
 
 export async function POST(req: Request) {
   try {
@@ -44,40 +26,52 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json()
-    const { packageId, taxId, cellphone, returnTo } = body
+    const { generationId, taxId, cellphone } = body
 
-    const safeReturnTo =
-      typeof returnTo === "string" &&
-      returnTo.length <= 512 &&
-      returnTo.startsWith("/") &&
-      !returnTo.startsWith("//") &&
-      !returnTo.includes("//")
-        ? returnTo
-        : null
-
-    const pkg = CREDIT_PACKAGES.find((p) => p.id === packageId)
-    if (!pkg) {
-      return NextResponse.json({ error: "Pacote inválido" }, { status: 400 })
+    if (!generationId || typeof generationId !== "string") {
+      return NextResponse.json({ error: "ID da geração inválido" }, { status: 400 })
     }
 
-    if (!taxId || typeof taxId !== "string" || !cellphone || typeof cellphone !== "string") {
+    const { data: profile } = await supabaseServer
+      .from("profiles")
+      .select("id, tax_id, cellphone")
+      .eq("email", session.user.email)
+      .single()
+
+    if (!profile) {
+      return NextResponse.json({ error: "Perfil não encontrado" }, { status: 404 })
+    }
+
+    const { data: generation } = await supabaseServer
+      .from("generations")
+      .select("id, profile_id, paid")
+      .eq("id", generationId)
+      .eq("profile_id", profile.id)
+      .single()
+
+    if (!generation) {
+      return NextResponse.json({ error: "Geração não encontrada" }, { status: 404 })
+    }
+
+    if (generation.paid) {
+      return NextResponse.json({ error: "Esta imagem já foi paga" }, { status: 400 })
+    }
+
+    const finalTaxId = taxId || profile.tax_id
+    const finalCellphone = cellphone || profile.cellphone
+
+    if (!finalTaxId || !finalCellphone) {
       return NextResponse.json(
-        { error: "CPF e telefone são obrigatórios para o pagamento" },
+        { error: "CPF e telefone são obrigatórios" },
         { status: 400 }
       )
     }
 
-    const formatCpf = (raw: string) => {
-      const digits = raw.replace(/\D/g, "").slice(0, 11)
-      if (digits.length !== 11) return raw
-      return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`
-    }
-
-    const formatPhone = (raw: string) => {
-      const digits = raw.replace(/\D/g, "")
-      if (digits.length === 11) return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
-      if (digits.length === 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
-      return raw
+    if (taxId && cellphone) {
+      await supabaseServer
+        .from("profiles")
+        .update({ tax_id: taxId, cellphone })
+        .eq("id", profile.id)
     }
 
     const apiHeaders = {
@@ -89,8 +83,8 @@ export async function POST(req: Request) {
     const customerPayload = {
       name: session.user.name ?? "Usuário",
       email: session.user.email,
-      cellphone: formatPhone(cellphone),
-      taxId: formatCpf(taxId),
+      cellphone: formatPhone(finalCellphone),
+      taxId: formatCpf(finalTaxId),
     }
 
     const createCustomerRes = await fetch(`${ABACATEPAY_API_URL}/v1/customer/create`, {
@@ -116,20 +110,19 @@ export async function POST(req: Request) {
       methods: ["PIX", "CARD"],
       products: [
         {
-          externalId: pkg.id,
-          name: pkg.name,
-          description: pkg.description,
+          externalId: `download-${generationId}`,
+          name: "Download sem marca d'água",
+          description: "Baixar imagem gerada sem marca d'água",
           quantity: 1,
-          price: pkg.price,
+          price: 100,
         },
       ],
-      returnUrl: `${baseUrl}${safeReturnTo ?? "/"}`,
-      completionUrl: `${baseUrl}/payment/success?package=${pkg.id}${safeReturnTo ? "&returnTo=" + encodeURIComponent(safeReturnTo) : ""}`,
+      returnUrl: `${baseUrl}/`,
+      completionUrl: `${baseUrl}/payment/success?generationId=${encodeURIComponent(generationId)}`,
       customerId,
       metadata: {
         userEmail: session.user.email,
-        packageId: pkg.id,
-        credits: pkg.credits,
+        generationId,
       },
     }
 

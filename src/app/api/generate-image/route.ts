@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { toFile } from "openai"
+import sharp from "sharp"
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
 
@@ -8,8 +9,6 @@ const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 export async function GET() {
   return NextResponse.json({ ok: true })
 }
-
-// --- OpenRouter / Nanobanana (image gen via OpenRouter) ---
 
 interface OpenRouterImageUrl {
   url: string
@@ -88,10 +87,39 @@ function dataUriToBase64(dataUri: string): string {
   return match ? match[1] : dataUri
 }
 
+async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
+  const metadata = await sharp(imageBuffer).metadata()
+  const w = metadata.width || 1024
+  const h = metadata.height || 1024
+
+  const fontSize = Math.max(Math.floor(w * 0.05), 24)
+  const patternW = Math.floor(w * 0.45)
+  const patternH = Math.floor(h * 0.18)
+
+  const svgOverlay = Buffer.from(`
+    <svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="wm" width="${patternW}" height="${patternH}"
+                 patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
+          <text x="10" y="${fontSize + 10}"
+                font-size="${fontSize}" font-family="Arial,sans-serif" font-weight="bold"
+                fill="rgba(255,255,255,0.5)"
+                stroke="rgba(0,0,0,0.15)" stroke-width="0.6">
+            fotocomfamosos.com.br
+          </text>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#wm)" />
+    </svg>
+  `)
+
+  return sharp(imageBuffer)
+    .composite([{ input: svgOverlay, top: 0, left: 0 }])
+    .png()
+    .toBuffer()
+}
+
 export async function POST(req: Request) {
-
-  console.log("🔥 POST /api/generate-image CHAMADO")
-
   try {
     const session = await auth()
 
@@ -105,8 +133,6 @@ export async function POST(req: Request) {
     const famousSlug = formData.get("famousSlug") as string | null
     const userImages = formData.getAll("images") as File[]
 
-    console.log("🧩 famousSlug recebido:", famousSlug)
-
     if (!famousSlug) {
       return NextResponse.json(
         { error: "Famoso não informado" },
@@ -114,25 +140,21 @@ export async function POST(req: Request) {
       )
     }
 
-
     const { data: profile } = await supabaseServer
       .from("profiles")
-      .select("id, credits")
+      .select("id")
       .eq("email", session.user.email)
       .single()
 
-    if (!profile || profile.credits <= 0) {
-      return NextResponse.json({ error: "Sem créditos" }, { status: 403 })
+    if (!profile) {
+      return NextResponse.json({ error: "Perfil não encontrado" }, { status: 404 })
     }
-
 
     const { data: famous } = await supabaseServer
       .from("famous")
       .select("name")
       .eq("slug", famousSlug)
       .single()
-
-    console.log("🧩 famous do banco:", famous)
 
     if (!famous) {
       return NextResponse.json(
@@ -155,8 +177,6 @@ O famoso: ${famous.name}
 - sem exageros ou caricatura
 - aparência respeitosa e realista
 
-
-
 Estilo:
 - fotografia real
 - iluminação natural
@@ -168,56 +188,47 @@ Estilo:
       ? `${basePrompt}\nPedido do usuário: ${userPrompt}`
       : `${basePrompt}\n crie uma foto seguindo os padrões acima do ${famous.name} junto com o usuário que está na foto.`
 
-    
-    const imageFiles: any[] = []
+    const imageFiles: Awaited<ReturnType<typeof toFile>>[] = []
 
     for (let i = 1; i <= 3; i++) {
-  let data = null
-  let error = null
-  let extension = "png"
+      let data = null
+      let extension = "png"
 
-  // tenta PNG primeiro
-  let path = `${famousSlug}/${i}.png`
-  let response = await supabaseServer.storage
-    .from("famous_image")
-    .download(path)
+      let path = `${famousSlug}/${i}.png`
+      let response = await supabaseServer.storage
+        .from("famous_image")
+        .download(path)
 
-  if (!response.error && response.data) {
-    data = response.data
-    extension = "png"
-  } else {
-    // tenta JPG
-    path = `${famousSlug}/${i}.jpg`
-    response = await supabaseServer.storage
-      .from("famous_image")
-      .download(path)
+      if (!response.error && response.data) {
+        data = response.data
+        extension = "png"
+      } else {
+        path = `${famousSlug}/${i}.jpg`
+        response = await supabaseServer.storage
+          .from("famous_image")
+          .download(path)
 
-    if (!response.error && response.data) {
-      data = response.data
-      extension = "jpg"
+        if (!response.error && response.data) {
+          data = response.data
+          extension = "jpg"
+        }
+      }
+
+      if (!data) continue
+
+      const buffer = Buffer.from(await data.arrayBuffer())
+      imageFiles.push(
+        await toFile(buffer, `${famousSlug}-${i}.${extension}`, {
+          type: extension === "jpg" ? "image/jpeg" : "image/png",
+        })
+      )
     }
-  }
-
-  if (!data) {
-    console.warn(`⚠️ Imagem não encontrada: ${famousSlug}/${i}.png ou .jpg`)
-    continue
-  }
-
-  const buffer = Buffer.from(await data.arrayBuffer())
-
-  imageFiles.push(
-    await toFile(buffer, `${famousSlug}-${i}.${extension}`, {
-      type: extension === "jpg" ? "image/jpeg" : "image/png",
-    })
-  )
-}
 
     for (let i = 0; i < userImages.length; i++) {
       const img = userImages[i]
       if (!img || img.size === 0) continue
 
       const buffer = Buffer.from(await img.arrayBuffer())
-
       imageFiles.push(
         await toFile(buffer, `user-${i}.png`, {
           type: img.type || "image/png",
@@ -251,26 +262,57 @@ Estilo:
       )
     }
 
-    const newCredits = profile.credits - 1
+    const cleanBase64 = dataUriToBase64(result.imageDataUri)
+    const cleanBuffer = Buffer.from(cleanBase64, "base64")
+
+    const { data: generation, error: genError } = await supabaseServer
+      .from("generations")
+      .insert({
+        profile_id: profile.id,
+        famous_slug: famousSlug,
+        prompt: userPrompt?.trim() || null,
+        paid: false,
+      })
+      .select("id")
+      .single()
+
+    if (genError || !generation) {
+      console.error("Generation insert error:", genError)
+      return NextResponse.json(
+        { error: "Erro ao salvar geração" },
+        { status: 500 }
+      )
+    }
+
+    const storagePath = `${generation.id}.png`
+    const { error: uploadError } = await supabaseServer.storage
+      .from("generated_images")
+      .upload(storagePath, cleanBuffer, {
+        contentType: "image/png",
+        upsert: false,
+      })
+
+    if (uploadError) {
+      console.error("Storage upload error:", uploadError)
+      return NextResponse.json(
+        { error: "Erro ao salvar imagem" },
+        { status: 500 }
+      )
+    }
+
     await supabaseServer
-      .from("profiles")
-      .update({ credits: newCredits })
-      .eq("email", session.user.email)
+      .from("generations")
+      .update({ storage_path: storagePath })
+      .eq("id", generation.id)
 
-    const base64Image = dataUriToBase64(result.imageDataUri)
-
-    await supabaseServer.from("generations").insert({
-      profile_id: profile.id,
-      famous_slug: famousSlug,
-      prompt: userPrompt?.trim() || null,
-    })
+    const watermarkedBuffer = await addWatermark(cleanBuffer)
+    const watermarkedBase64 = watermarkedBuffer.toString("base64")
 
     return NextResponse.json({
-      image: base64Image,
-      credits: newCredits,
+      image: watermarkedBase64,
+      generationId: generation.id,
     })
-
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("GENERATE IMAGE ERROR:", err)
     return NextResponse.json(
       { error: "Erro interno do servidor" },

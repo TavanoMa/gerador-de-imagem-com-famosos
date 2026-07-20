@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
 import { supabaseServer } from "@/lib/supabase-server"
-import { CREDIT_PACKAGES } from "../create-billing/route"
 import crypto from "node:crypto"
 
 const ABACATEPAY_API_URL = "https://api.abacatepay.com"
@@ -33,15 +32,10 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json()
-    console.log("[Webhook] event:", body.event ?? body.type)
-
-    // AbacatePay v1: { event, devMode, data: { id, amount, status, customer: { id, email }, ... } }
-    // v1 payload does NOT include our custom metadata; we must fetch the billing by id to get it.
     const event = body.event ?? body.type
     const data = body.data ?? body
 
     if (event !== "billing.paid") {
-      console.log("[Webhook] Ignoring event:", event)
       return NextResponse.json({ received: true })
     }
 
@@ -53,9 +47,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Payload inválido" }, { status: 400 })
     }
 
-    // v1 webhook does not send metadata; fetch full billing to get userEmail, packageId, credits
-    if (!billing?.metadata?.userEmail || !billing?.metadata?.packageId) {
-      console.log("[Webhook] Fetching billing from API (v1 payload has no metadata):", billingId)
+    if (!billing?.metadata?.generationId) {
       const getRes = await fetch(`${ABACATEPAY_API_URL}/v1/billing/get?id=${encodeURIComponent(billingId)}`, {
         headers: {
           accept: "application/json",
@@ -66,58 +58,30 @@ export async function POST(req: Request) {
       if (getData?.data) billing = getData.data
     }
 
-    // Prefer our custom metadata; fallback to customer email and product externalId (e.g. AbacatePay may not return metadata in webhook/GET)
-    const userEmail =
-      (billing?.metadata?.userEmail as string | undefined) ??
-      (billing?.customer?.metadata?.email as string | undefined) ??
-      (billing?.customer?.email as string | undefined)
-    const packageId =
-      (billing?.metadata?.packageId as string | undefined) ??
+    const generationId =
+      (billing?.metadata?.generationId as string | undefined) ??
       (Array.isArray(billing?.products) && billing.products[0]?.externalId
-        ? String(billing.products[0].externalId)
+        ? String(billing.products[0].externalId).replace("download-", "")
         : undefined)
 
-    if (!userEmail || !packageId) {
-      console.error("[Webhook] Missing userEmail or packageId. billing.metadata:", billing?.metadata, "customer:", billing?.customer?.metadata ?? billing?.customer, "products:", billing?.products)
+    if (!generationId) {
+      console.error("[Webhook] Missing generationId. billing.metadata:", billing?.metadata)
       return NextResponse.json({ error: "Metadata inválido" }, { status: 400 })
     }
 
-    // Validate the package and use its credits (never trust payload amount)
-    const pkg = CREDIT_PACKAGES.find((p) => p.id === packageId)
-    if (!pkg) {
-      console.error("Unknown package from webhook:", packageId)
-      return NextResponse.json({ error: "Pacote inválido" }, { status: 400 })
-    }
-
-    const creditsToAdd = pkg.credits
-
-    // Fetch current credits
-    const { data: profile, error: fetchError } = await supabaseServer
-      .from("profiles")
-      .select("credits")
-      .eq("email", userEmail)
-      .single()
-
-    if (fetchError || !profile) {
-      console.error("Profile not found for webhook:", userEmail, fetchError)
-      return NextResponse.json({ error: "Usuário não encontrado" }, { status: 404 })
-    }
-
-    const newCredits = (profile.credits ?? 0) + creditsToAdd
-
     const { error: updateError } = await supabaseServer
-      .from("profiles")
-      .update({ credits: newCredits })
-      .eq("email", userEmail)
+      .from("generations")
+      .update({ paid: true })
+      .eq("id", generationId)
 
     if (updateError) {
-      console.error("Failed to update credits:", updateError)
-      return NextResponse.json({ error: "Erro ao atualizar créditos" }, { status: 500 })
+      console.error("[Webhook] Failed to mark generation as paid:", updateError)
+      return NextResponse.json({ error: "Erro ao atualizar geração" }, { status: 500 })
     }
 
-    console.log(`✅ Credits updated for ${userEmail}: +${creditsToAdd} → total ${newCredits}`)
+    console.log(`[Webhook] Generation ${generationId} marked as paid`)
 
-    return NextResponse.json({ received: true, credits: newCredits })
+    return NextResponse.json({ received: true })
   } catch (err) {
     console.error("WEBHOOK ERROR:", err)
     return NextResponse.json({ error: "Erro interno" }, { status: 500 })

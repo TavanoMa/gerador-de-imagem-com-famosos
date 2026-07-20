@@ -4,7 +4,6 @@ import famosos from "@/src/data/famosos.json"
 import PageClient from "@/src/components/PageClient"
 import { Metadata } from "next"
 
-// Force dynamic rendering - no caching
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
@@ -85,16 +84,18 @@ const page = async ({ params }: Props) => {
     return <div>Celebrity not found</div>
   }
 
-  let credits = 0
+  let hasSavedPaymentInfo = false
 
-  if (session?.user?.id) {
-    const { data } = await supabaseServer
+  if (session?.user?.email) {
+    const { data: profile } = await supabaseServer
       .from("profiles")
-      .select("credits")
-      .eq("id", session.user.id)
+      .select("tax_id, cellphone")
+      .eq("email", session.user.email)
       .single()
 
-    credits = data?.credits ?? 0
+    if (profile?.tax_id && profile?.cellphone) {
+      hasSavedPaymentInfo = true
+    }
   }
 
   return (
@@ -102,10 +103,10 @@ const page = async ({ params }: Props) => {
       <PageClient
         famousSlug={famoso.slug}
         famousName={famoso.name}
-        initialCredits={credits}
         isLogged={!!session}
         locale="en"
         userEmail={session?.user?.email || undefined}
+        hasSavedPaymentInfo={hasSavedPaymentInfo}
       />
     </div>
   )
