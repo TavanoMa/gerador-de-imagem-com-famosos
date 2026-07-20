@@ -92,24 +92,39 @@ async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
   const w = metadata.width || 1024
   const h = metadata.height || 1024
   const fontSize = Math.max(Math.floor(w * 0.04), 22)
-  const spacingX = Math.floor(w * 0.42)
-  const spacingY = Math.floor(h * 0.16)
 
-  const texts: string[] = []
-  for (let y = -h * 0.3; y < h * 1.3; y += spacingY) {
-    for (let x = -w * 0.3; x < w * 1.3; x += spacingX) {
-      texts.push(
-        `<text x="${x}" y="${y}" font-size="${fontSize}" font-family="sans-serif" font-weight="bold" fill="white" fill-opacity="0.5" stroke="black" stroke-opacity="0.15" stroke-width="0.6" transform="rotate(-30, ${x}, ${y})">fotocomfamosos.com.br</text>`
-      )
+  const stamp = await sharp({
+    text: {
+      text: `<span font_desc="Sans Bold ${fontSize}" foreground="#ffffff">fotocomfamosos.com.br</span>`,
+      rgba: true,
+      dpi: 72,
+    },
+  }).png().toBuffer()
+
+  const rotated = await sharp(stamp)
+    .rotate(-30, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .ensureAlpha()
+    .png()
+    .toBuffer()
+
+  const rMeta = await sharp(rotated).metadata()
+  const rw = rMeta.width || 300
+  const rh = rMeta.height || 40
+
+  const gapX = Math.floor(w * 0.06)
+  const gapY = Math.floor(h * 0.08)
+  const stepX = rw + gapX
+  const stepY = rh + gapY
+
+  const composites: sharp.OverlayOptions[] = []
+  for (let y = 0; y < h; y += stepY) {
+    for (let x = 0; x < w; x += stepX) {
+      composites.push({ input: rotated, left: x, top: y, blend: "over" })
     }
   }
 
-  const svgOverlay = Buffer.from(
-    `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">${texts.join("")}</svg>`
-  )
-
   return sharp(imageBuffer)
-    .composite([{ input: svgOverlay, top: 0, left: 0 }])
+    .composite(composites)
     .png()
     .toBuffer()
 }
