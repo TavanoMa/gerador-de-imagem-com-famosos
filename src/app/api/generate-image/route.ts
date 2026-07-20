@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { toFile } from "openai"
 import sharp from "sharp"
+import path from "node:path"
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
 
@@ -93,16 +94,14 @@ async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
   const h = metadata.height || 1024
   const fontSize = Math.max(Math.floor(w * 0.04), 22)
 
-  const fontfile = process.platform === "win32"
-    ? "C:/Windows/Fonts/arialbd.ttf"
-    : undefined
+  const fontfile = path.join(process.cwd(), "src", "fonts", "arialbd.ttf")
 
   const stamp = await sharp({
     text: {
       text: `<span size="${fontSize * 1024}" foreground="#ffffff"><b>fotocomfamosos.com.br</b></span>`,
       rgba: true,
       dpi: 72,
-      ...(fontfile && { fontfile }),
+      fontfile,
     },
   }).png().toBuffer()
 
