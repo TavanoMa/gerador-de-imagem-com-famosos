@@ -4589,7 +4589,6 @@
       }
     }
   },
-
   {
     "id": 335,
     "name": "MC PH",
@@ -5678,7 +5677,6 @@
       }
     }
   },
-
   {
     "id": 407,
     "name": "Thelma Assis",
@@ -8960,7 +8958,6 @@
       }
     }
   },
-
   {
     "id": 620,
     "name": "Mike Tyson",
@@ -9794,7 +9791,6 @@
       }
     }
   },
- 
   {
     "id": 685,
     "name": "Charles Darwin",
@@ -10679,7 +10675,6 @@
       }
     }
   },
-
   {
     "id": 748,
     "name": "Patrick Mahomes",
@@ -13723,7 +13718,6 @@
       }
     }
   },
-
   {
     "id": 1019,
     "name": "Carl Jung",
@@ -14455,7 +14449,6 @@
       }
     }
   },
- 
   {
     "id": 1084,
     "name": "Sergio Mallandro",
@@ -14473,7 +14466,6 @@
       }
     }
   },
-
   {
     "id": 1086,
     "name": "Tom Cavalcante",
@@ -14490,6 +14482,329 @@
         "description": "Create your photo next to Tom Cavalcante using AI. Take a photo with the voice genius."
       }
     }
+  },
+  {
+    "id": 1087,
+    "name": "Jair Bolsonaro",
+    "slug": "jair-bolsonaro",
+    "description": "Ex-presidente do Brasil e líder político",
+    "image": "/images/jair-bolsonaro.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Jair Bolsonaro com IA - Sua foto com Bolsonaro",
+        "description": "Crie sua foto ao lado do Jair Bolsonaro usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Jair Bolsonaro",
+        "description": "Create your photo next to Jair Bolsonaro using AI."
+      }
+    }
+  },
+  {
+    "id": 1088,
+    "name": "Nikolas Ferreira",
+    "slug": "nikolas-ferreira",
+    "description": "Deputado federal e influenciador político brasileiro",
+    "image": "/images/nikolas-ferreira.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Nikolas Ferreira com IA - Sua foto com Nikolas",
+        "description": "Crie sua foto ao lado do Nikolas Ferreira usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Nikolas Ferreira",
+        "description": "Create your photo next to Nikolas Ferreira using AI."
+      }
+    }
+  },
+  {
+    "id": 1089,
+    "name": "Pablo Marçal",
+    "slug": "pablo-marcal",
+    "description": "Empresário, coach e político brasileiro",
+    "image": "/images/pablo-marcal.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Pablo Marçal com IA - Sua foto com Pablo Marçal",
+        "description": "Crie sua foto ao lado do Pablo Marçal usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Pablo Marçal",
+        "description": "Create your photo next to Pablo Marçal using AI."
+      }
+    }
+  },
+  {
+    "id": 1090,
+    "name": "Tarcísio de Freitas",
+    "slug": "tarcisio-de-freitas",
+    "description": "Governador de São Paulo e figura política brasileira",
+    "image": "/images/tarcisio-de-freitas.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Tarcísio de Freitas com IA - Sua foto com Tarcísio",
+        "description": "Crie sua foto ao lado do Tarcísio de Freitas usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Tarcísio de Freitas",
+        "description": "Create your photo next to Tarcísio de Freitas using AI."
+      }
+    }
+  },
+
+  {
+    "id": 1092,
+    "name": "Sergio Moro",
+    "slug": "sergio-moro",
+    "description": "Senador e ex-juiz federal brasileiro",
+    "image": "/images/sergio-moro.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Sergio Moro com IA - Sua foto com Sergio Moro",
+        "description": "Crie sua foto ao lado do Sergio Moro usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Sergio Moro",
+        "description": "Create your photo next to Sergio Moro using AI."
+      }
+    }
+  },
+  {
+    "id": 1093,
+    "name": "Ciro Gomes",
+    "slug": "ciro-gomes",
+    "description": "Político e ex-candidato à presidência do Brasil",
+    "image": "/images/ciro-gomes.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ciro Gomes com IA - Sua foto com Ciro Gomes",
+        "description": "Crie sua foto ao lado do Ciro Gomes usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Ciro Gomes",
+        "description": "Create your photo next to Ciro Gomes using AI."
+      }
+    }
+  },
+  {
+    "id": 1094,
+    "name": "Simone Tebet",
+    "slug": "simone-tebet",
+    "description": "Ministra e ex-candidata à presidência do Brasil",
+    "image": "/images/simone-tebet.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Simone Tebet com IA - Sua foto com Simone Tebet",
+        "description": "Crie sua foto ao lado da Simone Tebet usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Simone Tebet",
+        "description": "Create your photo next to Simone Tebet using AI."
+      }
+    }
+  },
+  {
+    "id": 1095,
+    "name": "Marina Silva",
+    "slug": "marina-silva",
+    "description": "Ministra do Meio Ambiente e ambientalista brasileira",
+    "image": "/images/marina-silva.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Marina Silva com IA - Sua foto com Marina Silva",
+        "description": "Crie sua foto ao lado da Marina Silva usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Marina Silva",
+        "description": "Create your photo next to Marina Silva using AI."
+      }
+    }
+  },
+  {
+    "id": 1096,
+    "name": "Fernando Haddad",
+    "slug": "fernando-haddad",
+    "description": "Ministro da Fazenda e ex-prefeito de São Paulo",
+    "image": "/images/fernando-haddad.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Fernando Haddad com IA - Sua foto com Haddad",
+        "description": "Crie sua foto ao lado do Fernando Haddad usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Fernando Haddad",
+        "description": "Create your photo next to Fernando Haddad using AI."
+      }
+    }
+  },
+  {
+    "id": 1097,
+    "name": "Guilherme Boulos",
+    "slug": "guilherme-boulos",
+    "description": "Deputado federal e líder político brasileiro",
+    "image": "/images/guilherme-boulos.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Guilherme Boulos com IA - Sua foto com Boulos",
+        "description": "Crie sua foto ao lado do Guilherme Boulos usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Guilherme Boulos",
+        "description": "Create your photo next to Guilherme Boulos using AI."
+      }
+    }
+  },
+  {
+    "id": 1098,
+    "name": "Flávio Bolsonaro",
+    "slug": "flavio-bolsonaro",
+    "description": "Senador e político brasileiro",
+    "image": "/images/flavio-bolsonaro.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Flávio Bolsonaro com IA - Sua foto com Flávio",
+        "description": "Crie sua foto ao lado do Flávio Bolsonaro usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Flávio Bolsonaro",
+        "description": "Create your photo next to Flávio Bolsonaro using AI."
+      }
+    }
+  },
+  {
+    "id": 1099,
+    "name": "Eduardo Bolsonaro",
+    "slug": "eduardo-bolsonaro",
+    "description": "Deputado federal e político brasileiro",
+    "image": "/images/eduardo-bolsonaro.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Eduardo Bolsonaro com IA - Sua foto com Eduardo",
+        "description": "Crie sua foto ao lado do Eduardo Bolsonaro usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Eduardo Bolsonaro",
+        "description": "Create your photo next to Eduardo Bolsonaro using AI."
+      }
+    }
+  },
+  {
+    "id": 1100,
+    "name": "Tabata Amaral",
+    "slug": "tabata-amaral",
+    "description": "Deputada federal e política brasileira",
+    "image": "/images/tabata-amaral.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Tabata Amaral com IA - Sua foto com Tabata",
+        "description": "Crie sua foto ao lado da Tabata Amaral usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Tabata Amaral",
+        "description": "Create your photo next to Tabata Amaral using AI."
+      }
+    }
+  },
+  {
+    "id": 1101,
+    "name": "Ronaldo Caiado",
+    "slug": "ronaldo-caiado",
+    "description": "Governador de Goiás e político brasileiro",
+    "image": "/images/ronaldo-caiado.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ronaldo Caiado com IA - Sua foto com Caiado",
+        "description": "Crie sua foto ao lado do Ronaldo Caiado usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Ronaldo Caiado",
+        "description": "Create your photo next to Ronaldo Caiado using AI."
+      }
+    }
+  },
+  {
+    "id": 1102,
+    "name": "Ratinho Jr",
+    "slug": "ratinho-jr",
+    "description": "Governador do Paraná e político brasileiro",
+    "image": "/images/ratinho-jr.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Ratinho Jr com IA - Sua foto com Ratinho Jr",
+        "description": "Crie sua foto ao lado do Ratinho Jr usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Ratinho Jr",
+        "description": "Create your photo next to Ratinho Jr using AI."
+      }
+    }
+  },
+  {
+    "id": 1103,
+    "name": "Romeu Zema",
+    "slug": "romeu-zema",
+    "description": "Governador de Minas Gerais e político brasileiro",
+    "image": "/images/romeu-zema.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Romeu Zema com IA - Sua foto com Zema",
+        "description": "Crie sua foto ao lado do Romeu Zema usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Romeu Zema",
+        "description": "Create your photo next to Romeu Zema using AI."
+      }
+    }
+  },
+  {
+    "id": 1104,
+    "name": "Damares Alves",
+    "slug": "damares-alves",
+    "description": "Senadora e ex-ministra brasileira",
+    "image": "/images/damares-alves.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Damares Alves com IA - Sua foto com Damares",
+        "description": "Crie sua foto ao lado da Damares Alves usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Damares Alves",
+        "description": "Create your photo next to Damares Alves using AI."
+      }
+    }
+  },
+  {
+    "id": 1105,
+    "name": "Helder Barbalho",
+    "slug": "helder-barbalho",
+    "description": "Governador do Pará e político brasileiro",
+    "image": "/images/helder-barbalho.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com Helder Barbalho com IA - Sua foto com Helder",
+        "description": "Crie sua foto ao lado do Helder Barbalho usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with Helder Barbalho",
+        "description": "Create your photo next to Helder Barbalho using AI."
+      }
+    }
+  },
+  {
+    "id": 1106,
+    "name": "João Doria",
+    "slug": "joao-doria",
+    "description": "Ex-governador de São Paulo e empresário brasileiro",
+    "image": "/images/joao-doria.jpg",
+    "seo": {
+      "pt": {
+        "title": "Gerar imagem com João Doria com IA - Sua foto com Doria",
+        "description": "Crie sua foto ao lado do João Doria usando inteligência artificial."
+      },
+      "en": {
+        "title": "Generate AI Image with João Doria",
+        "description": "Create your photo next to João Doria using AI."
+      }
+    }
   }
- 
 ]
