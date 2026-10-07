@@ -20,6 +20,29 @@ export const {
   session: { strategy: "jwt" },
 
   callbacks: {
+    // Mantém o usuário na página em que ele estava ao fazer login.
+    // O redirect padrão volta para a baseUrl (home) sempre que a origem do
+    // callbackUrl não bate exatamente com a baseUrl — o que acontece em
+    // produção com variações de host (ex.: www vs sem www).
+    async redirect({ url, baseUrl }) {
+      try {
+        // URLs relativas: resolve contra a baseUrl
+        if (url.startsWith("/")) return `${baseUrl}${url}`
+
+        const target = new URL(url)
+        const base = new URL(baseUrl)
+        const normalize = (host: string) => host.replace(/^www\./, "")
+
+        // Mesmo site (ignorando "www.") → preserva a URL exata do usuário
+        if (normalize(target.hostname) === normalize(base.hostname)) {
+          return url
+        }
+      } catch {
+        // URL inválida → cai no fallback abaixo
+      }
+      return baseUrl
+    },
+
     async signIn({ user }) {
       try {
         if (!user.email) {

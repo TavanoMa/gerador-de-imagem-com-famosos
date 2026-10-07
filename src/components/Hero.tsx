@@ -13,18 +13,12 @@ export default function Hero({ locale = 'pt' }: HeroProps) {
       subtitle: "Usando Inteligência Artificial",
       description: "Gere imagens realistas ao lado das suas celebridades favoritas. Compartilhe nas redes sociais e impressione seus amigos!",
       cta: "ESCOLHER MEU FAMOSO →",
-      feature1: "✨ Imagens Realistas",
-      feature2: "⚡ Geração Instantânea",
-      feature3: "📱 Compartilhe Facilmente"
     },
     en: {
       title: "Create Photos with Celebrities",
       subtitle: "Using Artificial Intelligence",
       description: "Generate realistic images next to your favorite celebrities. Share on social media and impress your friends!",
       cta: "CHOOSE MY CELEBRITY →",
-      feature1: "✨ Realistic Images",
-      feature2: "⚡ Instant Generation",
-      feature3: "📱 Easy Sharing"
     }
   };
 
@@ -32,7 +26,7 @@ export default function Hero({ locale = 'pt' }: HeroProps) {
   const ctaLink = locale === 'en' ? '#celebrities' : '#famosos';
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-purple-50 py-20 sm:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-white via-gray-50 to-purple-50 py-10 sm:py-14">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -43,7 +37,7 @@ export default function Hero({ locale = 'pt' }: HeroProps) {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 border border-purple-200 mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 border border-purple-200 mb-5">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
@@ -61,34 +55,18 @@ export default function Hero({ locale = 'pt' }: HeroProps) {
           </h1>
 
           {/* Description */}
-          <p className="mt-6 text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-5 text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {t.description}
           </p>
 
           {/* CTA Button */}
-          <div className="mt-10">
+          <div className="mt-8">
             <a
               href={ctaLink}
               className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
             >
               {t.cta}
             </a>
-          </div>
-
-          {/* Features */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-2 text-gray-700">
-              <span className="text-2xl">{t.feature1.split(' ')[0]}</span>
-              <span className="text-sm font-medium">{t.feature1.substring(t.feature1.indexOf(' ') + 1)}</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-gray-700">
-              <span className="text-2xl">{t.feature2.split(' ')[0]}</span>
-              <span className="text-sm font-medium">{t.feature2.substring(t.feature2.indexOf(' ') + 1)}</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-gray-700">
-              <span className="text-2xl">{t.feature3.split(' ')[0]}</span>
-              <span className="text-sm font-medium">{t.feature3.substring(t.feature3.indexOf(' ') + 1)}</span>
-            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,27 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { signIn } from "next-auth/react"
+import { getComboMembers, displayImageIndex } from "@/src/data/politics"
+
+// Imagem de um membro com fallback jpg -> png (checa no mount por causa do SSR).
+function MemberBgImg({ slug, className }: { slug: string; className: string }) {
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${slug}/${displayImageIndex(slug)}`
+  const candidates = [`${base}.jpg?v4`, `${base}.png?v4`]
+  const last = candidates.length - 1
+  const [stage, setStage] = useState(0)
+  const advance = () => setStage((s) => Math.min(s + 1, last))
+  const measureRef = useCallback((el: HTMLImageElement | null) => {
+    if (el && el.complete && el.naturalWidth === 0) {
+      setStage((s) => (s < last ? s + 1 : s))
+    }
+  }, [last])
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img ref={measureRef} src={candidates[stage]} alt={slug} onError={advance} className={className} />
+  )
+}
 
 function formatCpfInput(value: string) {
   const d = value.replace(/\D/g, "").slice(0, 11)
@@ -50,6 +70,9 @@ const GenerateImage = ({
 
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const comboMembers = getComboMembers(famousSlug)
+  const isCombo = comboMembers.length > 1
+
   const isMobile =
     typeof window !== "undefined" &&
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
@@ -95,10 +118,12 @@ const GenerateImage = ({
       setBgImageUrl(`/trump.png?t=${timestamp}`)
       return
     }
+    // Combos mostram os dois membros lado a lado (ver render), não um fundo único.
+    if (getComboMembers(famousSlug).length > 1) return
     const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
     if (!SUPABASE_URL) return
     const timestamp = new Date().getTime()
-    const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${famousSlug}/1`
+    const base = `${SUPABASE_URL}/storage/v1/object/public/famous_image/${famousSlug}/${displayImageIndex(famousSlug)}`
     const img = new Image()
     img.onload = () => setBgImageUrl(img.src)
     img.onerror = () => {
@@ -293,7 +318,15 @@ const GenerateImage = ({
           ${!image ? "bg-gray-50 border border-gray-300" : ""}
         `}
       >
-        {!image && previewUrls.length === 0 && bgImageUrl && (
+        {!image && previewUrls.length === 0 && isCombo && (
+          <div className="absolute inset-0 flex">
+            {comboMembers.slice(0, 2).map((m) => (
+              <MemberBgImg key={m} slug={m} className="h-full w-1/2 object-cover" />
+            ))}
+          </div>
+        )}
+
+        {!image && previewUrls.length === 0 && !isCombo && bgImageUrl && (
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${bgImageUrl})` }}

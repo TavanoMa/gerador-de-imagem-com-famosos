@@ -4,6 +4,7 @@ import sharp from "sharp"
 import path from "node:path"
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
+import { getComboMembers, getFamous } from "@/src/data/politics"
 
 const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
@@ -133,6 +134,86 @@ async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
     .toBuffer()
 }
 
+async function downloadRefImages(
+  slug: string
+): Promise<Awaited<ReturnType<typeof toFile>>[]> {
+  const files: Awaited<ReturnType<typeof toFile>>[] = []
+
+  for (let i = 1; i <= 3; i++) {
+    let data = null
+    let extension = "png"
+
+    let storagePath = `${slug}/${i}.png`
+    let response = await supabaseServer.storage
+      .from("famous_image")
+      .download(storagePath)
+
+    if (!response.error && response.data) {
+      data = response.data
+      extension = "png"
+    } else {
+      storagePath = `${slug}/${i}.jpg`
+      response = await supabaseServer.storage
+        .from("famous_image")
+        .download(storagePath)
+
+      if (!response.error && response.data) {
+        data = response.data
+        extension = "jpg"
+      }
+    }
+
+    if (!data) continue
+
+    const buffer = Buffer.from(await data.arrayBuffer())
+    files.push(
+      await toFile(buffer, `${slug}-${i}.${extension}`, {
+        type: extension === "jpg" ? "image/jpeg" : "image/png",
+      })
+    )
+  }
+
+  return files
+}
+
+function buildPrompt(famousNames: string[], userPrompt: string | null): string {
+  const joined = famousNames.join(" e ")
+
+  const famousBlock =
+    famousNames.length > 1
+      ? `Os famosos (TODOS devem aparecer juntos na mesma imagem, ao lado do usuário): ${joined}
+- cada famoso com aparência fiel a si mesmo
+- sem exageros ou caricatura
+- os famosos e o usuário juntos na mesma cena, de forma natural e realista
+- não misturar ou fundir os rostos dos famosos entre si`
+      : `O famoso: ${joined}
+- aparência fiel ao famoso
+- sem exageros ou caricatura
+- aparência respeitosa e realista`
+
+  const basePrompt = `
+Fotografia hiper-realista, qualidade profissional.
+
+Identidade:
+- o rosto do usuário deve ser preservado com fidelidade máxima
+- não alterar traços faciais do usuário
+- não suavizar, não reestilizar, não reimaginar o rosto do usuário
+- manter formato do rosto, nariz, olhos, boca e proporções originais
+
+${famousBlock}
+
+Estilo:
+- fotografia real
+- iluminação natural
+- textura de pele realista
+- sem aparência de pintura, ilustração ou CGI
+`
+
+  return userPrompt
+    ? `${basePrompt}\nPedido do usuário: ${userPrompt}`
+    : `${basePrompt}\n crie uma foto seguindo os padrões acima com ${joined} junto com o usuário que está na foto.`
+}
+
 export async function POST(req: Request) {
   try {
     const session = await auth()
@@ -164,78 +245,41 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Perfil não encontrado" }, { status: 404 })
     }
 
-    const { data: famous } = await supabaseServer
-      .from("famous")
-      .select("name")
-      .eq("slug", famousSlug)
-      .single()
+    // Resolve famoso único OU combo (ex.: "lula-e-bolsonaro").
+    const comboMembers = getComboMembers(famousSlug)
+    const isComboReq = comboMembers.length > 1
 
-    if (!famous) {
-      return NextResponse.json(
-        { error: "Famoso não encontrado" },
-        { status: 404 }
-      )
+    let famousNames: string[] = []
+    let refSlugs: string[] = []
+
+    if (isComboReq) {
+      refSlugs = comboMembers
+      famousNames = comboMembers.map((m) => getFamous(m)?.name ?? m)
+    } else {
+      const { data: famous } = await supabaseServer
+        .from("famous")
+        .select("name")
+        .eq("slug", famousSlug)
+        .single()
+
+      if (!famous) {
+        return NextResponse.json(
+          { error: "Famoso não encontrado" },
+          { status: 404 }
+        )
+      }
+
+      refSlugs = [famousSlug]
+      famousNames = [famous.name]
     }
 
-    const basePrompt = `
-Fotografia hiper-realista, qualidade profissional.
-
-Identidade:
-- o rosto do usuário deve ser preservado com fidelidade máxima
-- não alterar traços faciais do usuário
-- não suavizar, não reestilizar, não reimaginar o rosto do usuário
-- manter formato do rosto, nariz, olhos, boca e proporções originais
-
-O famoso: ${famous.name}
-- aparência fiel ao famoso
-- sem exageros ou caricatura
-- aparência respeitosa e realista
-
-Estilo:
-- fotografia real
-- iluminação natural
-- textura de pele realista
-- sem aparência de pintura, ilustração ou CGI
-`
-
-    const finalPrompt = userPrompt
-      ? `${basePrompt}\nPedido do usuário: ${userPrompt}`
-      : `${basePrompt}\n crie uma foto seguindo os padrões acima do ${famous.name} junto com o usuário que está na foto.`
+    const finalPrompt = buildPrompt(famousNames, userPrompt)
 
     const imageFiles: Awaited<ReturnType<typeof toFile>>[] = []
 
-    for (let i = 1; i <= 3; i++) {
-      let data = null
-      let extension = "png"
-
-      let path = `${famousSlug}/${i}.png`
-      let response = await supabaseServer.storage
-        .from("famous_image")
-        .download(path)
-
-      if (!response.error && response.data) {
-        data = response.data
-        extension = "png"
-      } else {
-        path = `${famousSlug}/${i}.jpg`
-        response = await supabaseServer.storage
-          .from("famous_image")
-          .download(path)
-
-        if (!response.error && response.data) {
-          data = response.data
-          extension = "jpg"
-        }
-      }
-
-      if (!data) continue
-
-      const buffer = Buffer.from(await data.arrayBuffer())
-      imageFiles.push(
-        await toFile(buffer, `${famousSlug}-${i}.${extension}`, {
-          type: extension === "jpg" ? "image/jpeg" : "image/png",
-        })
-      )
+    for (const refSlug of refSlugs) {
+      const refs = await downloadRefImages(refSlug)
+      imageFiles.push(...refs)
     }
 
     for (let i = 0; i < userImages.length; i++) {

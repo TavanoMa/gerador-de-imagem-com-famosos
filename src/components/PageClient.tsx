@@ -2,6 +2,8 @@
 
 import Header from "@/src/components/Header"
 import GenerateImage from "@/src/components/GenerateImage"
+import ComboBanner from "@/src/components/ComboBanner"
+import { COMBO_BY_POLITICIAN } from "@/src/data/politics"
 
 interface Props {
   famousName: string
@@ -20,6 +22,8 @@ export default function PageClient({
   userEmail,
   hasSavedPaymentInfo = false,
 }: Props) {
+  const comboSlug = COMBO_BY_POLITICIAN[famousSlug]
+
   return (
     <div className="bg-white text-gray-900 overflow-x-hidden">
       <Header
@@ -28,6 +32,11 @@ export default function PageClient({
         locale={locale}
         userEmail={userEmail}
       />
+      {comboSlug && (
+        <div className="pt-6">
+          <ComboBanner comboSlug={comboSlug} locale={locale} />
+        </div>
+      )}
       <GenerateImage
         isLogged={isLogged}
         famousSlug={famousSlug}

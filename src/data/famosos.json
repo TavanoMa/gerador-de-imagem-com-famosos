@@ -14790,5 +14790,41 @@
         "description": "Create your photo next to João Doria using AI."
       }
     }
+  },
+  {
+    "id": 9001,
+    "name": "Lula e Jair Bolsonaro",
+    "slug": "lula-e-bolsonaro",
+    "description": "Tire uma foto com Lula e Jair Bolsonaro juntos",
+    "image": "/images/lula.jpg",
+    "members": ["lula", "jair-bolsonaro"],
+    "seo": {
+      "pt": {
+        "title": "Foto com Lula e Jair Bolsonaro juntos com IA - Os dois na sua foto",
+        "description": "Crie uma foto realista ao lado de Lula e Jair Bolsonaro juntos usando inteligência artificial. A dupla do momento na mesma imagem com você."
+      },
+      "en": {
+        "title": "Photo with Lula and Jair Bolsonaro together using AI",
+        "description": "Create a realistic photo next to both Lula and Jair Bolsonaro using artificial intelligence."
+      }
+    }
+  },
+  {
+    "id": 9002,
+    "name": "Lula e Flávio Bolsonaro",
+    "slug": "lula-e-flavio",
+    "description": "Tire uma foto com os dois presidenciáveis juntos",
+    "image": "/images/lula.jpg",
+    "members": ["lula", "flavio-bolsonaro"],
+    "seo": {
+      "pt": {
+        "title": "Foto com Lula e Flávio Bolsonaro juntos com IA - Os dois na sua foto",
+        "description": "Crie uma foto realista ao lado de Lula e Flávio Bolsonaro juntos usando inteligência artificial. Os dois presidenciáveis na mesma imagem com você."
+      },
+      "en": {
+        "title": "Photo with Lula and Flávio Bolsonaro together using AI",
+        "description": "Create a realistic photo next to both Lula and Flávio Bolsonaro using artificial intelligence."
+      }
+    }
   }
 ]

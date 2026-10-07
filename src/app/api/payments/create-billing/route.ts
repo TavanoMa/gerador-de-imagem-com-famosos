@@ -57,6 +57,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Esta imagem já foi paga" }, { status: 400 })
     }
 
+    // CPF e telefone são obrigatórios: a AbacatePay recusa a criação da cobrança
+    // sem customer.taxId e customer.cellphone (verificado na API de produção).
     const finalTaxId = taxId || profile.tax_id
     const finalCellphone = cellphone || profile.cellphone
 
@@ -107,7 +109,7 @@ export async function POST(req: Request) {
 
     const billingPayload = {
       frequency: "ONE_TIME",
-      methods: ["PIX", "CARD"],
+      methods: ["PIX"],
       products: [
         {
           externalId: `download-${generationId}`,
