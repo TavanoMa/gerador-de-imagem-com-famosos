@@ -1,6 +1,59 @@
 import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
+import { runGeneration, type UserImageInput } from "@/lib/generation"
+
+// Gera uma geração pré-paga pendente (paga, mas ainda sem imagem) a partir das
+// imagens enviadas antes do pagamento. Retorna o storage_path final ou null.
+async function finalizePrepaid(generation: {
+  id: string
+  famous_slug: string
+  prompt: string | null
+}): Promise<string | null> {
+  // Outra requisição pode já ter gerado nesse meio tempo.
+  const { data: fresh } = await supabaseServer
+    .from("generations")
+    .select("storage_path")
+    .eq("id", generation.id)
+    .single()
+  if (fresh?.storage_path) return fresh.storage_path
+
+  const { data: list } = await supabaseServer.storage
+    .from("generated_images")
+    .list(`inputs/${generation.id}`)
+
+  if (!list || list.length === 0) return null
+
+  const userImages: UserImageInput[] = []
+  for (const file of list) {
+    const { data, error } = await supabaseServer.storage
+      .from("generated_images")
+      .download(`inputs/${generation.id}/${file.name}`)
+    if (error || !data) continue
+    const buffer = Buffer.from(await data.arrayBuffer())
+    userImages.push({
+      buffer,
+      type: data.type || "image/png",
+      name: file.name,
+    })
+  }
+
+  if (userImages.length === 0) return null
+
+  const result = await runGeneration({
+    generationId: generation.id,
+    famousSlug: generation.famous_slug,
+    prompt: generation.prompt,
+    userImages,
+  })
+
+  if ("error" in result) {
+    console.error("Prepaid finalize error:", result.error)
+    return null
+  }
+
+  return `${generation.id}.png`
+}
 
 export async function GET(req: Request) {
   try {
@@ -29,7 +82,7 @@ export async function GET(req: Request) {
 
     const { data: generation } = await supabaseServer
       .from("generations")
-      .select("id, profile_id, paid, storage_path")
+      .select("id, profile_id, paid, storage_path, famous_slug, prompt")
       .eq("id", generationId)
       .eq("profile_id", profile.id)
       .single()
@@ -42,13 +95,19 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: "Pagamento não confirmado" }, { status: 403 })
     }
 
-    if (!generation.storage_path) {
-      return NextResponse.json({ error: "Imagem não disponível" }, { status: 404 })
+    let storagePath = generation.storage_path
+
+    // Geração pré-paga: paga mas ainda não gerada → gera agora (sem marca d'água).
+    if (!storagePath) {
+      storagePath = await finalizePrepaid(generation)
+      if (!storagePath) {
+        return NextResponse.json({ error: "Imagem não disponível" }, { status: 404 })
+      }
     }
 
     const { data: fileData, error: downloadError } = await supabaseServer.storage
       .from("generated_images")
-      .download(generation.storage_path)
+      .download(storagePath)
 
     if (downloadError || !fileData) {
       console.error("Storage download error:", downloadError)

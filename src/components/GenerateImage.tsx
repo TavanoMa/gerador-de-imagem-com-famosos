@@ -23,18 +23,12 @@ function MemberBgImg({ slug, className }: { slug: string; className: string }) {
   )
 }
 
-function formatCpfInput(value: string) {
-  const d = value.replace(/\D/g, "").slice(0, 11)
-  if (d.length <= 3) return d
-  if (d.length <= 6) return `${d.slice(0, 3)}.${d.slice(3)}`
-  return `${d.slice(0, 3)}.${d.slice(3, 6)}.${d.slice(6, 9)}-${d.slice(9)}`
-}
-
-function formatPhoneInput(value: string) {
-  const d = value.replace(/\D/g, "").slice(0, 11)
-  if (d.length <= 2) return d.length ? `(${d}` : d
-  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`
-  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
+type PixData = {
+  generationId: string
+  paymentId: string
+  qrCodeBase64: string
+  copiaECola: string
+  mode: "prepaid" | "download"
 }
 
 type Props = {
@@ -43,16 +37,19 @@ type Props = {
   famousName: string
   locale?: "pt" | "en"
   hasSavedPaymentInfo?: boolean
+  freeUsed?: number
+  freeLimit?: number
 }
 
 const GenerateImage = ({
   isLogged,
   famousSlug,
-  famousName,
   locale = "pt",
-  hasSavedPaymentInfo = false,
+  freeUsed = 0,
+  freeLimit = 2,
 }: Props) => {
   const [image, setImage] = useState<string | null>(null)
+  const [isPaidImage, setIsPaidImage] = useState(false)
   const [generationId, setGenerationId] = useState<string | null>(null)
   const [prompt, setPrompt] = useState("")
   const [files, setFiles] = useState<File[]>([])
@@ -63,10 +60,14 @@ const GenerateImage = ({
   const [showTooltip, setShowTooltip] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const [paymentFormOpen, setPaymentFormOpen] = useState(false)
   const [paymentLoading, setPaymentLoading] = useState(false)
-  const [taxId, setTaxId] = useState("")
-  const [cellphone, setCellphone] = useState("")
+  const [pixData, setPixData] = useState<PixData | null>(null)
+  const [copied, setCopied] = useState(false)
+
+  // Quantas gerações o usuário já fez (vitalício). Acima do limite = pré-pago.
+  const [genCount, setGenCount] = useState(freeUsed)
+  const overLimit = genCount >= freeLimit
+  const freeLeft = Math.max(freeLimit - genCount, 0)
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -147,14 +148,23 @@ const GenerateImage = ({
       photo: "foto",
       photos: "fotos",
       buyDownload: "Baixar sem marca d'água - R$1,00",
-      buyLoading: "Redirecionando...",
+      buyLoading: "Gerando PIX...",
       watermarkNotice: "Imagem gerada com marca d'água",
-      paymentTitle: "Dados para pagamento",
-      cpfLabel: "CPF",
-      phoneLabel: "Telefone (com DDD)",
-      paymentContinue: "Ir para pagamento",
-      paymentCancel: "Cancelar",
-      paymentRequired: "CPF e telefone são obrigatórios",
+      paidCreateButton: "Gerar e pagar R$1,00",
+      paidNotice: "Suas fotos grátis acabaram. Agora é R$1 por foto, já sem marca d'água.",
+      freeLeftLabel: "fotos grátis restantes",
+      freeLeftLabelOne: "foto grátis restante",
+      downloadPhoto: "Baixar foto",
+      paidImageNotice: "Foto sem marca d'água ✓",
+      pixTitle: "Pague R$1,00 no PIX",
+      pixScan: "Escaneie o QR Code no app do seu banco",
+      pixOr: "ou copie o código",
+      pixCopy: "Copiar código PIX",
+      pixCopied: "Copiado!",
+      pixWaiting: "Aguardando pagamento...",
+      pixNoticePrepaid: "Assim que o pagamento cair, sua foto é gerada automaticamente aqui.",
+      pixNoticeDownload: "Assim que o pagamento cair, sua foto sem marca libera automaticamente aqui.",
+      pixCancel: "Cancelar",
     },
     en: {
       generating: "Generating...",
@@ -168,14 +178,23 @@ const GenerateImage = ({
       photo: "photo",
       photos: "photos",
       buyDownload: "Download without watermark - R$1.00",
-      buyLoading: "Redirecting...",
+      buyLoading: "Generating PIX...",
       watermarkNotice: "Image generated with watermark",
-      paymentTitle: "Payment details",
-      cpfLabel: "CPF (Brazilian tax ID)",
-      phoneLabel: "Phone (with area code)",
-      paymentContinue: "Continue to payment",
-      paymentCancel: "Cancel",
-      paymentRequired: "CPF and phone are required",
+      paidCreateButton: "Generate & pay R$1.00",
+      paidNotice: "Your free photos are over. Now it's R$1 per photo, already without watermark.",
+      freeLeftLabel: "free photos left",
+      freeLeftLabelOne: "free photo left",
+      downloadPhoto: "Download photo",
+      paidImageNotice: "Photo without watermark ✓",
+      pixTitle: "Pay R$1.00 with PIX",
+      pixScan: "Scan the QR Code in your bank app",
+      pixOr: "or copy the code",
+      pixCopy: "Copy PIX code",
+      pixCopied: "Copied!",
+      pixWaiting: "Waiting for payment...",
+      pixNoticePrepaid: "As soon as the payment lands, your photo is generated automatically here.",
+      pixNoticeDownload: "As soon as the payment lands, your watermark-free photo unlocks here.",
+      pixCancel: "Cancel",
     },
   }
 
@@ -196,7 +215,11 @@ const GenerateImage = ({
   }
 
   const handleGenerateAnother = () => {
+    if (isPaidImage && image?.startsWith("blob:")) {
+      URL.revokeObjectURL(image)
+    }
     setImage(null)
+    setIsPaidImage(false)
     setGenerationId(null)
     setFiles([])
     setPreviewUrls([])
@@ -211,6 +234,7 @@ const GenerateImage = ({
     try {
       setLoading(true)
       setImage(null)
+      setIsPaidImage(false)
       setGenerationId(null)
 
       const formData = new FormData()
@@ -223,6 +247,14 @@ const GenerateImage = ({
         body: formData,
       })
 
+      // 402 = limite grátis atingido → pagar antes de gerar.
+      if (res.status === 402) {
+        setGenCount(freeLimit)
+        setLoading(false)
+        startPixPayment("prepaid")
+        return
+      }
+
       const data = await res.json()
 
       if (!res.ok) {
@@ -232,6 +264,7 @@ const GenerateImage = ({
 
       setImage(`data:image/png;base64,${data.image}`)
       setGenerationId(data.generationId)
+      setGenCount((c) => c + 1)
       setPrompt("")
       setFiles([])
       if (inputRef.current) inputRef.current.value = ""
@@ -243,31 +276,45 @@ const GenerateImage = ({
     }
   }
 
-  const handleBuyDownload = async (formTaxId?: string, formCellphone?: string) => {
-    if (!generationId || paymentLoading) return
+  // Cria a cobrança PIX e abre a tela com QR + copia-e-cola.
+  // mode "prepaid": 6ª foto+ (gera depois do pagamento) — usa as imagens atuais.
+  // mode "download": comprar foto grátis já gerada (com marca) — usa generationId.
+  const startPixPayment = async (mode: "prepaid" | "download") => {
+    if (paymentLoading) return
+    if (mode === "prepaid" && files.length === 0) {
+      setShowTooltip(true)
+      setTimeout(() => setShowTooltip(false), 2500)
+      return
+    }
+    if (mode === "download" && !generationId) return
 
     setPaymentLoading(true)
+    setCopied(false)
     try {
-      const bodyPayload: Record<string, string> = { generationId }
-      if (formTaxId && formCellphone) {
-        bodyPayload.taxId = formTaxId.replace(/\D/g, "")
-        bodyPayload.cellphone = formCellphone.replace(/\D/g, "")
+      const formData = new FormData()
+      if (mode === "download") {
+        formData.append("generationId", generationId as string)
+      } else {
+        if (prompt.trim()) formData.append("prompt", prompt)
+        files.forEach((file) => formData.append("images", file))
+        formData.append("famousSlug", famousSlug)
       }
 
-      const res = await fetch("/api/payments/create-billing", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(bodyPayload),
-      })
-
+      const res = await fetch("/api/payments/create-pix", { method: "POST", body: formData })
       const data = await res.json()
 
-      if (!res.ok || !data.url) {
-        alert(data.error || "Erro ao criar pagamento")
+      if (!res.ok || !data.qrCodeBase64) {
+        alert(data.error || "Erro ao gerar PIX")
         return
       }
 
-      window.location.href = data.url
+      setPixData({
+        generationId: data.generationId,
+        paymentId: data.paymentId,
+        qrCodeBase64: data.qrCodeBase64,
+        copiaECola: data.copiaECola,
+        mode,
+      })
     } catch {
       alert(locale === "en" ? "Network error. Try again." : "Erro de rede. Tente novamente.")
     } finally {
@@ -275,24 +322,87 @@ const GenerateImage = ({
     }
   }
 
-  const handleBuyClick = () => {
-    if (hasSavedPaymentInfo) {
-      handleBuyDownload()
-    } else {
-      setPaymentFormOpen(true)
+  const onPixApproved = useCallback(
+    async (genId: string) => {
+      setPixData(null)
+      setLoading(true)
+      setImage(null)
+      try {
+        let blob: Blob | null = null
+        for (let attempt = 0; attempt < 4; attempt++) {
+          const res = await fetch(`/api/download-image?id=${encodeURIComponent(genId)}`)
+          if (res.ok) {
+            blob = await res.blob()
+            break
+          }
+          await new Promise((r) => setTimeout(r, 2000))
+        }
+        if (!blob) {
+          alert(locale === "en" ? "Could not load the photo. Please contact us." : "Não foi possível carregar a foto. Fale com a gente.")
+          return
+        }
+        const urlObj = URL.createObjectURL(blob)
+        setImage(urlObj)
+        setIsPaidImage(true)
+        setGenerationId(genId)
+        setFiles([])
+        setPreviewUrls([])
+        setPrompt("")
+        if (inputRef.current) inputRef.current.value = ""
+      } finally {
+        setLoading(false)
+      }
+    },
+    [locale]
+  )
+
+  // Polling do pagamento enquanto a tela do PIX estiver aberta.
+  useEffect(() => {
+    if (!pixData) return
+    let active = true
+    const check = async () => {
+      try {
+        const res = await fetch(`/api/payments/check-pix?paymentId=${encodeURIComponent(pixData.paymentId)}`)
+        const data = await res.json()
+        if (active && data.approved) {
+          onPixApproved(pixData.generationId)
+        }
+      } catch {
+        /* ignora e tenta de novo no próximo tick */
+      }
     }
+    const timer = setInterval(check, 3500)
+    check()
+    return () => {
+      active = false
+      clearInterval(timer)
+    }
+  }, [pixData, onPixApproved])
+
+  const copyPixCode = async () => {
+    if (!pixData) return
+    try {
+      await navigator.clipboard.writeText(pixData.copiaECola)
+    } catch {
+      const ta = document.createElement("textarea")
+      ta.value = pixData.copiaECola
+      document.body.appendChild(ta)
+      ta.select()
+      try { document.execCommand("copy") } catch {}
+      ta.remove()
+    }
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
-  const handlePaymentFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const rawCpf = taxId.replace(/\D/g, "")
-    const rawPhone = cellphone.replace(/\D/g, "")
-    if (rawCpf.length !== 11 || rawPhone.length < 10) {
-      alert(t.paymentRequired)
-      return
-    }
-    setPaymentFormOpen(false)
-    handleBuyDownload(taxId, cellphone)
+  const handleDownloadPhoto = () => {
+    if (!image) return
+    const a = document.createElement("a")
+    a.href = image
+    a.download = `fotocomfamosos-${generationId || "foto"}.png`
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
   }
 
   const handleGenerateButtonInteraction = () => {
@@ -301,7 +411,11 @@ const GenerateImage = ({
       setTimeout(() => setShowTooltip(false), 2500)
       return
     }
-    generateImage()
+    if (overLimit) {
+      startPixPayment("prepaid")
+    } else {
+      generateImage()
+    }
   }
 
   return (
@@ -437,13 +551,31 @@ const GenerateImage = ({
             className="w-full rounded-xl border px-4 py-3 outline-none focus:ring-2 focus:ring-purple-300"
           />
 
+          {overLimit ? (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center text-sm text-amber-800">
+              {t.paidNotice}
+            </div>
+          ) : (
+            freeLeft <= 3 && (
+              <p className="text-center text-xs text-gray-500">
+                {freeLeft} {freeLeft === 1 ? t.freeLeftLabelOne : t.freeLeftLabel}
+              </p>
+            )
+          )}
+
           <div className="relative">
             <button
               onClick={handleGenerateButtonInteraction}
-              disabled={loading}
-              className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold"
+              disabled={loading || paymentLoading}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold disabled:opacity-60"
             >
-              {loading ? t.generating : t.sendButton}
+              {loading
+                ? t.generating
+                : paymentLoading
+                ? t.buyLoading
+                : overLimit
+                ? t.paidCreateButton
+                : t.sendButton}
             </button>
 
             {showTooltip && (
@@ -457,15 +589,28 @@ const GenerateImage = ({
 
       {image && (
         <div className="w-full max-w-[600px] flex flex-col gap-4">
-          <p className="text-center text-sm text-gray-500">{t.watermarkNotice}</p>
-
-          <button
-            onClick={handleBuyClick}
-            disabled={paymentLoading}
-            className="w-full py-5 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold text-lg hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-60"
-          >
-            {paymentLoading ? t.buyLoading : t.buyDownload}
-          </button>
+          {isPaidImage ? (
+            <>
+              <p className="text-center text-sm font-medium text-green-600">{t.paidImageNotice}</p>
+              <button
+                onClick={handleDownloadPhoto}
+                className="w-full py-5 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold text-lg hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                {t.downloadPhoto}
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="text-center text-sm text-gray-500">{t.watermarkNotice}</p>
+              <button
+                onClick={() => startPixPayment("download")}
+                disabled={paymentLoading}
+                className="w-full py-5 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold text-lg hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-60"
+              >
+                {paymentLoading ? t.buyLoading : t.buyDownload}
+              </button>
+            </>
+          )}
 
           <button
             onClick={handleGenerateAnother}
@@ -490,59 +635,49 @@ const GenerateImage = ({
         </div>
       )}
 
-      {paymentFormOpen && (
+      {pixData && (
         <>
-          <div
-            className="fixed inset-0 z-50 bg-black/50"
-            onClick={() => setPaymentFormOpen(false)}
-          />
+          <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setPixData(null)} />
           <div className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">{t.paymentTitle}</h3>
-            <p className="text-sm text-gray-500 mb-4">
-              {locale === "en" ? "Download without watermark" : "Download sem marca d'água"} — R$1,00
+            <h3 className="text-center text-lg font-semibold text-gray-900">{t.pixTitle}</h3>
+            <p className="mt-1 text-center text-sm text-gray-500">{t.pixScan}</p>
+
+            <div className="mt-4 flex justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`data:image/png;base64,${pixData.qrCodeBase64}`}
+                alt="QR Code PIX"
+                className="h-52 w-52 rounded-lg border border-gray-200"
+              />
+            </div>
+
+            <p className="mt-4 text-center text-xs font-medium uppercase tracking-wide text-gray-400">
+              {t.pixOr}
             </p>
-            <form onSubmit={handlePaymentFormSubmit} className="flex flex-col gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t.cpfLabel}</label>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  autoComplete="off"
-                  placeholder="000.000.000-00"
-                  value={taxId}
-                  onChange={(e) => setTaxId(formatCpfInput(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder:text-gray-400 focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">{t.phoneLabel}</label>
-                <input
-                  type="text"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  placeholder="(11) 99999-9999"
-                  value={cellphone}
-                  onChange={(e) => setCellphone(formatPhoneInput(e.target.value))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder:text-gray-400 focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
-                />
-              </div>
-              <div className="flex gap-2 mt-2">
-                <button
-                  type="button"
-                  onClick={() => setPaymentFormOpen(false)}
-                  className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                >
-                  {t.paymentCancel}
-                </button>
-                <button
-                  type="submit"
-                  disabled={paymentLoading}
-                  className="flex-1 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-semibold text-white hover:from-purple-700 hover:to-pink-700 disabled:opacity-60"
-                >
-                  {paymentLoading ? t.buyLoading : t.paymentContinue}
-                </button>
-              </div>
-            </form>
+            <div className="mt-2 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2">
+              <p className="break-all text-[11px] leading-snug text-gray-600">{pixData.copiaECola}</p>
+            </div>
+            <button
+              onClick={copyPixCode}
+              className="mt-2 w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+            >
+              {copied ? t.pixCopied : t.pixCopy}
+            </button>
+
+            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-gray-500">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-green-600" />
+              <span>{t.pixWaiting}</span>
+            </div>
+            <p className="mt-2 text-center text-xs text-gray-400">
+              {pixData.mode === "download" ? t.pixNoticeDownload : t.pixNoticePrepaid}
+            </p>
+
+            <button
+              onClick={() => setPixData(null)}
+              className="mt-3 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
+            >
+              {t.pixCancel}
+            </button>
           </div>
         </>
       )}

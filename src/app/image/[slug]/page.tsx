@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
+import { FREE_GENERATION_LIMIT } from "@/lib/generation"
 import famosos from "@/src/data/famosos.json"
 import PageClient from "@/src/components/PageClient"
 import { Metadata } from "next"
@@ -79,16 +80,27 @@ const page = async ({ params }: Props) => {
   }
 
   let hasSavedPaymentInfo = false
+  let freeUsed = 0
 
   if (session?.user?.email) {
     const { data: profile } = await supabaseServer
       .from("profiles")
-      .select("tax_id, cellphone")
+      .select("id, tax_id, cellphone")
       .eq("email", session.user.email)
       .single()
 
     if (profile?.tax_id && profile?.cellphone) {
       hasSavedPaymentInfo = true
+    }
+
+    if (profile?.id) {
+      const { count } = await supabaseServer
+        .from("generations")
+        .select("id", { count: "exact", head: true })
+        .eq("profile_id", profile.id)
+        .eq("paid", false)
+        .not("storage_path", "is", null)
+      freeUsed = count ?? 0
     }
   }
 
@@ -101,6 +113,8 @@ const page = async ({ params }: Props) => {
         locale="pt"
         userEmail={session?.user?.email || undefined}
         hasSavedPaymentInfo={hasSavedPaymentInfo}
+        freeUsed={freeUsed}
+        freeLimit={FREE_GENERATION_LIMIT}
       />
     </div>
   )

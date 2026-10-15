@@ -22,8 +22,8 @@ const Header = ({
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const translations = {
-    pt: { signOut: "Sair da conta" },
-    en: { signOut: "Sign Out" },
+    pt: { signOut: "Sair da conta", myPhotos: "Minhas fotos" },
+    en: { signOut: "Sign Out", myPhotos: "My photos" },
   }
 
   const t = translations[locale]
@@ -92,6 +92,14 @@ const Header = ({
                         </p>
                       </div>
                     )}
+
+                    <Link
+                      href={locale === "en" ? "/en/my-photos" : "/minhas-fotos"}
+                      onClick={() => setDropdownOpen(false)}
+                      className="block w-full border-b border-gray-100 px-4 py-3 text-left text-sm text-gray-700 transition-colors hover:bg-gray-50"
+                    >
+                      {t.myPhotos}
+                    </Link>
 
                     <button
                       onClick={() => {

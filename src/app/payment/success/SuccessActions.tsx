@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react"
 
+const SITE_URL = "https://www.fotocomfamosos.com.br"
+
 interface Props {
   generationId: string
   locale: "pt" | "en"
@@ -26,6 +28,7 @@ export default function SuccessActions({ generationId, locale }: Props) {
       linkCopied: "Link copiado!",
       shareTitle: "Compartilhe sua foto!",
       shareText: "Olha a foto que eu criei com IA!",
+      createYours: "Crie a sua também em",
       preparing: "Preparando...",
     },
     en: {
@@ -39,12 +42,14 @@ export default function SuccessActions({ generationId, locale }: Props) {
       linkCopied: "Link copied!",
       shareTitle: "Share your photo!",
       shareText: "Look at the photo I created with AI!",
+      createYours: "Create yours too at",
       preparing: "Preparing...",
     },
   }
 
   const text = t[locale]
   const downloadUrl = `/api/download-image?id=${encodeURIComponent(generationId)}`
+  const shareMessage = `${text.shareText}\n\n${text.createYours} ${SITE_URL}`
 
   useEffect(() => {
     const loadImage = async () => {
@@ -82,23 +87,15 @@ export default function SuccessActions({ generationId, locale }: Props) {
       const res = await fetch(imageUrl)
       const blob = await res.blob()
       const file = new File([blob], `foto-ia-${generationId}.png`, { type: "image/png" })
-      const shareData = { files: [file], title: text.shareText, text: text.shareText }
+      const shareData = { files: [file], title: text.shareText, text: shareMessage }
 
       if (navigator.canShare?.(shareData)) {
         await navigator.share(shareData)
       } else {
-        const shareUrl = typeof window !== "undefined" ? window.location.origin : ""
-        window.open(
-          `https://wa.me/?text=${encodeURIComponent(text.shareText)}%20${encodeURIComponent(shareUrl)}`,
-          "_blank"
-        )
+        window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, "_blank")
       }
     } catch {
-      const shareUrl = typeof window !== "undefined" ? window.location.origin : ""
-      window.open(
-        `https://wa.me/?text=${encodeURIComponent(text.shareText)}%20${encodeURIComponent(shareUrl)}`,
-        "_blank"
-      )
+      window.open(`https://wa.me/?text=${encodeURIComponent(shareMessage)}`, "_blank")
     } finally {
       setSharing(false)
     }
@@ -106,7 +103,7 @@ export default function SuccessActions({ generationId, locale }: Props) {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(window.location.origin)
+      await navigator.clipboard.writeText(SITE_URL)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {

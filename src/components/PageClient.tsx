@@ -12,6 +12,8 @@ interface Props {
   locale?: 'pt' | 'en'
   userEmail?: string
   hasSavedPaymentInfo?: boolean
+  freeUsed?: number
+  freeLimit?: number
 }
 
 export default function PageClient({
@@ -21,6 +23,8 @@ export default function PageClient({
   locale = 'pt',
   userEmail,
   hasSavedPaymentInfo = false,
+  freeUsed = 0,
+  freeLimit = 2,
 }: Props) {
   const comboSlug = COMBO_BY_POLITICIAN[famousSlug]
 
@@ -43,6 +47,8 @@ export default function PageClient({
         famousName={famousName}
         locale={locale}
         hasSavedPaymentInfo={hasSavedPaymentInfo}
+        freeUsed={freeUsed}
+        freeLimit={freeLimit}
       />
     </div>
   )

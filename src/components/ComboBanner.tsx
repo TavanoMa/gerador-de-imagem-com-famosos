@@ -75,18 +75,20 @@ export default function ComboBanner({ comboSlug, locale = "pt" }: Props) {
     <div className="mx-auto w-full max-w-[600px] px-4 sm:px-6">
       <Link
         href={`${basePath}/${combo.slug}`}
-        className="group flex items-center gap-4 rounded-2xl border-2 border-purple-200 bg-purple-50 p-4 transition-all hover:border-purple-400 hover:bg-purple-100"
+        className="group flex flex-col gap-3 rounded-2xl border-2 border-purple-200 bg-purple-50 p-4 transition-all hover:border-purple-400 hover:bg-purple-100 sm:flex-row sm:items-center sm:gap-4"
       >
-        <div className="flex -space-x-3 shrink-0">
-          {members.map((m) => (
-            <MemberAvatar key={m} slug={m} />
-          ))}
+        <div className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
+          <div className="flex -space-x-3 shrink-0">
+            {members.map((m) => (
+              <MemberAvatar key={m} slug={m} />
+            ))}
+          </div>
+          <div className="min-w-0">
+            <p className="font-bold text-gray-900">{t.title}</p>
+            <p className="text-sm text-gray-600">{t.desc}</p>
+          </div>
         </div>
-        <div className="min-w-0 flex-1">
-          <p className="font-bold text-gray-900">{t.title}</p>
-          <p className="truncate text-sm text-gray-600">{t.desc}</p>
-        </div>
-        <span className="shrink-0 whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-sm font-semibold text-white">
+        <span className="w-full shrink-0 whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2.5 text-center text-sm font-semibold text-white sm:w-auto">
           {t.cta}
         </span>
       </Link>

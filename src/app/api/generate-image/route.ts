@@ -1,217 +1,11 @@
 import { NextResponse } from "next/server"
-import { toFile } from "openai"
-import sharp from "sharp"
-import path from "node:path"
 import { auth } from "@/lib/auth"
 import { supabaseServer } from "@/lib/supabase-server"
-import { getComboMembers, getFamous } from "@/src/data/politics"
-
-const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+import { runGeneration, FREE_GENERATION_LIMIT, type UserImageInput } from "@/lib/generation"
+import { addWatermark } from "@/lib/watermark"
 
 export async function GET() {
   return NextResponse.json({ ok: true })
-}
-
-interface OpenRouterImageUrl {
-  url: string
-}
-
-interface OpenRouterRequestContent {
-  type: string
-  text?: string
-  image_url?: OpenRouterImageUrl
-}
-
-interface OpenRouterRequestBody {
-  model: string
-  messages: { role: string; content: OpenRouterRequestContent[] }[]
-  modalities: string[]
-  image_config?: { aspect_ratio: string }
-}
-
-interface OpenRouterResponse {
-  choices: {
-    message: { images?: { image_url?: { url: string } }[] }
-    native_finish_reason?: string
-  }[]
-}
-
-async function fileToDataUri(file: File): Promise<string> {
-  const buffer = Buffer.from(await file.arrayBuffer())
-  const base64 = buffer.toString("base64")
-  const mime = file.type || "image/png"
-  return `data:${mime};base64,${base64}`
-}
-
-async function generateImageOpenRouter(
-  prompt: string,
-  imageDataUris: string[],
-  apiKey: string
-): Promise<{ imageDataUri: string } | { error: string }> {
-  const content: OpenRouterRequestContent[] = [{ type: "text", text: prompt }]
-  for (const url of imageDataUris) {
-    content.push({ type: "image_url", image_url: { url } })
-  }
-
-  const body: OpenRouterRequestBody = {
-    model: "google/gemini-3-pro-image-preview",
-    messages: [{ role: "user", content }],
-    modalities: ["image", "text"],
-  }
-
-  const res = await fetch(`${OPENROUTER_BASE_URL}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify(body),
-  })
-
-  if (!res.ok) {
-    const errText = await res.text()
-    console.error("OpenRouter error:", res.status, errText)
-    return { error: errText || res.statusText }
-  }
-
-  const data = (await res.json()) as OpenRouterResponse
-  const imageDataUri = data.choices?.[0]?.message?.images?.[0]?.image_url?.url
-
-  if (!imageDataUri) {
-    return { error: "No image in response" }
-  }
-
-  return { imageDataUri }
-}
-
-function dataUriToBase64(dataUri: string): string {
-  const match = dataUri.match(/^data:[^;]+;base64,(.+)$/)
-  return match ? match[1] : dataUri
-}
-
-async function addWatermark(imageBuffer: Buffer): Promise<Buffer> {
-  const metadata = await sharp(imageBuffer).metadata()
-  const w = metadata.width || 1024
-  const h = metadata.height || 1024
-  const fontSize = Math.max(Math.floor(w * 0.04), 22)
-
-  const fontfile = path.join(process.cwd(), "src", "fonts", "arialbd.ttf")
-
-  const stamp = await sharp({
-    text: {
-      text: `<span size="${fontSize * 1024}" foreground="#ffffff"><b>fotocomfamosos.com.br</b></span>`,
-      rgba: true,
-      dpi: 72,
-      fontfile,
-    },
-  }).png().toBuffer()
-
-  const rotated = await sharp(stamp)
-    .rotate(-30, { background: { r: 0, g: 0, b: 0, alpha: 0 } })
-    .ensureAlpha()
-    .png()
-    .toBuffer()
-
-  const rMeta = await sharp(rotated).metadata()
-  const rw = rMeta.width || 300
-  const rh = rMeta.height || 40
-
-  const gapX = Math.floor(w * 0.06)
-  const gapY = Math.floor(h * 0.08)
-  const stepX = rw + gapX
-  const stepY = rh + gapY
-
-  const composites: sharp.OverlayOptions[] = []
-  for (let y = 0; y < h; y += stepY) {
-    for (let x = 0; x < w; x += stepX) {
-      composites.push({ input: rotated, left: x, top: y, blend: "over" })
-    }
-  }
-
-  return sharp(imageBuffer)
-    .composite(composites)
-    .png()
-    .toBuffer()
-}
-
-async function downloadRefImages(
-  slug: string
-): Promise<Awaited<ReturnType<typeof toFile>>[]> {
-  const files: Awaited<ReturnType<typeof toFile>>[] = []
-
-  for (let i = 1; i <= 3; i++) {
-    let data = null
-    let extension = "png"
-
-    let storagePath = `${slug}/${i}.png`
-    let response = await supabaseServer.storage
-      .from("famous_image")
-      .download(storagePath)
-
-    if (!response.error && response.data) {
-      data = response.data
-      extension = "png"
-    } else {
-      storagePath = `${slug}/${i}.jpg`
-      response = await supabaseServer.storage
-        .from("famous_image")
-        .download(storagePath)
-
-      if (!response.error && response.data) {
-        data = response.data
-        extension = "jpg"
-      }
-    }
-
-    if (!data) continue
-
-    const buffer = Buffer.from(await data.arrayBuffer())
-    files.push(
-      await toFile(buffer, `${slug}-${i}.${extension}`, {
-        type: extension === "jpg" ? "image/jpeg" : "image/png",
-      })
-    )
-  }
-
-  return files
-}
-
-function buildPrompt(famousNames: string[], userPrompt: string | null): string {
-  const joined = famousNames.join(" e ")
-
-  const famousBlock =
-    famousNames.length > 1
-      ? `Os famosos (TODOS devem aparecer juntos na mesma imagem, ao lado do usuário): ${joined}
-- cada famoso com aparência fiel a si mesmo
-- sem exageros ou caricatura
-- os famosos e o usuário juntos na mesma cena, de forma natural e realista
-- não misturar ou fundir os rostos dos famosos entre si`
-      : `O famoso: ${joined}
-- aparência fiel ao famoso
-- sem exageros ou caricatura
-- aparência respeitosa e realista`
-
-  const basePrompt = `
-Fotografia hiper-realista, qualidade profissional.
-
-Identidade:
-- o rosto do usuário deve ser preservado com fidelidade máxima
-- não alterar traços faciais do usuário
-- não suavizar, não reestilizar, não reimaginar o rosto do usuário
-- manter formato do rosto, nariz, olhos, boca e proporções originais
-
-${famousBlock}
-
-Estilo:
-- fotografia real
-- iluminação natural
-- textura de pele realista
-- sem aparência de pintura, ilustração ou CGI
-`
-
-  return userPrompt
-    ? `${basePrompt}\nPedido do usuário: ${userPrompt}`
-    : `${basePrompt}\n crie uma foto seguindo os padrões acima com ${joined} junto com o usuário que está na foto.`
 }
 
 export async function POST(req: Request) {
@@ -229,10 +23,7 @@ export async function POST(req: Request) {
     const userImages = formData.getAll("images") as File[]
 
     if (!famousSlug) {
-      return NextResponse.json(
-        { error: "Famoso não informado" },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: "Famoso não informado" }, { status: 400 })
     }
 
     const { data: profile } = await supabaseServer
@@ -245,84 +36,37 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Perfil não encontrado" }, { status: 404 })
     }
 
-    // Resolve famoso único OU combo (ex.: "lula-e-bolsonaro").
-    const comboMembers = getComboMembers(famousSlug)
-    const isComboReq = comboMembers.length > 1
+    // Limite de gerações grátis: conta só as NÃO compradas e já geradas.
+    // Fotos compradas (paid=true) e tentativas abandonadas (sem imagem) não contam.
+    const { count } = await supabaseServer
+      .from("generations")
+      .select("id", { count: "exact", head: true })
+      .eq("profile_id", profile.id)
+      .eq("paid", false)
+      .not("storage_path", "is", null)
 
-    let famousNames: string[] = []
-    let refSlugs: string[] = []
-
-    if (isComboReq) {
-      refSlugs = comboMembers
-      famousNames = comboMembers.map((m) => getFamous(m)?.name ?? m)
-    } else {
-      const { data: famous } = await supabaseServer
-        .from("famous")
-        .select("name")
-        .eq("slug", famousSlug)
-        .single()
-
-      if (!famous) {
-        return NextResponse.json(
-          { error: "Famoso não encontrado" },
-          { status: 404 }
-        )
-      }
-
-      refSlugs = [famousSlug]
-      famousNames = [famous.name]
+    const used = count ?? 0
+    if (used >= FREE_GENERATION_LIMIT) {
+      return NextResponse.json(
+        { requiresPayment: true, freeUsed: used, freeLimit: FREE_GENERATION_LIMIT },
+        { status: 402 }
+      )
     }
 
-    const finalPrompt = buildPrompt(famousNames, userPrompt)
-
-    const imageFiles: Awaited<ReturnType<typeof toFile>>[] = []
-
-    for (const refSlug of refSlugs) {
-      const refs = await downloadRefImages(refSlug)
-      imageFiles.push(...refs)
-    }
-
+    // Prepara as imagens do usuário.
+    const inputs: UserImageInput[] = []
     for (let i = 0; i < userImages.length; i++) {
       const img = userImages[i]
       if (!img || img.size === 0) continue
-
       const buffer = Buffer.from(await img.arrayBuffer())
-      imageFiles.push(
-        await toFile(buffer, `user-${i}.png`, {
-          type: img.type || "image/png",
-        })
-      )
+      inputs.push({ buffer, type: img.type || "image/png", name: `user-${i}.png` })
     }
 
-    if (imageFiles.length === 0) {
-      return NextResponse.json(
-        { error: "Nenhuma imagem válida encontrada" },
-        { status: 400 }
-      )
+    if (inputs.length === 0) {
+      return NextResponse.json({ error: "Nenhuma imagem válida encontrada" }, { status: 400 })
     }
 
-    const apiKey = process.env.NANOBANANA_API_KEY || process.env.OPENROUTER_API_KEY
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: "NANOBANANA_API_KEY ou OPENROUTER_API_KEY não configurada" },
-        { status: 500 }
-      )
-    }
-
-    const imageDataUris = await Promise.all(imageFiles.map(fileToDataUri))
-    const result = await generateImageOpenRouter(finalPrompt, imageDataUris, apiKey)
-
-    if ("error" in result) {
-      console.error("OpenRouter image gen error:", result.error)
-      return NextResponse.json(
-        { error: "Falha ao gerar imagem" },
-        { status: 500 }
-      )
-    }
-
-    const cleanBase64 = dataUriToBase64(result.imageDataUri)
-    const cleanBuffer = Buffer.from(cleanBase64, "base64")
-
+    // Cria a geração (conta para o limite) e gera.
     const { data: generation, error: genError } = await supabaseServer
       .from("generations")
       .insert({
@@ -336,34 +80,23 @@ export async function POST(req: Request) {
 
     if (genError || !generation) {
       console.error("Generation insert error:", genError)
-      return NextResponse.json(
-        { error: "Erro ao salvar geração" },
-        { status: 500 }
-      )
+      return NextResponse.json({ error: "Erro ao salvar geração" }, { status: 500 })
     }
 
-    const storagePath = `${generation.id}.png`
-    const { error: uploadError } = await supabaseServer.storage
-      .from("generated_images")
-      .upload(storagePath, cleanBuffer, {
-        contentType: "image/png",
-        upsert: false,
-      })
+    const result = await runGeneration({
+      generationId: generation.id,
+      famousSlug,
+      prompt: userPrompt,
+      userImages: inputs,
+    })
 
-    if (uploadError) {
-      console.error("Storage upload error:", uploadError)
-      return NextResponse.json(
-        { error: "Erro ao salvar imagem" },
-        { status: 500 }
-      )
+    if ("error" in result) {
+      // Falha: remove a linha para não consumir uma geração grátis.
+      await supabaseServer.from("generations").delete().eq("id", generation.id)
+      return NextResponse.json({ error: result.error }, { status: result.status ?? 500 })
     }
 
-    await supabaseServer
-      .from("generations")
-      .update({ storage_path: storagePath })
-      .eq("id", generation.id)
-
-    const watermarkedBuffer = await addWatermark(cleanBuffer)
+    const watermarkedBuffer = await addWatermark(result.cleanBuffer)
     const watermarkedBase64 = watermarkedBuffer.toString("base64")
 
     return NextResponse.json({
@@ -372,9 +105,6 @@ export async function POST(req: Request) {
     })
   } catch (err: unknown) {
     console.error("GENERATE IMAGE ERROR:", err)
-    return NextResponse.json(
-      { error: "Erro interno do servidor" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Erro interno do servidor" }, { status: 500 })
   }
 }
