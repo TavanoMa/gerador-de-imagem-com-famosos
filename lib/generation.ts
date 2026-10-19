@@ -6,7 +6,7 @@ import "server-only"
 const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 // Gerações grátis por usuário (vitalício). A partir daí, paga antes de gerar.
-export const FREE_GENERATION_LIMIT = 2
+export const FREE_GENERATION_LIMIT = 1
 
 interface OpenRouterImageUrl {
   url: string

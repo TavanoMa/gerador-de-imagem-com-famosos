@@ -39,6 +39,9 @@ yarn-error.log*
 # claude code (config local)
 .claude/
 
+# campanhas de e-mail (uso local, não deployar)
+campaigns/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

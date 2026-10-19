@@ -46,7 +46,7 @@ const GenerateImage = ({
   famousSlug,
   locale = "pt",
   freeUsed = 0,
-  freeLimit = 2,
+  freeLimit = 1,
 }: Props) => {
   const [image, setImage] = useState<string | null>(null)
   const [isPaidImage, setIsPaidImage] = useState(false)

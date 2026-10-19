@@ -24,7 +24,7 @@ export default function PageClient({
   userEmail,
   hasSavedPaymentInfo = false,
   freeUsed = 0,
-  freeLimit = 2,
+  freeLimit = 1,
 }: Props) {
   const comboSlug = COMBO_BY_POLITICIAN[famousSlug]
 
